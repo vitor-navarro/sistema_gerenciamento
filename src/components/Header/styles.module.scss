@@ -2,17 +2,47 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    box-sizing: border-box;
+
     padding: 0 2rem;
     height: 5rem;
+    width: 100vw;
 
+    box-shadow: 0 0 5px grey;
+    position: fixed;
+    z-index: 50;
+    
+    h1{
+        font-size: 1.5rem;
+    }
+
+    span{
+        
+        font-weight: 400;
+    }
+
+    h1, span, .BsFillTelephoneFill,.GiHamburgerMenu, .CgNotes{
+        cursor: pointer;
+        color: var(--dark-slate-blue);
+
+        &:hover{
+            color: var(--gray-600);
+            transition: color 1s;
+        }
+    }
+    
     div{
         display: flex;
         align-items: center;
         gap: 1rem;
-
+    
         *{
             font-size: 1.5rem;
         }
     }
 
+}
+
+.GiHamburgerMenu{
+    color: var(--dark-slate-blue);
 }

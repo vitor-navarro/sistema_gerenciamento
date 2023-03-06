@@ -8,19 +8,19 @@ export function Header(){
         <header className={styles.headerContainer}>
             <div>
                 <div>
-                    <GiHamburgerMenu/>
+                    <GiHamburgerMenu className={styles.GiHamburgerMenu}/>
                 </div>
                 <div>
-                    <span>TN soluções elétricas</span>
+                    <h1>TN soluções elétricas</h1>
                 </div>
             </div>
             <div>
                 <div>
-                    <CgNotes/>
+                    <CgNotes className={styles.CgNotes}/>
                     <span>Solicitar Cotação</span>
                 </div>
                 <div>
-                    <BsFillTelephoneFill />
+                    <BsFillTelephoneFill className={styles.BsFillTelephoneFill}/>
                     <span>Ligar Agora</span>
                 </div>
             </div>
