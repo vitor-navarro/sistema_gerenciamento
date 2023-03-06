@@ -16,11 +16,29 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
-const querySnapshot = await getDocs(collection(db, "users"));
-querySnapshot.forEach((doc) => {
-  console.log(`${doc.id} => ${doc.data()}`);
-});
+export async function getProducts(){
+  const querySnapshot = await getDocs(collection(db, "users"));
+  querySnapshot.forEach((doc) => {
+    console.log(`${doc.id} => ${doc.data()}`);
+  });
+
+}
+export async function addProduct(){
+
+  try {
+    const docRef = await addDoc(collection(db, "products"), {
+      
+    });
+    console.log("Document written with ID: ", docRef.id);
+  } catch (e) {
+    console.error("Error adding document: ", e);
+  }
+  
+  
+  
+}
 
 
-
-
+export function teste(){
+  console.log("teste")
+}
