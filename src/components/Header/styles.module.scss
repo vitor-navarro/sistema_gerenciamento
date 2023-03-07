@@ -1,15 +1,18 @@
 .headerContainer{
+    position: fixed;
     display: flex;
+    background-color: rgba(0,0,0,0);
+
     justify-content: space-between;
     align-items: center;
     box-sizing: border-box;
-
+    
     padding: 0 2rem;
     height: 5rem;
+    top:0;
     width: 100vw;
-
     box-shadow: 0 0 5px grey;
-    position: fixed;
+
     z-index: 50;
     
     h1{
