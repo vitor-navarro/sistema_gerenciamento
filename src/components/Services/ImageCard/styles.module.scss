@@ -1,0 +1,30 @@
+.imageCardContainer {
+    width: calc(30% - 0.30rem);
+
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+
+    margin-bottom: 1.5rem;
+    gap: 1rem;
+    margin: 0.5rem;
+
+    p, h3{
+        width: 100%;
+        align-self: center;
+        text-align: center;
+    }
+
+    .imageContainer {
+        overflow: hidden;
+
+      }
+      
+      img {
+        width: 100%;
+        object-fit: cover;
+        object-position: top center;
+      }
+
+}
+

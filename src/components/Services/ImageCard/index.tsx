@@ -12,7 +12,9 @@ export function ImageCard(props: ImageCardProps) {
 
   return (
     <div className={styles.imageCardContainer}>
-      <img src={image} alt={title} />
+      <div className={styles.imageContainer}>
+        <img src={image} alt={title} />
+      </div>
       <h3>{title}</h3>
       <p>{description}</p>
     </div>

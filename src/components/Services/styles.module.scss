@@ -4,16 +4,25 @@
     align-items: center;
     gap: 1rem;
     margin-top: 2rem;
+    line-height: 1.6;
 
     h1{
         font-size: 2.5rem;
         font-weight: bold;
         color: var(--gray-900);
     }
+
+    p{
+        max-width: 50%;
+        text-align: center;
+        overflow-wrap: break-word;
+    }
 }
  
-.servicesContent{
+.servicesContent {
     display: flex;
-    flex-direction: row;
-    align-items: center;
-}
+    flex-wrap: wrap;
+    justify-content: center;
+    width: calc(100% - 20px);
+    margin: 0 auto;
+  }
