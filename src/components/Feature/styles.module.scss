@@ -2,26 +2,27 @@
     /*background-image: url("../../../public/Feature.svg");
     background-size: cover;
     background-repeat: no-repeat;*/
-    height: 80vh;
+    height: 70vh;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
     gap: 1rem;
+    border-bottom: 1px solid #ccc;
     
     * {
         margin: 0;
         padding: 0;
         text-align: center;
         position: relative;
-        top: -20%;
+        top: -10%;
     }
 
     h1 {
         font-size: 2.5rem;
         margin-bottom: 20px;
         font-weight: bold;
-        color: #222;
+        color: var(--gray-900);
       }
       
       p {

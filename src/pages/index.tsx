@@ -1,6 +1,7 @@
 import { Feature } from "@/components/Feature";
 import { Header } from "@/components/Header";
-import { CreateProduct } from "../components/ProductForm";
+import { Services } from "@/components/Services";
+import { CreateProduct } from "@/components/ProductForm";
 
 export default function Home() {
 
@@ -11,6 +12,10 @@ export default function Home() {
 
       <div style={{marginTop:"5rem"}}>
         <Feature />
+      </div>
+
+      <div style={{marginTop:"5rem"}}>
+        <Services />
       </div>
 
     </>
