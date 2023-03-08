@@ -49,3 +49,23 @@
 .GiHamburgerMenu{
     color: var(--dark-slate-blue);
 }
+
+@media (max-width: 768px){
+    .headerContainer{
+        padding: 0 1rem;
+        height: 4rem;
+        width: auto;
+        h1{
+            font-size: 1.2rem;
+        }
+        span{
+            font-size: 0.8rem;
+        }
+        div{
+            gap: 0.5rem;
+            *{
+                font-size: 1.2rem;
+            }
+        }
+    }
+}

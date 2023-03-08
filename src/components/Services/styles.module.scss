@@ -13,7 +13,6 @@
     }
 
     p{
-        max-width: 50%;
         text-align: center;
         overflow-wrap: break-word;
     }
@@ -26,3 +25,13 @@
     width: calc(100% - 20px);
     margin: 0 auto;
   }
+
+@media (max-width: 768px) {
+    .servicesContent {
+        display: flex;
+        flex-direction: column;
+        flex-wrap: nowrap;
+        width: 100vw;
+        align-items: center;
+    }
+}
