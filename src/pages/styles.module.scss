@@ -1,7 +1,20 @@
 .bodyContent{
     margin: auto;
     margin-top: 5rem;
-    width: 95vw;
+    width: 97vw;
     text-align: center;
     overflow: hidden;
+    
+    h1 {
+        font-size: 2.5rem;
+        margin-bottom: 20px;
+        font-weight: bold;
+        color: var(--gray-900);
+      }        
+    
+    div{
+      margin-top: 2rem;
+    }
+
+
 }
