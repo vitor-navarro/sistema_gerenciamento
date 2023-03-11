@@ -1,0 +1,13 @@
+#cardContainerId{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.cardContainer{
+    margin: 2rem;
+    padding: 2rem;
+
+    border: 1px solid var(--white);
+    cursor:pointer;
+}

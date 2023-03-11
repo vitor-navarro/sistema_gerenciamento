@@ -1,9 +1,12 @@
 import { Feature } from "@/components/Feature";
 import { Header } from "@/components/Header";
 import { Services } from "@/components/Services";
-import { CreateProduct } from "@/components/ProductForm";
-import styles from './styles.module.scss';
 import { Contact } from "@/components/Contact";
+import { Footer } from "@/components/Footer";
+
+import styles from './styles.module.scss';
+
+
 
 export default function Home() {
 
@@ -17,6 +20,8 @@ export default function Home() {
         <Services />
         <Contact />
       </div>
+      
+      <Footer />
 
     </>
   )

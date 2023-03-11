@@ -1,0 +1,31 @@
+.footerContainer{
+    background-color: var(--purple-800);
+    
+    *{
+        color: var(--white);
+    }
+}
+
+.footerContent{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem 0;
+    line-height: 1.6;
+
+    div{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+    h2{
+        text-transform: uppercase;
+        text-align: center;
+    }
+
+}
+
+.icon{
+    font-size: 2rem;
+}

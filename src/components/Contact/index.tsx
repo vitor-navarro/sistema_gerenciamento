@@ -21,12 +21,12 @@ export function Contact(){
 
                         <div>
                             <label>Telefone:</label>
-                            <input type="text" placeholder="Telefone"></input>
+                            <input type="text" placeholder="ex: (44) 98831-5891"></input>
                         </div>
 
                         <div>
                             <label>Email:</label>
-                            <input type="text" placeholder="Email"></input>
+                            <input type="text" placeholder="ex: teste@gmail.com"></input>
                         </div>
                         
                         <div>
