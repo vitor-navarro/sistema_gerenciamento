@@ -18,7 +18,7 @@ export default function Home() {
       <div className={styles.bodyContent}>
         <Feature />
         <Services />
-        <Contact />
+        <Contact/>
       </div>
       
       <Footer />
