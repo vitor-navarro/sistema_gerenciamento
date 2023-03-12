@@ -1,6 +1,21 @@
+import {useState} from 'react'
+
 import styles from './styles.module.scss'
 
 export function Contact(){
+
+    const [name, setName] = useState('');
+    const [phone, setPhone] = useState('');
+    const [email, setEmail] = useState('');
+    const [message, setMessage] = useState('');
+
+
+    function sendEmail(e : any){
+        e.preventDefault();
+
+    }
+
+
     return (
         <div className={styles.contactConteiner}>
             <h1>Contato</h1>
@@ -13,25 +28,45 @@ export function Contact(){
                     <p>Vinicius Navarro: (44) 98831-5891</p>
                     <p>ou</p>
                     <h3>Preencha o formulário</h3>
-                    <form>
+                    <form onSubmit={sendEmail}>
                         <div>
                             <label>Nome:</label>
-                            <input type="text" placeholder="Nome"></input>
+                            <input 
+                                type="text" 
+                                placeholder="Nome" 
+                                onChange={e => setName(e.target.value)}
+                                value={name}
+                            />
                         </div>
 
                         <div>
                             <label>Telefone:</label>
-                            <input type="text" placeholder="ex: (44) 98831-5891"></input>
+                            <input 
+                                type="text"
+                                placeholder="ex: (44) 98831-5891" 
+                                onChange={e => setPhone(e.target.value)}
+                                value={phone}
+                            />
                         </div>
 
                         <div>
                             <label>Email:</label>
-                            <input type="text" placeholder="ex: teste@gmail.com"></input>
+                            <input 
+                                type="email" 
+                                placeholder="ex: teste@gmail.com"
+                                onChange={e => setEmail(e.target.value)}
+                                value={email}
+                            />
                         </div>
                         
                         <div>
                             <label>Como podemos ajudar?</label>
-                            <input type="text" placeholder="Mensagem"></input>
+                            <input 
+                                type="text" 
+                                placeholder="Mensagem" 
+                                onChange={e => setMessage(e.target.value)}
+                                value={message}
+                            />
                         </div>
                         <button type='submit'>Enviar</button>
                     </form>
