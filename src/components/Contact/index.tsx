@@ -1,3 +1,4 @@
+import { emailSend } from '@/services/email.js/emailSender';
 import {useState} from 'react'
 
 import styles from './styles.module.scss'
@@ -10,9 +11,16 @@ export function Contact(){
     const [message, setMessage] = useState('');
 
 
-    function sendEmail(e : any){
+    function sendEmail(e : React.FormEvent<HTMLFormElement>){
         e.preventDefault();
+        const emailObject = {
+            name: name,
+            phone: phone,
+            email: email,
+            message: message
+        };
 
+        emailSend(emailObject)
     }
 
 
