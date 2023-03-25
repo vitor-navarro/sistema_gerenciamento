@@ -1,5 +1,5 @@
 import styles from './styles.module.scss';
-
+import Image from 'next/image';
 
 interface ImageCardProps{
     image: string;
@@ -13,7 +13,13 @@ export function ImageCard(props: ImageCardProps) {
   return (
     <div className={styles.cardContainer}>
       <div className={styles.imageContainer}>
-        <img src={image} alt={title} />
+        <Image 
+        width={300}
+        height={300}
+        src={image}
+        alt={title}
+        className={styles.image}
+        />
       </div>
 
       <div className={styles.cardContent}>
