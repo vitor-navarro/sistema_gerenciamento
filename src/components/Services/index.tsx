@@ -11,7 +11,7 @@ export function Services(){
             <div className={styles.servicesContent}>
                 <ImageCard image='/teste laudo.png' title='Soluções elétricas' description='Para sua residencial ou empresa'/>    
                 <ImageCard image='/teste obra.png' title='Residencial e Predial' description='instalação e manutenção residencial e predial'/>    
-                <ImageCard image='/teste projeto.png' title='Segurança eletrônica' description='Instalação e manutenção de camerss de segurança'/>    
+                <ImageCard image='/teste projeto.png' title='Segurança eletrônica' description='Instalação e manutenção de cameras de segurança'/>    
                 <ImageCard image='/teste laudo.png' title='Energia Solar' description='Instação e manutenção de energia solar'/>   
                 <ImageCard image='/teste obra.png' title='Projetos Elétricos' description='Projetos elétricos'/>
             </div>
