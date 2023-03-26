@@ -1,4 +1,4 @@
-import { emailSend } from '@/services/email.js/emailSender';
+import { emailSend } from '../../services/email.js/emailSender';
 import { useState,useRef } from 'react'
 
 import styles from './styles.module.scss'
@@ -10,7 +10,7 @@ export function Contact(){
     const [email, setEmail] = useState('');
     const [message, setMessage] = useState('');
 
-    function sendEmail(e : React.FormEvent<HTMLFormElement>) {
+    function sendEmail(e : any) {
         e.preventDefault();
 
         emailSend(e);
