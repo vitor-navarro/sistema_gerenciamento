@@ -10,10 +10,15 @@ export function Contact(){
     const [email, setEmail] = useState('');
     const [message, setMessage] = useState('');
 
-    function sendEmail(e : any) {
+    const sendEmail = async (e : any) => {
         e.preventDefault();
-
-        emailSend(e);
+        const data ={
+            name,
+            phone,
+            email,
+            message
+        };
+        emailSend(data);
       }
 
     return (
