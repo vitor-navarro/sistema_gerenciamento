@@ -2,14 +2,14 @@ import { initializeApp } from "firebase/app";
 import { getFirestore,collection, addDoc,getDocs } from "firebase/firestore";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyDxoUVvZeks-qFpc0ilgjpDKUR60fu8FDg",
-  authDomain: "projeto-vini-974c4.firebaseapp.com",
-  databaseURL: "https://projeto-vini-974c4-default-rtdb.firebaseio.com",
-  projectId: "projeto-vini-974c4",
-  storageBucket: "projeto-vini-974c4.appspot.com",
-  messagingSenderId: "1003540098978",
-  appId: "1:1003540098978:web:b10dfd7adc49394b828cfb",
-  measurementId: "G-32L52F61MT"
+  apiKey: process.env.FIREBASE_API_KEY,
+  authDomain: process.env.FIREBASE_AUTH_DOMAIN,
+  databaseURL: process.env.FIREBASE_URL,
+  projectId: process.env.FIREBASE_PROJECT_ID,
+  storageBucket: process.env.FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: process.env.FIREBASE_MESSAGING_SENDER_ID,
+  appId: process.env.FIREBASE_APP_ID,
+  measurementId: process.env.FIREBASE_MEASUREMEND_ID
 };
 
 // Initialize Firebase
