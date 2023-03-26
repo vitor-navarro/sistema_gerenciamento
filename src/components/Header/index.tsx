@@ -19,10 +19,6 @@ export function Header(){
                     <CgNotes className={styles.CgNotes}/>
                     <span>Solicitar Cotação</span>
                 </div>
-                <div>
-                    <BsFillTelephoneFill className={styles.BsFillTelephoneFill}/>
-                    <span>Ligar Agora</span>
-                </div>
             </div>
         </header>
     );
