@@ -4,7 +4,7 @@ const EMAIL_JS_SERVICE_ID = process.env.EMAIL_JS_SERVICE_ID
 const EMAIL_JS_TEMPLATE_ID = process.env.EMAIL_JS_TEMPLATE_ID
 const EMAIL_JS_PUBLIC_KEY = process.env.EMAIL_JS_PUBLIC_KEY
 
-export function emailSend (e) {
+export function emailSender (e) {
 
     var templateParams = {
         name: e.name,

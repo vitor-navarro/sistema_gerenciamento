@@ -11,6 +11,14 @@ const nextConfig = {
     ...dotenv,
   },
   reactStrictMode: true,
+  async rewrites() {
+    return [
+      {
+        source: '/email-send',
+        destination: '/api/email-send',
+      },
+    ];
+  },
 }
 
 module.exports = nextConfig

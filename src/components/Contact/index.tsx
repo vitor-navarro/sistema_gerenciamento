@@ -1,4 +1,4 @@
-import { emailSend } from '../../services/email.js/emailSender';
+import emailSend from "../../services/api/email_api"
 import { useState,useRef } from 'react'
 
 import styles from './styles.module.scss'
@@ -18,11 +18,12 @@ export function Contact(){
             email,
             message
         };
+
         emailSend(data);
       }
 
     return (
-        <div className={styles.contactConteiner}>
+        <div className={styles.contactConteiner} id = "orcamento">
             <h1>Contato</h1>
             <div className={styles.contactContent}>
                 <div><img src='teste projeto.png'></img></div>
