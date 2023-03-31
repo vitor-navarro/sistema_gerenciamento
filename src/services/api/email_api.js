@@ -1,10 +1,3 @@
-import emailjs from '@emailjs/browser';
-
-const EMAIL_JS_SERVICE_ID = process.env.EMAIL_JS_SERVICE_ID
-const EMAIL_JS_TEMPLATE_ID = process.env.EMAIL_JS_TEMPLATE_ID
-const EMAIL_JS_PUBLIC_KEY = process.env.EMAIL_JS_PUBLIC_KEY
-
-
 export default function emailSend(e) {
     
     var data = {
@@ -14,7 +7,7 @@ export default function emailSend(e) {
         message: e.message
     };
 
-    fetch('http://localhost:3001/email', {
+    fetch('http://localhost:3001/emailSend', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -22,7 +15,7 @@ export default function emailSend(e) {
       body: JSON.stringify(data)
     }).then(response =>{
       if (!response.ok){
-        throw new Error("errop na requisição")
+        throw new Error("erro na requisição")
       }
       return response.json()
     }).then(responseJson=>{

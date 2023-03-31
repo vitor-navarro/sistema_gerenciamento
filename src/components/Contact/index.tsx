@@ -1,5 +1,7 @@
 import emailSend from "../../services/api/email_api"
 import { useState,useRef } from 'react'
+import phone_validate from "@/utils/validators/phone";
+import email_validate from "@/utils/validators/email";
 
 import styles from './styles.module.scss'
 
@@ -12,6 +14,12 @@ export function Contact(){
 
     const sendEmail = async (e : any) => {
         e.preventDefault();
+
+        let phone_val = phone_validate(phone)
+        let email_val = email_validate(email)
+
+        console.log(phone_val, email_val)
+
         const data ={
             name,
             phone,
@@ -19,7 +27,7 @@ export function Contact(){
             message
         };
 
-        emailSend(data);
+        //emailSend(data);
       }
 
     return (
@@ -38,6 +46,7 @@ export function Contact(){
                         <div>
                             <label>Nome:</label>
                             <input 
+                                required
                                 type="text" 
                                 placeholder="Nome" 
                                 onChange={e => setName(e.target.value)}
@@ -68,6 +77,7 @@ export function Contact(){
                         <div>
                             <label>Como podemos ajudar?</label>
                             <input 
+                                required
                                 type="text" 
                                 placeholder="Mensagem" 
                                 onChange={e => setMessage(e.target.value)}
