@@ -12,13 +12,29 @@ export function Contact(){
     const [email, setEmail] = useState('');
     const [message, setMessage] = useState('');
 
+    const [error, setError] = useState('');
+
     const sendEmail = async (e : any) => {
         e.preventDefault();
+        setError('');
+
+        if (!phone && !email) {
+            setError("Por favor, preencha pelo menos o Telefone ou Email");
+            return;
+          }
 
         let phone_val = phone_validate(phone)
         let email_val = email_validate(email)
 
-        console.log(phone_val, email_val)
+        if (!phone_val){
+            setError("Telefone inválido");
+            return;
+        }
+
+        if (!email_val){
+            setError("Email inválido");
+            return;
+        }
 
         const data ={
             name,
@@ -26,7 +42,7 @@ export function Contact(){
             email,
             message
         };
-
+        setError("Mensagem enviada com sucesso!")
         //emailSend(data);
       }
 
@@ -84,6 +100,7 @@ export function Contact(){
                                 value={message}
                             />
                         </div>
+                        <span> {error} </span>
                         <button type='submit'>Enviar</button>
                     </form>
                 </div>
