@@ -7,7 +7,7 @@ export default function emailSend(e) {
         message: e.message
     };
 
-    fetch('http://localhost:3001/emailSend', {
+    fetch('http://localhost:3001/emails/emailSend', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'

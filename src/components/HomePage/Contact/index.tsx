@@ -1,8 +1,9 @@
-import emailSend from "../../services/api/email_api"
+import emailSend from "../../../services/api/email_api"
 import { useState,useRef } from 'react'
 import phone_validate from "@/utils/validators/phone";
 import email_validate from "@/utils/validators/email";
 
+import ButtonSubmit from "../../ButtonSubmit"
 import styles from './styles.module.scss'
 
 export function Contact(){
@@ -42,9 +43,9 @@ export function Contact(){
             email,
             message
         };
-        setError("Mensagem enviada com sucesso!")
-        //emailSend(data);
-      }
+        
+        emailSend(data);
+      } 
 
     return (
         <div className={styles.contactConteiner} id = "orcamento">
@@ -101,7 +102,7 @@ export function Contact(){
                             />
                         </div>
                         <span> {error} </span>
-                        <button type='submit'>Enviar</button>
+                        <ButtonSubmit></ButtonSubmit>
                     </form>
                 </div>
             </div>

@@ -48,19 +48,6 @@
             margin: 1rem 2rem;
             width: 100%;
 
-            label{
-                margin-bottom: 5px;
-            }
-
-            input{
-                width: 100%;
-                padding: 0.75rem;
-                border-radius: 5px;
-                border: 1px solid #ccc;
-                font-size: 16px;
-                margin-top: 5px;
-            }
-
         }
 
         span{
@@ -68,22 +55,7 @@
             align-self: center;
         }
 
-        button {
-            background-color: var(--purple-500);
-            color: white;
-            border: none;
-            border-radius: 5px;
 
-            padding: 0.75rem 1.25rem;
-            font-size: 1rem;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-            align-self: center;
-          }
-          
-          button:hover {
-            background-color: var(--dark-slate-blue);
-          }
     }
 
 }

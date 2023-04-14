@@ -63,3 +63,18 @@ h2{
 button{
     cursor: pointer;
 }
+
+label{
+    margin-bottom: 5px;
+    padding: 0.5rem;
+    color: #222;
+}
+
+input{
+    width: 100%;
+    padding: 0.75rem;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+    margin-top: 5px;
+}

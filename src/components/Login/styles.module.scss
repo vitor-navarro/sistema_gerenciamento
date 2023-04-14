@@ -1,0 +1,28 @@
+.formLoginContainer{
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    h1{
+        text-align: center;
+    }
+
+    .formContent{
+
+        gap: 1.5rem;
+        display: flex;
+        justify-content: center;
+
+        div{
+            margin-top: 1rem;
+        }
+
+        .buttonSubmitContainer{
+            display: flex;
+            align-self: center;
+            justify-content: center;
+        }
+
+    }
+}

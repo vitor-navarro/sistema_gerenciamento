@@ -1,0 +1,16 @@
+.button {
+    background-color: var(--purple-500);
+    color: white;
+    border: none;
+    border-radius: 5px;
+
+    padding: 0.75rem 1.25rem;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    align-self: center;
+  }
+  
+  .button:hover {
+    background-color: var(--dark-slate-blue);
+  }
