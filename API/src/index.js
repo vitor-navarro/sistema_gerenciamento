@@ -12,7 +12,7 @@ const corsOptions = {
     origin: process.env.ENABLED_CORS
 }
 
-const emailsRoutes = require("./emails")
+const emailsRoutes = require("./routes/email")
 
 
 app.use(
