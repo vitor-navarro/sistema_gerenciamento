@@ -7,6 +7,8 @@ export default function emailSend(e) {
         message: e.message
     };
 
+    console.log(data)
+
     fetch('http://localhost:3001/emails/emailSend', {
       method: 'POST',
       headers: {

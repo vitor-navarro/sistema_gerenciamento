@@ -15,6 +15,7 @@ export function Contact(){
 
     const [error, setError] = useState('');
 
+
     const sendEmail = async (e : any) => {
         e.preventDefault();
         setError('');

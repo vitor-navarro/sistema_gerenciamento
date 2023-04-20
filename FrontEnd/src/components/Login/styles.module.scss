@@ -24,5 +24,37 @@
             justify-content: center;
         }
 
+        .passwordContainer{
+            display: flex;
+            align-items: center;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+          
+            input{
+                padding: 0.60rem;
+                width: 100%;
+                font-size: 1rem;
+                border: 0;
+                outline: none;
+                margin: 0;
+            }
+          
+            button{
+                font-size: 1.2rem;
+                border:none;
+                background-color: transparent;
+            }
+            
+            span{
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                width: 2rem;
+                height: 2rem;
+            }
+          }
+
+        
+
     }
 }
