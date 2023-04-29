@@ -11,7 +11,6 @@ function ButtonSubmit(props:Props){
             <button className = {styles.button} type='submit'>
                 {props.children ? props.children : 'Enviar'}
                 </button>
-    
         </>
     )
 }

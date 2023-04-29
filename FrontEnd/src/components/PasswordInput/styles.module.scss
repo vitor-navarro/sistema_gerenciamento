@@ -1,0 +1,42 @@
+.div{
+    display: flex;
+    flex-direction: column;
+
+    label{
+        margin: 0;
+    }
+}
+
+.passwordContainer{
+    display: flex;
+    align-items: center;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    margin: 0;
+
+    input{
+        width: 100%;
+        font-size: 1rem;
+        border: 0;
+        outline: none;
+        margin: 0;
+        padding: 0.75rem;
+        border-radius: 5px;
+        font-size: 16px;
+        margin-top: 5px;
+    }
+  
+    button{
+        font-size: 1.2rem;
+        border:none;
+        background-color: transparent;
+    }
+    
+    span{
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 2rem;
+        height: 2rem;
+    }
+  }

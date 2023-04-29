@@ -1,20 +1,22 @@
-const pool = require('./conn');
+const bcrypt = require("bcrypt")
+const saltRounds = 10
 
-pool.getConnection((err, connection) => {
-  if (err) throw err;
+const User = require("../models/User")
 
-  const createTableQuery = `CREATE TABLE IF NOT EXISTS users (
-    id INT(11) NOT NULL AUTO_INCREMENT,
-    name VARCHAR(255) NOT NULL,
-    email VARCHAR(255) NOT NULL,
-    password VARCHAR(255) NOT NULL,
-    PRIMARY KEY (id)
-  )`;
+module.exports = class UserController{
 
-  connection.query(createTableQuery, (err, results) => {
-    connection.release();
-    if (err) throw err;
+    static async addUser(req,res){
+        const name = req.body.name
+        const email = req.body.email
+        const password = req.body.password
 
-    console.log('Tabela "users" criada com sucesso!');
-  });
-});
+
+        passwordHash = await bcrypt.hash(password, saltRounds)
+
+        console.log("name",name)
+        console.log("email",email)      
+        console.log("password",password)
+        console.log("passwordHash",passwordHash)
+    }
+  
+}
