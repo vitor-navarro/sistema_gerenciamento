@@ -10,8 +10,7 @@ module.exports = class UserController{
         const email = req.body.email
         const password = req.body.password
 
-
-        passwordHash = await bcrypt.hash(password, saltRounds)
+        passwordHash = await hash(password, saltRounds)
 
         console.log("name",name)
         console.log("email",email)      

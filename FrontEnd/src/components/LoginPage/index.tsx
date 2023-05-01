@@ -24,7 +24,6 @@ export function LoginPage(){
     function login(e:any){
         e.preventDefault()
 
-
         const data = {
             user,
             password

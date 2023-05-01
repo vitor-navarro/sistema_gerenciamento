@@ -1,3 +1,5 @@
+const { api } = require("./api")
+
 export default function emailSend(e) {
     
     var data = {
@@ -7,22 +9,14 @@ export default function emailSend(e) {
         message: e.message
     };
 
-    console.log(data)
-
-    fetch('http://localhost:3001/emails/emailSend', {
-      method: 'POST',
+    api.post('emails/emailSend', JSON.stringify(data), {
       headers: {
         'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(data)
-    }).then(response =>{
-      if (!response.ok){
-        throw new Error("erro na requisição")
       }
-      return response.json()
-    }).then(responseJson=>{
-      console.log("SUCCESS!", responseJson)
+    }).then(response =>{
+      console.log("SUCCESS!", response.data)
     }).catch(error=>{
       console.log('FAILED...', error);
     })
+
 }

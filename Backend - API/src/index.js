@@ -38,7 +38,7 @@ const authRoutes = require("./routes/authRoutes")
 app.use("/emails", emailsRoutes)
 app.use("/user", userRoutes)
 app.use("/auth", authRoutes)
-
+,
 conn
     .sync()
     .then(()=>{

@@ -5,11 +5,13 @@ const sequelize = new Sequelize('sistemaVini', 'root', '',{
     dialect: 'mysql'
 })
 
-try{
-    sequelize.authenticate()
+sequelize
+  .authenticate()
+  .then(() => {
     console.log('conectado ao database\n\r')
-} catch(error){
+  })
+  .catch((error) => {
     console.log("Erro ao conectar ao database\n\r", error)
-}
+  })
 
 module.exports = sequelize
