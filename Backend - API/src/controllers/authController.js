@@ -1,5 +1,5 @@
 const bcrypt = require("bcrypt")
-const getUser = require("../services/authService")
+const getUser = require("../services/users/getUser")
 const bcryptsaltRounds = 10
 
 module.exports = class AuthController{
@@ -19,14 +19,15 @@ module.exports = class AuthController{
 
         const userDB = await getUser(user)
         .then((userDB)=>{
-            if (userDB === null){
-                return res.status(404).send({mensagem:"Usuário não encontrado",user})
-            }
-            else{
-                const passwordIsValid =  bcrypt.compareSync(password,userDB.password)
 
-                console.log(passwordIsValid)
+            if(!userDB.success){
+                res.status(userDB.status).send(userDB)
+            }else{
+                console.log(userDB) // falta terminar
             }
+            // falta terminar
+
+
         })
 
         

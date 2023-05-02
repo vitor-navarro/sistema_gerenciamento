@@ -4,8 +4,8 @@ import ButtonSubmit from '../ButtonSubmit'
 import PasswordInput from '../PasswordInput'
 
 import styles from './styles.module.scss'
-import UserInput from '../UserInput'
-import userLogin from '@/services/api/user_login'
+import EmailInput from '../EmailInput'
+import userLogin from '@/services/api/users/user_login'
 
 
 export function LoginPage(){
@@ -43,7 +43,7 @@ export function LoginPage(){
         <h1>Bem vindo</h1>
             <div className={styles.formContent}>
                 <form onSubmit={login}>
-                    <UserInput onChangeFunction={ handleUserChange} user = { user }></UserInput>
+                    <EmailInput onChangeFunction={ handleUserChange} email = { user }></EmailInput>
 
                     <PasswordInput onChangeFunction={ handlePasswordChange } password = { password }></PasswordInput>
 

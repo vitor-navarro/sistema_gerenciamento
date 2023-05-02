@@ -3,19 +3,26 @@ import { useState } from 'react'
 import {AiFillEye} from 'react-icons/ai'
 import {RxEyeClosed} from 'react-icons/rx'
 
+import ErrorSpan from '../ErrorSpan';
+
 import styles from './styles.module.scss'
 
-interface PasswordInputProps {
+interface propsInterface {
     onChangeFunction: (password: string) => void;
     password: string;
+    error: boolean;
 }
 
-export default function PasswordInput({onChangeFunction, password}: PasswordInputProps){
+export default function PasswordInput(props:propsInterface){
+
+    let password = props.password
+    const onChangeFunction = props.onChangeFunction
+
+    const error = props.error
 
     if(password === undefined){
         password = ''
     }
-
     const[showPassword, setShowPassword] = useState(false)
 
     const toggleShowPassword = () => setShowPassword(!showPassword)
@@ -29,7 +36,11 @@ export default function PasswordInput({onChangeFunction, password}: PasswordInpu
 
     return(
         <div className={styles.div}> 
-            <label>Senha</label>
+            <div>
+                <label>Senha</label>
+                <ErrorSpan error = { error }>Senha Inválida</ErrorSpan>
+            </div>
+
 
             <div className={styles.passwordContainer}> 
                 <input 
