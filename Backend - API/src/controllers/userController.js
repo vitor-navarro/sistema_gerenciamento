@@ -1,5 +1,5 @@
 const bcrypt = require("bcrypt")
-const saltRounds = 10
+const bcryptsaltRounds = 10
 
 const User = require("../models/User")
 
@@ -10,12 +10,19 @@ module.exports = class UserController{
         const email = req.body.email
         const password = req.body.password
 
-        passwordHash = await hash(password, saltRounds)
+        const passwordHash = await bcrypt.hash(password, bcryptsaltRounds)
 
-        console.log("name",name)
-        console.log("email",email)      
-        console.log("password",password)
-        console.log("passwordHash",passwordHash)
+        const user = {
+            name,
+            email,
+            passwordHash
+        }
+
+        await User.create(user)
+        
+        res.status(200).redirect("/login")
+        
+
     }
   
 }
