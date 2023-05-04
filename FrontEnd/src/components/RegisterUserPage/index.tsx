@@ -61,8 +61,8 @@ export function RegisterUserPage(){
 
         user_validator(user)
         .then(result => {
-            if(!result.success){
-                setUserErrorMessage(result.message)
+            if(result.success){
+                setUserErrorMessage("Usuário já foi cadastrado")
                 setUserError(true)
             }
 
