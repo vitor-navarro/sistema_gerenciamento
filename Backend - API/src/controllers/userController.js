@@ -32,12 +32,9 @@ module.exports = class UserController{
           if(!userDB.success) {
             res.status(userDB.status).send(userDB)
           }else{
-            res.status(userDB.status).send(userDB.success)
+            res.status(userDB.status).send(userDB.userDB)
           }
-
         })
-
-
     }
   
 }

@@ -6,12 +6,14 @@ import ButtonSubmit from "../ButtonSubmit"
 import { useState } from 'react'
 
 import styles from "./styles.module.scss"
+import user_validator from "@/utils/validators/user"
 
 export function RegisterUserPage(){
     const[geralError,setGeralError] = useState("")
 
     const[user,setUser] = useState("")
     const[userError,setUserError] = useState(false)
+    const[userErrorMessage, setUserErrorMessage] = useState("")
 
     const[email,setEmail] = useState("")
     const[emailError,setEmailError] = useState(false)
@@ -54,9 +56,20 @@ export function RegisterUserPage(){
             setGeralError("Preencha o Usuário ou o email")
             return
         }
+        
+        
 
+        user_validator(user)
+        .then(result => {
+            if(!result.success){
+                setUserErrorMessage(result.message)
+                setUserError(true)
+            }
 
-
+        })
+        .catch(error => {
+            setGeralError("Erro ao buscar usuário")
+        });
 
     }
 
@@ -67,7 +80,7 @@ export function RegisterUserPage(){
             <div className={styles.formContent}>
                 <form onSubmit={register}>
 
-                    <UserInput onChangeFunction={ handleUserChange } user = { user } isRequired={false}  error = {userError}>Usuário</UserInput>
+                    <UserInput onChangeFunction={ handleUserChange } user = { user } isRequired={false}  error = {userError} errorMessage={userErrorMessage}>Usuário</UserInput>
                     <EmailInput onChangeFunction={ handleEmailChange } email = { email } isRequired={false} error = {emailError}>Email</EmailInput>
                     <PasswordInput onChangeFunction={ handlePasswordChange } password={ password }  error = {errorPassword}></PasswordInput>
                     <PasswordInput onChangeFunction={ handleConfirmPasswordChange } password={ confirmPassword } error = {errorPassword}></PasswordInput>

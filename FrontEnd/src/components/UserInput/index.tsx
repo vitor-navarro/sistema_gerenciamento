@@ -8,14 +8,14 @@ interface propsInterface {
     user: string;
     isRequired?: boolean;
     error: boolean;
+    errorMessage?: string;
   }
 
 export default function UserInput(props:propsInterface){
     
     let user = props.user
-    const onChangeFunction = props.onChangeFunction
-
     const error = props.error
+    const onChangeFunction = props.onChangeFunction
 
     if (user === undefined) {
         user = '';
@@ -31,7 +31,7 @@ export default function UserInput(props:propsInterface){
         <div className={styles.div}> 
             <div>
                 <label>{props.children ? props.children : 'Usuário'}</label>
-                <ErrorSpan error = { error }>Usuário Inválido</ErrorSpan>
+                <ErrorSpan error = { error }>{props.errorMessage !== '' ? props.errorMessage : "Usuário inválido"}</ErrorSpan>
             </div>
             
 

@@ -14,7 +14,6 @@ export default function userLogin({user,password}:loginProps){
         console.log("SUCCESS!", response.data)
     }).catch(error=>{
         console.log('FAILED...', error);
-         
     })
     
 }

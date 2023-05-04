@@ -5,7 +5,7 @@ const getUserByName = (name) => User.findOne({ where: {name}, raw:true}).then((u
 
         const data = {
             success: false,
-            status: 404,
+            status: 401,
             message: "Usuário não encontrado",
             name,
         } 
