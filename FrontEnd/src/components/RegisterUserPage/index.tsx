@@ -6,10 +6,13 @@ import ButtonSubmit from "../ButtonSubmit"
 import { useState } from 'react'
 
 import styles from "./styles.module.scss"
-import user_validator from "@/utils/validators/user"
+
+import user_validator from "@/utils/validators/user_validator"
+import email_validator from "@/utils/validators/email_validator"
+
 
 export function RegisterUserPage(){
-    const[geralError,setGeralError] = useState("")
+    const[geralError,setGeralMessageError] = useState("")
 
     const[user,setUser] = useState("")
     const[userError,setUserError] = useState(false)
@@ -20,8 +23,8 @@ export function RegisterUserPage(){
 
     const[password,setPassword] = useState("")
     const[confirmPassword, setConfirmPassword] = useState("")
-    const[errorPassword, setErrorPassword] = useState(false)
-
+    const[passwordError, setPasswordError] = useState(false)
+    const[passwordErrorMessage, setPasswordErrorMessage] = useState("")
 
     const handleUserChange = (value:string) => {
         setUser(value);
@@ -36,54 +39,63 @@ export function RegisterUserPage(){
     };
     
     const handleConfirmPasswordChange = (value:string) => {
+
         setConfirmPassword(value);
 
-        if(!(password === confirmPassword)){
-            
-            
-        }
+        setTimeout(() => {
+            if (!(password === value)) {
+              setPasswordErrorMessage("As senhas não são idênticas");
+              setPasswordError(true);
+            } else {
+              setPasswordErrorMessage("");
+              setPasswordError(false);
+            }
+          }, 100);
     };
 
-    function register(e:any){
+    async function register(e:any){
         e.preventDefault()
         
-        setGeralError("")
+        setGeralMessageError("")
         setUserError(false)
         setEmailError(false)
-        setErrorPassword(false)
+        setPasswordError(false)
 
-        if(!user && !email){
-            setGeralError("Preencha o Usuário ou o email")
+        if(!user || !email){
+            setGeralMessageError("Preencha o Usuário e o email")
             return
         }
-        
-        
 
-        user_validator(user)
+        const userExist = await user_validator(user)
         .then(result => {
             if(result.success){
                 setUserErrorMessage("Usuário já foi cadastrado")
                 setUserError(true)
-            }
-
+                return false
+            } 
+            return true
         })
         .catch(error => {
-            setGeralError("Erro ao buscar usuário")
+            setGeralMessageError("Erro ao buscar usuário")
+            return false
         });
 
+        const emailExist = await email_validator(email).then().catch(error =>{
+            
+        })
     }
 
     return(
 
         <div className={styles.formLoginContainer}>
-            <h1>register</h1>
+            <h1>Registro</h1>
             <div className={styles.formContent}>
                 <form onSubmit={register}>
 
                     <UserInput onChangeFunction={ handleUserChange } user = { user } isRequired={false}  error = {userError} errorMessage={userErrorMessage}>Usuário</UserInput>
-                    <EmailInput onChangeFunction={ handleEmailChange } email = { email } isRequired={false} error = {emailError}>Email</EmailInput>
-                    <PasswordInput onChangeFunction={ handlePasswordChange } password={ password }  error = {errorPassword}></PasswordInput>
-                    <PasswordInput onChangeFunction={ handleConfirmPasswordChange } password={ confirmPassword } error = {errorPassword}></PasswordInput>
+                    <EmailInput onChangeFunction={ handleEmailChange } email = { email } isRequired={false} >Email</EmailInput>
+                    <PasswordInput onChangeFunction={ handlePasswordChange } password={ password }  error = {passwordError} errorMessage={ passwordErrorMessage }></PasswordInput>
+                    <PasswordInput onChangeFunction={ handleConfirmPasswordChange } password={ confirmPassword }></PasswordInput>
                     
                     <div className={styles.spanDiv}>
                         <span>{geralError ? geralError : ""}</span>

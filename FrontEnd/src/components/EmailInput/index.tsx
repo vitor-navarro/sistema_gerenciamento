@@ -2,7 +2,7 @@ import { useState } from 'react'
 
 import ErrorSpan from '../ErrorSpan';
 
-import email_validate from '@/utils/validators/email';
+import email_validate from '@/utils/validators/email_format_validator';
 
 import styles from './styles.module.scss'
 
@@ -11,23 +11,20 @@ interface propsInterface {
     onChangeFunction: (email: string) => void;
     email: string;
     isRequired?: boolean;
-    error: boolean;
   }
 
 export default function EmailInput(props:propsInterface){
-    
-    let email = props.email
-    const onChangeFunction = props.onChangeFunction
 
-    const error = props.error
+    const [emailError, setEmailError] = useState(false);
+    const { email, onChangeFunction, isRequired } = props;
 
-    if (email === undefined) {
-        email = '';
-    }
+    const handleChange = (e: any) => {
+        const newEmail = e.target.value;
+        const isValidEmail = email_validate(newEmail);
+        setEmailError(!isValidEmail);
 
-    const handleChange = (e:any) =>{
-        if (onChangeFunction){
-            onChangeFunction(e.target.value)
+        if (onChangeFunction) {
+            onChangeFunction(newEmail);
         }
     }
 
@@ -35,7 +32,7 @@ export default function EmailInput(props:propsInterface){
         <div className={styles.div}> 
             <div>
                 <label>{props.children ? props.children : 'Email'}</label>
-                <ErrorSpan error = { error }>Email Inválido</ErrorSpan>
+                <ErrorSpan error = { emailError }>Email Inválido</ErrorSpan>
             </div>
 
             <input 

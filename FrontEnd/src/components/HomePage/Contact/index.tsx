@@ -1,7 +1,7 @@
 import emailSend from "../../../services/api/email_api"
 import { useState,useRef } from 'react'
-import phone_validate from "@/utils/validators/phone";
-import email_validate from "@/utils/validators/email";
+import phone_validate from "@/utils/validators/phone_format_validator";
+import email_validate from "@/utils/validators/email_format_validator";
 
 import ButtonSubmit from "../../ButtonSubmit"
 import styles from './styles.module.scss'

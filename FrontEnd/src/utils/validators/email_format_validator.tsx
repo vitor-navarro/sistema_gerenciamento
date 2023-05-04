@@ -1,4 +1,4 @@
-export default function email_validate(email : string) : boolean{
+export default function email_format_validator(email : string) : boolean{
 
   email = email.trim()
 

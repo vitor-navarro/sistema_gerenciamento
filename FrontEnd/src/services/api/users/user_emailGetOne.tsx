@@ -1,6 +1,8 @@
-export default function getOneUserByName(userName: string): Promise<boolean> {
-  const base_url = process.env.API_BASE_URL;
-  const url = base_url + "auth/userExist";
+
+
+export default function getOneEmailByEmail(email: string): Promise<boolean> {
+    const base_url = process.env.API_BASE_URL;
+    const url = base_url + "auth/emailExist";
   
   return fetch(url, {
     method: 'POST',
@@ -8,7 +10,7 @@ export default function getOneUserByName(userName: string): Promise<boolean> {
       'Content-Type': 'application/json'
     },
     body: JSON.stringify({
-      userName: userName
+      email: email
     })
   })
   .then(response => {
@@ -17,7 +19,7 @@ export default function getOneUserByName(userName: string): Promise<boolean> {
     } else if (response.status === 401) {
       return response.json();
     } else {
-      throw new Error('Erro ao buscar usuário');
+      throw new Error('Erro ao buscar Email');
     }
 
   })
@@ -25,6 +27,6 @@ export default function getOneUserByName(userName: string): Promise<boolean> {
     return data;
   })
   .catch(error => {
-   throw new Error('Erro ao buscar usuário');
+   throw new Error('Erro ao buscar Email');
   });
 }
