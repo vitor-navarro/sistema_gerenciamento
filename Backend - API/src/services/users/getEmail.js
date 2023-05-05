@@ -1,13 +1,13 @@
 const User = require("../../models/User")
 
 //decrepted
-const getUser = (email) => User.findOne({ where: {email:email}, raw:true}).then((userDB)=>{
+const getEmail = (email) => User.findOne({ where: {email:email}, raw:true}).then((userDB)=>{
     if (userDB === null){
 
         const data = {
             success: false,
-            status: 404,
-            message: "Usuário não encontrado",
+            status: 401,
+            message: "Email não encontrado",
             email,
         } 
 
@@ -27,4 +27,4 @@ const getUser = (email) => User.findOne({ where: {email:email}, raw:true}).then(
 }
 );
 
-module.exports = getUser
+module.exports = getEmail

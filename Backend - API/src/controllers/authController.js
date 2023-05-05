@@ -1,5 +1,6 @@
 const bcrypt = require("bcrypt")
 const getUser = require("../services/users/getUser")
+const getEmail = require("../services/users/getEmail")
 const getUserByName = require("../services/users/getUserByName")
 const bcryptsaltRounds = 10
 
@@ -9,6 +10,14 @@ module.exports = class AuthController{
         const userName = req.body.userName
 
         getUserByName(userName).then((response =>{
+            res.status(response.status).send(response.success)
+        }))
+    }
+
+    static async emailExist(req,res){
+        const email = req.body.email
+
+        getEmail(email).then((response =>{
             res.status(response.status).send(response.success)
         }))
     }

@@ -3,13 +3,13 @@ import EmailInput from "../EmailInput"
 import PasswordInput from "../PasswordInput"
 import ButtonSubmit from "../ButtonSubmit"
 
-import { useState } from 'react'
-
-import styles from "./styles.module.scss"
-
 import user_validator from "@/utils/validators/user_validator"
 import email_validator from "@/utils/validators/email_validator"
 
+import { useState } from 'react'
+import { AiOutlineCheck, AiOutlineClose } from "react-icons/ai"
+
+import styles from "./styles.module.scss"
 
 export function RegisterUserPage(){
     const[geralError,setGeralMessageError] = useState("")
@@ -20,11 +20,13 @@ export function RegisterUserPage(){
 
     const[email,setEmail] = useState("")
     const[emailError,setEmailError] = useState(false)
+    const[emailErrorMessage, setEmailErrorMessage] = useState("")
 
     const[password,setPassword] = useState("")
     const[confirmPassword, setConfirmPassword] = useState("")
     const[passwordError, setPasswordError] = useState(false)
     const[passwordErrorMessage, setPasswordErrorMessage] = useState("")
+    const[isPasswordValid, setIsPasswordValid] = useState(false)
 
     const handleUserChange = (value:string) => {
         setUser(value);
@@ -36,6 +38,7 @@ export function RegisterUserPage(){
 
     const handlePasswordChange = (value:string) => {
         setPassword(value);
+        setIsPasswordValid(value.length >= 7)
     };
     
     const handleConfirmPasswordChange = (value:string) => {
@@ -72,7 +75,7 @@ export function RegisterUserPage(){
                 setUserErrorMessage("Usuário já foi cadastrado")
                 setUserError(true)
                 return false
-            } 
+            }
             return true
         })
         .catch(error => {
@@ -80,9 +83,22 @@ export function RegisterUserPage(){
             return false
         });
 
-        const emailExist = await email_validator(email).then().catch(error =>{
-            
+        const emailExist = await email_validator(email).then(result => {
+            if(result.success){
+                setEmailErrorMessage("Email já foi cadastrado")
+                setEmailError(true)
+                return false
+            } 
+            return true
         })
+        .catch(error => {
+            setGeralMessageError("Erro ao buscar Email")
+            return false
+        });
+
+        if(userExist && emailExist && !passwordError){
+            console.log("Cadastrar")
+        }
     }
 
     return(
@@ -92,11 +108,18 @@ export function RegisterUserPage(){
             <div className={styles.formContent}>
                 <form onSubmit={register}>
 
-                    <UserInput onChangeFunction={ handleUserChange } user = { user } isRequired={false}  error = {userError} errorMessage={userErrorMessage}>Usuário</UserInput>
-                    <EmailInput onChangeFunction={ handleEmailChange } email = { email } isRequired={false} >Email</EmailInput>
+                    <UserInput onChangeFunction={ handleUserChange } user = { user } isRequired={true}  error = {userError} errorMessage={userErrorMessage}>Usuário</UserInput>
+                    <EmailInput onChangeFunction={ handleEmailChange } email = { email } isRequired={true} error = {emailError} errorMessage={emailErrorMessage}>Email</EmailInput>
                     <PasswordInput onChangeFunction={ handlePasswordChange } password={ password }  error = {passwordError} errorMessage={ passwordErrorMessage }></PasswordInput>
                     <PasswordInput onChangeFunction={ handleConfirmPasswordChange } password={ confirmPassword }></PasswordInput>
                     
+                    <div className={`${styles.passwordRequirements} ${isPasswordValid ? styles.valid : ''}`}>
+                        <div>
+                            {isPasswordValid ? <AiOutlineCheck className={styles.icon} /> : <AiOutlineClose className={styles.icon} />}
+                            <span>A senha deve ter no mínimo 7 caracteres</span>
+                        </div>
+                    </div>
+
                     <div className={styles.spanDiv}>
                         <span>{geralError ? geralError : ""}</span>
                     </div>

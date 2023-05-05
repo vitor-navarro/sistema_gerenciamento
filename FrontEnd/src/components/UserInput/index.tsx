@@ -30,7 +30,7 @@ export default function UserInput(props:propsInterface){
     return(
         <div className={styles.div}> 
             <div>
-                <label>{props.children ? props.children : 'Usuário'}</label>
+                <label>{props.children ? props.children : 'Usuário'}{props.isRequired ? '*' : ''}</label>
                 <ErrorSpan error = { error }>{props.errorMessage !== '' ? props.errorMessage : "Usuário inválido"}</ErrorSpan>
             </div>
             

@@ -6,6 +6,7 @@ import {RxEyeClosed} from 'react-icons/rx'
 import ErrorSpan from '../ErrorSpan';
 
 import styles from './styles.module.scss'
+import { password_validator } from '@/utils/validators/password_format_validator';
 
 interface propsInterface {
     onChangeFunction: (password: string) => void;
@@ -16,35 +17,35 @@ interface propsInterface {
 }
 
 export default function PasswordInput(props:propsInterface){
+    
+    const [passwordError, setPasswordError] = useState(false);
 
-    let error = props.error
-    let password = props.password
+    let error = props.error === undefined ? false : props.error
+    let password = props.password === undefined ? '' : props.password
+    
     const onChangeFunction = props.onChangeFunction
-
-    if(error === undefined){
-        error = false
-    }
-
-    if(password === undefined){
-        password = ''
-    }
 
     const[showPassword, setShowPassword] = useState(false)
 
     const toggleShowPassword = () => setShowPassword(!showPassword)
     
     const handleChange = (e:any) =>{
+        const newPassword = e.target.value;
+        const isValidPassword = password_validator(newPassword)
 
-        if (onChangeFunction){
-            onChangeFunction(e.target.value)
+        setPasswordError(!isValidPassword)
+        
+        if (onChangeFunction) {
+            onChangeFunction(newPassword);
         }
+        
     }
 
     return(
         <div className={styles.div}> 
             <div>
-                <label>Senha</label>
-                <ErrorSpan error = { error }>{props.errorMessage !== '' ? props.errorMessage :"Senha Inválida"}</ErrorSpan>
+                <label>Senha*</label>
+                <ErrorSpan error = { passwordError || error }>{props.errorMessage !== '' ? props.errorMessage :"Senha Inválida"}</ErrorSpan>
             </div>
 
 

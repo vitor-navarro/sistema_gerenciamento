@@ -11,12 +11,17 @@ interface propsInterface {
     onChangeFunction: (email: string) => void;
     email: string;
     isRequired?: boolean;
+    error?: boolean;
+    errorMessage?: string;
   }
 
 export default function EmailInput(props:propsInterface){
 
     const [emailError, setEmailError] = useState(false);
     const { email, onChangeFunction, isRequired } = props;
+    
+    let error = props.error === undefined ? false : props.error
+    let errorMessage = props.errorMessage === undefined ? '' : props.errorMessage
 
     const handleChange = (e: any) => {
         const newEmail = e.target.value;
@@ -31,8 +36,8 @@ export default function EmailInput(props:propsInterface){
     return(
         <div className={styles.div}> 
             <div>
-                <label>{props.children ? props.children : 'Email'}</label>
-                <ErrorSpan error = { emailError }>Email Inválido</ErrorSpan>
+                <label>{props.children ? props.children : 'Email'}{props.isRequired ? '*' : ''}</label>
+                <ErrorSpan error = { emailError || error }>{errorMessage !== '' ? errorMessage : "Email Inválido"}</ErrorSpan>
             </div>
 
             <input 
