@@ -1,4 +1,4 @@
-function email_format_validator(email : string) : boolean{
+function email_format_validator(email){
 
   email = email.trim()
 
