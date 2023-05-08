@@ -27,9 +27,14 @@ export default function PasswordInput(props:propsInterface){
 
     const[showPassword, setShowPassword] = useState(false)
 
-    const toggleShowPassword = () => setShowPassword(!showPassword)
+    const toggleShowPassword = (e:any) => {
+        e.preventDefault()
+
+        setShowPassword(!showPassword)
+    }
     
     const handleChange = (e:any) =>{
+
         const newPassword = e.target.value;
         const isValidPassword = password_validator(newPassword)
 

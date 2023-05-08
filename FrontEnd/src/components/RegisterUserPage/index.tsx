@@ -128,7 +128,7 @@ export function RegisterUserPage(){
                 password,
                 dataPolicyCheck: dataPolicy,
             }
-            
+
             await addUser(data)
         }
     }
@@ -138,7 +138,7 @@ export function RegisterUserPage(){
         <div className={styles.formLoginContainer}>
             <h1>Registro</h1>
             <div className={styles.formContent}>
-                <form onSubmit={register}>
+                <form>
 
                     <UserInput onChangeFunction={ handleUserChange } user = { user } isRequired={true}  error = {userError} errorMessage={userErrorMessage}>Usuário</UserInput>
                     <EmailInput onChangeFunction={ handleEmailChange } email = { email } isRequired={true} error = {emailError} errorMessage={emailErrorMessage}>Email</EmailInput>
@@ -167,7 +167,7 @@ export function RegisterUserPage(){
                     </div>
 
                     <div className={styles.buttonSubmitContainer}>
-                        <ButtonSubmit>Cadastrar</ButtonSubmit>
+                        <ButtonSubmit onClick={register}>Cadastrar</ButtonSubmit>
                     </div>
 
                 </form>
