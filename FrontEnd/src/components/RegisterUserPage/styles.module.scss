@@ -1,6 +1,6 @@
 .formLoginContainer{
     position: absolute;
-    top: 45%;
+    top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
 
@@ -16,7 +16,23 @@
         
         div{
             margin-bottom: 0.75rem;
+        }
 
+        .radioDiv{
+            display: flex;
+            align-items: center;
+            width: 22rem;
+
+            input{
+                width: 10%;
+                display: inline-block;
+                vertical-align: middle;
+                white-space: nowrap;
+            }
+            
+            label{
+                word-wrap: break-word;
+            }
 
         }
 
@@ -29,7 +45,7 @@
             }
         }
 
-        .passwordRequirements{
+        .requirements{
             color: red;
             
             div{

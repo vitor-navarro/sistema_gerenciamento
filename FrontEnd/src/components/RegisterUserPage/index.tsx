@@ -17,6 +17,7 @@ export function RegisterUserPage(){
     const[user,setUser] = useState("")
     const[userError,setUserError] = useState(false)
     const[userErrorMessage, setUserErrorMessage] = useState("")
+    const[isUserValid, setIsUserValid] = useState(false)
 
     const[email,setEmail] = useState("")
     const[emailError,setEmailError] = useState(false)
@@ -28,8 +29,15 @@ export function RegisterUserPage(){
     const[passwordErrorMessage, setPasswordErrorMessage] = useState("")
     const[isPasswordValid, setIsPasswordValid] = useState(false)
 
+    const[dataPolitic, setDataPolitic] = useState(false)
+
+    const handleDataPolitic = ()=>{
+        setDataPolitic(!dataPolitic)
+    }
+
     const handleUserChange = (value:string) => {
         setUser(value);
+        setIsUserValid(value.length >= 3)
     };
 
     const handleEmailChange = (value:string) => {
@@ -69,34 +77,50 @@ export function RegisterUserPage(){
             return
         }
 
+        if(user.length < 3){
+            setGeralMessageError("Usuário deve ter no minimo 3 caracteres")
+            return
+        }
+
         const userExist = await user_validator(user)
         .then(result => {
             if(result.success){
                 setUserErrorMessage("Usuário já foi cadastrado")
                 setUserError(true)
-                return false
+                return true
             }
-            return true
+            return false
         })
         .catch(error => {
             setGeralMessageError("Erro ao buscar usuário")
-            return false
+            return true
         });
 
         const emailExist = await email_validator(email).then(result => {
             if(result.success){
                 setEmailErrorMessage("Email já foi cadastrado")
                 setEmailError(true)
-                return false
+                return true
             } 
-            return true
+            return false
         })
         .catch(error => {
             setGeralMessageError("Erro ao buscar Email")
-            return false
+            return true
         });
 
-        if(userExist && emailExist && !passwordError){
+        if(password != confirmPassword){
+            setPasswordErrorMessage("As senhas não são idênticas")
+            setPasswordError(true);
+            return
+        }
+
+        if(!dataPolitic){
+            setGeralMessageError("Por favor marque a opção 'Li e concordo com a politica de tratamento de dados'")
+            return
+        }
+
+        if(isUserValid && !userExist && !emailExist && isPasswordValid && dataPolitic && (password === confirmPassword)){
             console.log("Cadastrar")
         }
     }
@@ -112,11 +136,21 @@ export function RegisterUserPage(){
                     <EmailInput onChangeFunction={ handleEmailChange } email = { email } isRequired={true} error = {emailError} errorMessage={emailErrorMessage}>Email</EmailInput>
                     <PasswordInput onChangeFunction={ handlePasswordChange } password={ password }  error = {passwordError} errorMessage={ passwordErrorMessage }></PasswordInput>
                     <PasswordInput onChangeFunction={ handleConfirmPasswordChange } password={ confirmPassword }></PasswordInput>
-                    
-                    <div className={`${styles.passwordRequirements} ${isPasswordValid ? styles.valid : ''}`}>
-                        <div>
+
+                    <div className={styles.radioDiv}>
+                        <input type="checkbox" name="data-politic"  onChange={handleDataPolitic} checked={dataPolitic}/>
+                        <label htmlFor="data-politic">Li e concordo com a politica de tratamento de dados <a href="">Saiba Mais</a></label>
+                    </div>
+
+                    <div>
+                        <div className={`${styles.requirements} ${isPasswordValid ? styles.valid : ''}`}>
                             {isPasswordValid ? <AiOutlineCheck className={styles.icon} /> : <AiOutlineClose className={styles.icon} />}
                             <span>A senha deve ter no mínimo 7 caracteres</span>
+                        </div>
+                        
+                        <div className={`${styles.requirements} ${isUserValid ? styles.valid : ''}`}>
+                            {isUserValid ? <AiOutlineCheck className={styles.icon} /> : <AiOutlineClose className={styles.icon} />}
+                            <span>O Usuário deve ter no mínimo 3 caracteres</span>
                         </div>
                     </div>
 
