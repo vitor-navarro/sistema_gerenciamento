@@ -14,8 +14,6 @@ module.exports = class UserController{
         const email = req.body.email
         const password = req.body.password
 
-        console.log(name, email, password)
-
         if (name.length < 3 || name.length > 255) {
           return res.status(401).json({ message: 'Nome inválido, nome deve ter entre 3 e 255 caracteres' });
         }
