@@ -22,3 +22,5 @@ Organização do projeto:
 - O projeto está dividido em FrontEnd e BackEnd.
 - No BackEnd a base foi utilizado o padrão MVC, estou desenvolvendo para que cada parte do projeto tenho sua responsabilidade definida e quase que imutável.
 - No FrontEnd estou usando como padrão, pages que chamaram components, dentro desses components vão estar tudo que é necessário, inclusive  a necessidade ou não de se intercomunicar com outros.
+
+### Para rodar os arquivos, em ambos execute npm install antes de tudo. No FrontEnd utilize yarn dev e no BackEnd npm start
