@@ -10,47 +10,61 @@ const email_format_validator = require("../validators/email_format_validator")
 module.exports = class UserController{
 
     static async addUser(req,res){
-        const name = req.body.name
-        const email = req.body.email
-        const password = req.body.password
 
-        if (name.length < 3 || name.length > 255) {
-          return res.status(401).json({ message: 'Nome inválido, nome deve ter entre 3 e 255 caracteres' });
-        }
+      console.log(req.body)
+      const name = req.body.name
+      const email = req.body.email
+      const password = req.body.password
+      const dataPolicyCheck = req.body.dataPolicyCheck
+
+      if (name.length < 3 || name.length > 255) {
+        return res.status(401).json({ message: 'Nome inválido, nome deve ter entre 3 e 255 caracteres' });
+      }
       
-        if (!email_format_validator(email)) {
-          return res.status(401).json({ message: 'E-mail inválido' });
-        }
+      if (!email_format_validator(email)) {
+        return res.status(401).json({ message: 'E-mail inválido' });
+      }
       
-        if (password.length < 7) {
-          return res.status(401).json({ message: 'Senha deve te no minimo 7 caracteres' });
-        }
+      if (password.length < 7) {
+        return res.status(401).json({ message: 'Senha deve te no minimo 7 caracteres' });
+      }
 
-        if(await getUserByName(email).then((response =>{
-          return response.success
-        }))){
-          //caso aconteça existe algum problema na aplicação ou a pessoa está tentando burlar o sistema
-          return res.status(401).json({ message: 'Usuário já cadastrado' });
-        }
+      if(await getUserByName(email).then((response =>{
+        return response.success
+      }))){
+        //caso aconteça existe algum problema na aplicação ou a pessoa está tentando burlar o sistema
+        return res.status(401).json({ message: 'Usuário já cadastrado' });
+      }
 
-        if(await getEmail(email).then((response =>{
-          return response.success
-        }))){
-          //caso aconteça existe algum problema na aplicação ou a pessoa está tentando burlar o sistema
-          return res.status(401).json({ message: 'Email já cadastrado em outro usuário' });
-        }
+      if(await getEmail(email).then((response =>{
+        return response.success
+      }))){
+        //caso aconteça existe algum problema na aplicação ou a pessoa está tentando burlar o sistema
+        return res.status(401).json({ message: 'Email já cadastrado em outro usuário' });
+      }
 
-        const passwordHash = await bcrypt.hash(password, bcryptsaltRounds)
+      if(dataPolicyCheck === undefined){
+        //caso aconteça existe algum problema na aplicação ou a pessoa está tentando burlar o sistema
+        return res.status(401).json({ message: 'dataPolicyCheck não fornecido'})
+      }
 
-        const user = {
-            name,
-            email,
-            passwordHash
-        }
+      if(dataPolicyCheck === false || dataPolicyCheck ===  "false"){
+        //caso aconteça existe algum problema na aplicação ou a pessoa está tentando burlar o sistema
+        return res.status(401).json({ message: 'dataPolicyCheck deve ser verdadeiro'})
+      }
 
-        await User.create(user)
+      const passwordHash = await bcrypt.hash(password, bcryptsaltRounds)
 
-        return res.status(200).redirect("/login")
+      const user = {
+          name,
+          email,
+          passwordHash,
+          dataPolicyCheck
+      }
+
+      await User.create(user)
+
+      return res.status(200).json({message:"Usuário cadastrado com sucesso", redirectTo:"/login"})
         
     }
 

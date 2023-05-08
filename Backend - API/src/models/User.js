@@ -15,6 +15,10 @@ const User = conn.define("User",{
         type: DataTypes.STRING,
         required: true
     },
+    dataPolicyCheck:{
+        type: DataTypes.BOOLEAN,
+        required: true,
+    }
 })
 
 module.exports = User
