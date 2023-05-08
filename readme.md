@@ -2,6 +2,8 @@
 
 ##Assim que todas as issues de segurança e partes fundamentais do sistema forem completadas irei disponibilizar ele como uma versão de teste ao público.
 
+ - Caso queira testar antes da disponibilização favor entrar em contato comigo por uma das minhas redes sociais.
+
 Nesse projeto foram utilizados:
 
 No BackEnd:
@@ -12,6 +14,8 @@ No BackEnd:
 - Sequelize, como sistema gerenciador do banco de dados.
 - Bcrypt, para cryptografia.
 - NodeMailer, para enviar email.
+
+OBS: Para rodar o database utilizei XAMPP
 
 No FrontEnd:
 -Next.JS/React.JS, para criação das páginas.

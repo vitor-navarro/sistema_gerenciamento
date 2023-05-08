@@ -1,7 +1,12 @@
 const { Sequelize } = require('sequelize')
 
-const sequelize = new Sequelize('sistemaVini', 'root', '',{
-    host: 'localhost',
+const databaseName = process.env.DATABASE_NAME
+const databaseUser = process.env.DATABASE_USER_NAME
+const databasePassword = process.env.DATABASE_PASSWORD
+const databaseHost = process.env.DATABSE_HOST
+
+const sequelize = new Sequelize(databaseName, databaseUser, databasePassword,{
+    host: databaseHost,
     dialect: 'mysql'
 })
 
