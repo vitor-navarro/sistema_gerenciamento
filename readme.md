@@ -1,6 +1,6 @@
-#Esse é um sistema de gerenciamento de empresa que está em desenvolvimento,
+# Esse é um sistema de gerenciamento de empresa que está em desenvolvimento
 
-##Assim que todas as issues de segurança e partes fundamentais do sistema forem completadas irei disponibilizar ele como uma versão de teste ao público.
+## Assim que todas as issues de segurança e partes fundamentais do sistema forem completadas irei disponibilizar ele como uma versão de teste ao público.
 
 Nesse projeto foram utilizados:
 
