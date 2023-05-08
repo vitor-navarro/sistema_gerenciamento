@@ -10,6 +10,7 @@ import { useState } from 'react'
 import { AiOutlineCheck, AiOutlineClose } from "react-icons/ai"
 
 import styles from "./styles.module.scss"
+import addUser from "@/services/api/users/add_user"
 
 export function RegisterUserPage(){
     const[geralError,setGeralMessageError] = useState("")
@@ -29,10 +30,10 @@ export function RegisterUserPage(){
     const[passwordErrorMessage, setPasswordErrorMessage] = useState("")
     const[isPasswordValid, setIsPasswordValid] = useState(false)
 
-    const[dataPolitic, setDataPolitic] = useState(false)
+    const[dataPolicy, setdataPolicy] = useState(false)
 
-    const handleDataPolitic = ()=>{
-        setDataPolitic(!dataPolitic)
+    const handledataPolicy = ()=>{
+        setdataPolicy(!dataPolicy)
     }
 
     const handleUserChange = (value:string) => {
@@ -115,13 +116,20 @@ export function RegisterUserPage(){
             return
         }
 
-        if(!dataPolitic){
+        if(!dataPolicy){
             setGeralMessageError("Por favor marque a opção 'Li e concordo com a politica de tratamento de dados'")
             return
         }
 
-        if(isUserValid && !userExist && !emailExist && isPasswordValid && dataPolitic && (password === confirmPassword)){
-            console.log("Cadastrar")
+        if(isUserValid && !userExist && !emailExist && isPasswordValid && dataPolicy && (password === confirmPassword)){
+            const data ={
+                user,
+                email,
+                password,
+                dataPolicyCheck: dataPolicy,
+            }
+            
+            await addUser(data)
         }
     }
 
@@ -138,7 +146,7 @@ export function RegisterUserPage(){
                     <PasswordInput onChangeFunction={ handleConfirmPasswordChange } password={ confirmPassword }></PasswordInput>
 
                     <div className={styles.radioDiv}>
-                        <input type="checkbox" name="data-politic"  onChange={handleDataPolitic} checked={dataPolitic}/>
+                        <input type="checkbox" name="data-politic"  onChange={handledataPolicy} checked={dataPolicy}/>
                         <label htmlFor="data-politic">Li e concordo com a politica de tratamento de dados <a href="">Saiba Mais</a></label>
                     </div>
 

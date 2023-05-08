@@ -22,14 +22,14 @@ const transporter = nodemailer.createTransport({
 });
 
 async function sendMail(body){
-
+    
     const company = process.env.SITE_COMPANY_NAME
 
     const to_emails = (process.env.GMAIL_TO_EMAIL_LIST)
 
     const mailSend = await transporter.sendMail({
-        text: email_template_simple(body,company),
-        subject: `Orçamento de ${body.name}`,
+        text: email_template_simple(body.data,company),
+        subject: `Orçamento de ${body.data.name}`,
         from: process.env.GMAIL_FROM_EMAIL,
         to: to_emails,
     });
@@ -38,7 +38,6 @@ async function sendMail(body){
 }
 
 router.post('/emailSend', (req, res) => {
-    console.log(req.body)
     
     sendMail(req.body)
     .then(function(response) {

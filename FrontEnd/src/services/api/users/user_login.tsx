@@ -1,4 +1,4 @@
-import { api } from '../api'
+
 
 interface loginProps{
     user: string,
@@ -7,7 +7,7 @@ interface loginProps{
 
 export default function userLogin({user,password}:loginProps){
     
-    api.post('auth/login', {
+    fetch('auth/login', {
         user: user,
         password: password
     }).then(response =>{

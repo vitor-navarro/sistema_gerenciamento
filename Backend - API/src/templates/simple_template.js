@@ -1,4 +1,5 @@
 function emailTemplateSimple(body, company = '') {
+
     return `
         NOME: ${body.name}
         TELEFONE: ${body.phone}

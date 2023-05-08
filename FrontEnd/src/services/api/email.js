@@ -1,4 +1,3 @@
-const { api } = require("./api")
 
 export default function emailSend(e) {
     
@@ -9,10 +8,16 @@ export default function emailSend(e) {
         message: e.message
     };
 
-    api.post('emails/emailSend', JSON.stringify(data), {
+    const baseURL = process.env.API_BASE_URL
+
+    fetch(baseURL + 'emails/emailSend', {
       headers: {
         'Content-Type': 'application/json'
-      }
+      },
+      method: 'POST',
+      body: JSON.stringify({
+        data
+      })
     }).then(response =>{
       console.log("SUCCESS!", response.data)
     }).catch(error=>{
