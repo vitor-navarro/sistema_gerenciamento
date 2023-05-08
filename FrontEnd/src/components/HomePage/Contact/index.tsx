@@ -1,4 +1,4 @@
-import emailSend from "../../../services/api/email_api"
+import emailSend from "../../../services/api/email"
 import { useState,useRef } from 'react'
 import phone_validate from "@/utils/validators/phone_format_validator";
 import email_validate from "@/utils/validators/email_format_validator";
