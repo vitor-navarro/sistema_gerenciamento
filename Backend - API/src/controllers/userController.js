@@ -11,7 +11,6 @@ module.exports = class UserController{
 
     static async addUser(req,res){
 
-      console.log(req.body)
       const name = req.body.name
       const email = req.body.email
       const password = req.body.password
@@ -26,10 +25,10 @@ module.exports = class UserController{
       }
       
       if (password.length < 7) {
-        return res.status(401).json({ message: 'Senha deve te no minimo 7 caracteres' });
+        return res.status(401).json({ message: 'Senha deve ter no mínimo 7 caracteres' });
       }
 
-      if(await getUserByName(email).then((response =>{
+      if(await getUserByName(name).then((response =>{
         return response.success
       }))){
         //caso aconteça existe algum problema na aplicação ou a pessoa está tentando burlar o sistema
