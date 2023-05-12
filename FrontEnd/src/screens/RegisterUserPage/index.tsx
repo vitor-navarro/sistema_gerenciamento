@@ -1,7 +1,7 @@
-import UserInput from "../UserInput"
-import EmailInput from "../EmailInput"
-import PasswordInput from "../PasswordInput"
-import ButtonSubmit from "../ButtonSubmit"
+import UserInput from "../../components/UserInput"
+import EmailInput from "../../components/EmailInput"
+import PasswordInput from "../../components/PasswordInput"
+import ButtonSubmit from "../../components/ButtonSubmit"
 
 import user_validator from "@/utils/validators/user_validator"
 import email_validator from "@/utils/validators/email_validator"

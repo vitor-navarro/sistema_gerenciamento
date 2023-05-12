@@ -1,4 +1,4 @@
-import { RegisterUserPage } from "@/components/RegisterUserPage"
+import { RegisterUserPage } from "@/screens/RegisterUserPage"
 
 
 export default function createUser(){

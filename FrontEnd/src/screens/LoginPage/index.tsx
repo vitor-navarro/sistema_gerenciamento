@@ -1,12 +1,11 @@
 import { useState } from 'react'
 
-import ButtonSubmit from '../ButtonSubmit'
-import PasswordInput from '../PasswordInput'
-
-import styles from './styles.module.scss'
-import EmailInput from '../EmailInput'
+import ButtonSubmit from '../../components/ButtonSubmit'
+import PasswordInput from '../../components/PasswordInput'
+import EmailInput from '../../components/EmailInput'
 import userLogin from '@/services/api/users/user_login'
 
+import styles from './styles.module.scss'
 
 export function LoginPage(){
 
