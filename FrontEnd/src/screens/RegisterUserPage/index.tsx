@@ -8,7 +8,6 @@ import user_validator from "@/utils/validators/user_validator"
 import email_validator from "@/utils/validators/email_validator"
 
 import { useState } from 'react'
-import { AiOutlineCheck, AiOutlineClose } from "react-icons/ai"
 
 import styles from "./styles.module.scss"
 import addUser from "@/services/api/users/add_user"
@@ -152,8 +151,8 @@ export function RegisterUserPage(){
                     </div>
 
                     <div>
-                        <RequirementsDiv isValid={isPasswordValid }>A senha deve ter no mínimo 7 caracteres</RequirementsDiv>
-                        <RequirementsDiv isValid={isUserValid}>O Usuário deve ter no mínimo 3 caracteres</RequirementsDiv>
+                        <RequirementsDiv isValid={ isPasswordValid }>A senha deve ter no mínimo 7 caracteres</RequirementsDiv>
+                        <RequirementsDiv isValid={ isUserValid }>O Usuário deve ter no mínimo 3 caracteres</RequirementsDiv>
                     </div>
 
                     <div className={styles.spanDiv}>

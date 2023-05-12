@@ -1,9 +1,13 @@
-import { useState } from 'react'
-
 import ButtonSubmit from '../../components/ButtonSubmit'
 import PasswordInput from '../../components/PasswordInput'
-import EmailInput from '../../components/EmailInput'
-import userLogin from '@/services/api/users/user_login'
+import RequirementsDiv from '@/components/RequirementsDiv'
+
+import email_format_validator from '@/utils/validators/email_format_validator'
+import password_validator from '@/utils/validators/password_format_validator'
+
+import login from "../../services/api/auth/login"
+
+import { useState } from 'react'
 
 import styles from './styles.module.scss'
 
@@ -19,35 +23,70 @@ export function LoginPage(){
     const[passwordErrorMessage, setPasswordErrorMessage] = useState("")
     const[isPasswordValid, setIsPasswordValid] = useState(false)
 
+    const[rememberMe, setRememberMe] = useState(false)
+
+    const handleRememberMe = (e:any) =>{
+        setRememberMe(!rememberMe)
+    }
+
     const handleUserChange = (e:any) => {
+        setGeralMessageError("")
+ 
+        const value = e.target.value;
+        setLoginUser(value);
 
-        setLoginUser(e.target.value);
-
-        if(e.target.value.length < 3){
+        if(value.length < 3){
             setLoginUserError(true)
-        } else{
+        } else if(value.includes("@") && !email_format_validator(value)){
+            setLoginUserError(true)
+            setLoginUserErrorMessage("Formato do email inválido")
+        }
+        else{
             setLoginUserError(false)
         }
 
     };
 
-    const handlePasswordChange = (e:any) => {
-        setPassword(e.target.value);
-        setIsPasswordValid(e.length >= 7)
+    const handlePasswordChange = (value:string) => {
+        setPassword(value);
+        setIsPasswordValid(value.length >= 7)
     };
 
-    function login(e:any){
+    async function login(e:any){
         e.preventDefault()
 
-        const data = {
-            loginUser,
-            password
+        setGeralMessageError("")
+        setLoginUserError(false)
+        setPasswordError(false)
+
+        if(!loginUser){
+            setGeralMessageError("Preencha o Login com usuário ou email")
+            return
         }
 
-        //userLogin(data)
+        if(!password || !password_validator(password)){
+            return
+        }
 
-        setLoginUser("");
-        setPassword("");
+        let userIsValid = false
+
+        if(email_format_validator(loginUser)){
+            userIsValid = true
+        } else if(loginUser.length >= 3) {
+            userIsValid = true
+        }
+
+        const passwordIsValid = password_validator(password)
+        
+        if(userIsValid && passwordIsValid){
+
+            const userObject = {
+                user: loginUser,
+                password: password,
+            }
+
+            await login(userObject) //faltou then e catch
+        }
     }
     
     return(
@@ -57,10 +96,10 @@ export function LoginPage(){
 
         <h1>Bem vindo</h1>
             <div className={styles.formContent}>
-                <form onSubmit={login}>
+                <form>
                     <div>
                         <label>Login*</label>
-                        <span>{loginUserError ? loginUserErrorMessage : ""}</span>
+                        <span className={styles.errorSpan}>{loginUserError ? loginUserErrorMessage : ""}</span>
                         <input
                         className={styles.loginInput} 
                         onChange={ handleUserChange }
@@ -72,8 +111,13 @@ export function LoginPage(){
                     <PasswordInput onChangeFunction={ handlePasswordChange } password = { password } error = {passwordError} errorMessage={ passwordErrorMessage }></PasswordInput>
                     
                     <div className={styles.radioDiv}>
-                        <input type="checkbox" name="data-politic"  />
-                        <label htmlFor="data-politic">Lembrar-me</label>
+                        <input type="checkbox" name="remember-me"  onChange={handleRememberMe} checked={rememberMe}/>
+                        <label htmlFor="remember-me">Lembrar-me</label>
+                    </div>
+
+                    <div>
+                        <RequirementsDiv isValid={ isPasswordValid }>A senha deve ter no mínimo 7 caracteres</RequirementsDiv>
+                        <RequirementsDiv isValid={ !loginUserError }>O Usuário deve ter no mínimo 3 caracteres</RequirementsDiv>
                     </div>
 
                     <div className={styles.spanDiv}>
@@ -82,7 +126,7 @@ export function LoginPage(){
 
 
                     <div className={styles.buttonSubmitContainer}>
-                        <ButtonSubmit>Entrar</ButtonSubmit>
+                        <ButtonSubmit onClick={login}>Entrar</ButtonSubmit>
                     </div>
 
 

@@ -1,4 +1,4 @@
-export function password_validator(password : string){
+export default function password_validator(password : string){
     if(password.length >= 7){
         return true
     } else{
