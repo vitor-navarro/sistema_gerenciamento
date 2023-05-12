@@ -1,6 +1,7 @@
 import UserInput from "../../components/UserInput"
 import EmailInput from "../../components/EmailInput"
 import PasswordInput from "../../components/PasswordInput"
+import RequirementsDiv from "@/components/RequirementsDiv"
 import ButtonSubmit from "../../components/ButtonSubmit"
 
 import user_validator from "@/utils/validators/user_validator"
@@ -151,15 +152,8 @@ export function RegisterUserPage(){
                     </div>
 
                     <div>
-                        <div className={`${styles.requirements} ${isPasswordValid ? styles.valid : ''}`}>
-                            {isPasswordValid ? <AiOutlineCheck className={styles.icon} /> : <AiOutlineClose className={styles.icon} />}
-                            <span>A senha deve ter no mínimo 7 caracteres</span>
-                        </div>
-                        
-                        <div className={`${styles.requirements} ${isUserValid ? styles.valid : ''}`}>
-                            {isUserValid ? <AiOutlineCheck className={styles.icon} /> : <AiOutlineClose className={styles.icon} />}
-                            <span>O Usuário deve ter no mínimo 3 caracteres</span>
-                        </div>
+                        <RequirementsDiv isValid={isPasswordValid }>A senha deve ter no mínimo 7 caracteres</RequirementsDiv>
+                        <RequirementsDiv isValid={isUserValid}>O Usuário deve ter no mínimo 3 caracteres</RequirementsDiv>
                     </div>
 
                     <div className={styles.spanDiv}>

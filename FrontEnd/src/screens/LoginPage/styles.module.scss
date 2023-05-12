@@ -1,6 +1,6 @@
 .formLoginContainer{
     position: absolute;
-    top: 30%;
+    top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
 
@@ -13,10 +13,47 @@
         gap: 1.5rem;
         display: flex;
         justify-content: center;
-        
+
         div{
-            margin-bottom: 1rem;
+            margin-bottom: 0.60rem;
         }
+
+        .loginInput{
+                width: 100%;
+                font-size: 1.15rem;
+                padding: 0.75rem;
+                border-radius: 5px;
+                margin-top: 5px;
+         }
+
+        .radioDiv{
+            display: flex;
+            align-items: center;
+            width: 22rem;
+
+            input{
+                width: 10%;
+                display: inline-block;
+                vertical-align: middle;
+                white-space: nowrap;
+            }
+            
+            label{
+                word-wrap: break-word;
+            }
+        }
+
+        .spanDiv{
+            text-align: center;
+            width: 22rem;
+
+            span{
+                font-weight: 300;
+                color: rgb(248, 26, 26);
+                word-wrap: break-word;
+            }
+        }
+
         
         .buttonSubmitContainer{
             display: flex;

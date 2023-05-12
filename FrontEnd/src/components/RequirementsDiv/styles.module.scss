@@ -1,0 +1,17 @@
+.requirements{
+    color: red;
+    
+    div{
+        display: flex;
+        justify-content: center;
+    }
+
+    .icon{
+        vertical-align: middle;
+    }
+
+    &.valid{
+        color: green;
+    }
+
+}
