@@ -1,0 +1,13 @@
+{
+    "openapi": "3.0.0",
+    "info":{
+        "title": "API - sistemas de gerenciamento.",
+        "description": "O objetivo é servir como servidor para aplicações frontEnd de gerenciamento.",
+        "ternsIfService": "",
+        "contact":{
+            "name" : "API support",
+            "email" : "vitorsantosnavarro@gmail.com"
+        }
+    }
+
+}

@@ -3,6 +3,7 @@ require('dotenv').config()
 const express = require('express');
 const app = express();
 const port = process.env.PORT;
+
 const bodyParser = require('body-parser')
 
 const cors = require('cors')
@@ -11,8 +12,6 @@ const corsOptions = {
 }
 
 const conn = require("./db/conn")
-
-var helmet = require('helmet');
 
 app.use(
     express.urlencoded({
@@ -26,11 +25,12 @@ app.use(express.json())
 app.use(cors(corsOptions))
 app.use(bodyParser.json())
 
-//arquivos estáticos
-app.use(express.static("public"))
+//swagger docs
+const swaggerUi = require("swagger-ui-express")
+const swaggerDocs = require("./swagger.json")
 
-//security
-//app.use(helmet());
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup())
+
 const emailsRoutes = require("./routes/email")
 const userRoutes = require("./routes/userRoutes")
 const authRoutes = require("./routes/authRoutes")
