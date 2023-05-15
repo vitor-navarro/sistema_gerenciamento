@@ -83,6 +83,7 @@ export function LoginPage(){
             const userObject = {
                 user: loginUser,
                 password: password,
+                remember: rememberMe
             }
 
             await login(userObject) //faltou then e catch

@@ -6,7 +6,7 @@ import {RxEyeClosed} from 'react-icons/rx'
 import ErrorSpan from '../ErrorSpan';
 
 import styles from './styles.module.scss'
-import { password_validator } from '@/utils/validators/password_format_validator';
+import password_validator from '@/utils/validators/password_format_validator';
 
 interface propsInterface {
     onChangeFunction: (password: string) => void;

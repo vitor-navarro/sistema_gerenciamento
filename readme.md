@@ -14,6 +14,7 @@ No BackEnd:
 - Sequelize, como sistema gerenciador do banco de dados.
 - Bcrypt, para cryptografia.
 - NodeMailer, para enviar email.
+- Swagger para documentação.
 
 OBS: Para rodar o database utilizei XAMPP
 
