@@ -1,6 +1,6 @@
 # Essencial para funcionamento
 
-###A configuração do arquivo .env do front é simples, até o momento tenho apenas a url da API, isso vai depender da [configuracao_backend](https://github.com/vitor-navarro/sistema_gerenciamento/blob/main/info/configuracao_backend) para funcionar.
+###A configuração do arquivo .env do front é simples, até o momento tenho apenas a url da API, isso vai depender da [configuracao_backend](https://github.com/vitor-navarro/sistema_gerenciamento/blob/main/info/configuracao_backend.md) para funcionar.
 Tanto as features essenciais quanto as adicionais são configuradas pela .env do backend.
 
 ### Para configurar a .env
@@ -15,6 +15,6 @@ OBS: é importante colocar / no final caso o contrário irá dar erro ao fazer f
 
 # Funções Adicionais
 
-Como eu disse em [configuracao_backend](https://github.com/vitor-navarro/sistema_gerenciamento/blob/main/info/configuracao_backend) algumas partes do .env de la não são essenciais a principio para o funcionamento do sistema.
+Como eu disse em [configuracao_backend](https://github.com/vitor-navarro/sistema_gerenciamento/blob/main/info/configuracao_backend.md) algumas partes do .env de la não são essenciais a principio para o funcionamento do sistema.
 
 Como por exemplo o envio de emails.
