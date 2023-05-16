@@ -53,7 +53,7 @@
             }
         }
 
-        .spanDiv{
+        .spanDivm .pDiv{
             text-align: center;
             width: 22rem;
 
@@ -62,8 +62,22 @@
                 color: rgb(248, 26, 26);
                 word-wrap: break-word;
             }
+
+
         }
 
+        .pDiv{
+
+            margin-top: 1rem;
+
+            p{
+                text-align: center;
+            }
+
+            a{
+                text-decoration: none;
+            }
+        }
         
         .buttonSubmitContainer{
             display: flex;

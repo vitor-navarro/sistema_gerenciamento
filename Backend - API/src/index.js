@@ -1,6 +1,7 @@
 require('dotenv').config()
 
 const express = require('express');
+const session = require('express-session')
 const app = express();
 const port = process.env.PORT;
 
@@ -24,6 +25,15 @@ app.use(express.json())
 //cors
 app.use(cors(corsOptions))
 app.use(bodyParser.json())
+
+//express session
+app.use(
+    session({
+        secret: process.env.SESSIONS_SECRET,
+        resave: false,
+        saveUninitialized: false,
+    })
+)
 
 //swagger docs
 const swaggerUi = require("swagger-ui-express")

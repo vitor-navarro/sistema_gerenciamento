@@ -3,11 +3,14 @@
     "info":{
         "title": "API - sistemas de gerenciamento.",
         "description": "O objetivo é servir como servidor para aplicações frontEnd de gerenciamento.",
-        "ternsIfService": "",
+        "ternsIfService": "https://github.com/vitor-navarro/sistema_gerenciamento/blob/main/LICENSE",
         "contact":{
             "name" : "API support",
             "email" : "vitorsantosnavarro@gmail.com"
-        }
-    }
+        },
+        "version": "1.0.0"
+    },
+    "paths":{
 
+    }
 }

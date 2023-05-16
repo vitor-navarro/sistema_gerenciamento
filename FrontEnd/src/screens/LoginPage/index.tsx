@@ -130,6 +130,10 @@ export function LoginPage(){
                         <ButtonSubmit onClick={login}>Entrar</ButtonSubmit>
                     </div>
 
+                    <div className={styles.pDiv}>
+                        <p><a href="/login">Não possui cadastro? Clique aqui</a></p>
+                    </div>
+
 
 
                 </form>

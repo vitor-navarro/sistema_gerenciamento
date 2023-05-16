@@ -36,7 +36,7 @@
 
         }
 
-        .spanDiv{
+        .spanDiv, .pDiv{
             text-align: center;
             width: 22rem;
 
@@ -44,6 +44,12 @@
                 font-weight: 300;
                 color: rgb(248, 26, 26);
                 word-wrap: break-word;
+            }
+        }
+
+        .pDiv{
+            a{
+                text-decoration: none;
             }
         }
 

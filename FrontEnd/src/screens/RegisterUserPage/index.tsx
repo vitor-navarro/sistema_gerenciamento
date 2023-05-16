@@ -163,6 +163,11 @@ export function RegisterUserPage(){
                         <ButtonSubmit onClick={register}>Cadastrar</ButtonSubmit>
                     </div>
 
+                    <div className={styles.pDiv}>
+                        <p><a href="/login">Já possui cadastro? Clique aqui</a></p>
+                    </div>
+
+
                 </form>
             </div>
         </div>
