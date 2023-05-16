@@ -24,7 +24,7 @@ OBS: Caso ainda não tenha feito, clone o projeto para sua máquina e o abra em 
 
 ### Frontend
 
-- Antes de iniciar o FrontEnd da sua aplicação pode ser necessário algumas configurações adicionais para executar todas as funções existentes, consulte [configuracao_front](https://github.com/vitor-navarro/sistema_gerenciamento/blob/main/info/configuracao_front) 
+- Antes de iniciar o FrontEnd da sua aplicação pode ser necessário algumas configurações adicionais para executar todas as funções existentes, consulte [configuracao_front](https://github.com/vitor-navarro/sistema_gerenciamento/blob/main/info/configuracao_front.md) 
 - Caso tenha a posibilidade, abra um terminal integrado na pasta do FrontEnd.
 - Execute yarn nesse momento serão instalados todos os pacotes necessários.
 OBS: Caso não tenha o [yarn](https://yarnpkg.com/cli/install) pode instala-lo por [aqui](https://yarnpkg.com/cli/install)
