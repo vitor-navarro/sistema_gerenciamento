@@ -21,15 +21,15 @@ const port = process.env.PORT;
 
 //Middlewares
 app.use(cors({
-    origin: process.env.ENABLED_CORS
+	origin: process.env.ENABLED_CORS
 }))
 app.use(bodyParser.json())
 app.use(express.urlencoded({ extended: true }),)
 app.use(express.json())
 app.use(session({
-    secret: process.env.SESSIONS_SECRET,
-    resave: false,
-    saveUninitialized: false,
+	secret: process.env.SESSIONS_SECRET,
+	resave: false,
+	saveUninitialized: false,
 }))
 
 //swagger docs
@@ -42,12 +42,12 @@ app.use("/user", userRoutes)
 app.use("/auth", authRoutes)
 
 conn.sync()
-    .then(()=>{
-    app.listen(port, () => {
-            console.log(`Server is listening on port http://localhost:${port}`);
-            })
-        })
-    .catch((err)=>console.log(err))
+	.then(() => {
+		app.listen(port, () => {
+			console.log(`Server is listening on port http://localhost:${port}`);
+		})
+	})
+	.catch((err) => console.log(err))
 
 
-module.exports = {app}
+module.exports = { app }

@@ -11,74 +11,74 @@ import { useState } from 'react'
 
 import styles from './styles.module.scss'
 
-export function LoginPage(){
-    const[geralError,setGeralMessageError] = useState("")
+export function LoginPage() {
+    const [geralError, setGeralMessageError] = useState("")
 
-    const[loginUser,setLoginUser] = useState("")
-    const[loginUserError, setLoginUserError] = useState(true)
-    const[loginUserErrorMessage, setLoginUserErrorMessage] = useState("")
+    const [loginUser, setLoginUser] = useState("")
+    const [loginUserError, setLoginUserError] = useState(true)
+    const [loginUserErrorMessage, setLoginUserErrorMessage] = useState("")
 
-    const[password,setPassword] = useState("")
-    const[passwordError, setPasswordError] = useState(false)
-    const[passwordErrorMessage, setPasswordErrorMessage] = useState("")
-    const[isPasswordValid, setIsPasswordValid] = useState(false)
+    const [password, setPassword] = useState("")
+    const [passwordError, setPasswordError] = useState(false)
+    const [passwordErrorMessage, setPasswordErrorMessage] = useState("")
+    const [isPasswordValid, setIsPasswordValid] = useState(false)
 
-    const[rememberMe, setRememberMe] = useState(false)
+    const [rememberMe, setRememberMe] = useState(false)
 
-    const handleRememberMe = (e:any) =>{
+    const handleRememberMe = (e: any) => {
         setRememberMe(!rememberMe)
     }
 
-    const handleUserChange = (e:any) => {
+    const handleUserChange = (e: any) => {
         setGeralMessageError("")
- 
+
         const value = e.target.value;
         setLoginUser(value);
 
-        if(value.length < 3){
+        if (value.length < 3) {
             setLoginUserError(true)
-        } else if(value.includes("@") && !email_format_validator(value)){
+        } else if (value.includes("@") && !email_format_validator(value)) {
             setLoginUserError(true)
             setLoginUserErrorMessage("Formato do email inválido")
         }
-        else{
+        else {
             setLoginUserError(false)
         }
 
     };
 
-    const handlePasswordChange = (value:string) => {
+    const handlePasswordChange = (value: string) => {
         setPassword(value);
         setIsPasswordValid(value.length >= 7)
     };
 
-    async function login(e:any){
+    async function login(e: any) {
         e.preventDefault()
 
         setGeralMessageError("")
         setLoginUserError(false)
         setPasswordError(false)
 
-        if(!loginUser){
+        if (!loginUser) {
             setGeralMessageError("Preencha o Login com usuário ou email")
             return
         }
 
-        if(!password || !password_validator(password)){
+        if (!password || !password_validator(password)) {
             return
         }
 
         let userIsValid = false
 
-        if(email_format_validator(loginUser)){
+        if (email_format_validator(loginUser)) {
             userIsValid = true
-        } else if(loginUser.length >= 3) {
+        } else if (loginUser.length >= 3) {
             userIsValid = true
         }
 
         const passwordIsValid = password_validator(password)
-        
-        if(userIsValid && passwordIsValid){
+
+        if (userIsValid && passwordIsValid) {
 
             const userObject = {
                 user: loginUser,
@@ -89,58 +89,58 @@ export function LoginPage(){
             await login(userObject) //faltou then e catch
         }
     }
-    
-    return(
+
+    return (
         <>
-        
-        <div className={styles.formLoginContainer}>
 
-        <h1>Bem vindo</h1>
-            <div className={styles.formContent}>
-                <form>
-                    <div>
-                        <label>Login*</label>
-                        <span className={styles.errorSpan}>{loginUserError ? loginUserErrorMessage : ""}</span>
-                        <input
-                        className={styles.loginInput} 
-                        onChange={ handleUserChange }
-                        value={loginUser} 
-                        placeholder='Usuário ou Email'>
-                        </input>
-                    </div>
+            <div className={styles.formLoginContainer}>
 
-                    <PasswordInput onChangeFunction={ handlePasswordChange } password = { password } error = {passwordError} errorMessage={ passwordErrorMessage }></PasswordInput>
-                    
-                    <div className={styles.radioDiv}>
-                        <input type="checkbox" name="remember-me"  onChange={handleRememberMe} checked={rememberMe}/>
-                        <label htmlFor="remember-me">Lembrar-me</label>
-                    </div>
+                <h1>Bem vindo</h1>
+                <div className={styles.formContent}>
+                    <form>
+                        <div>
+                            <label>Login*</label>
+                            <span className={styles.errorSpan}>{loginUserError ? loginUserErrorMessage : ""}</span>
+                            <input
+                                className={styles.loginInput}
+                                onChange={handleUserChange}
+                                value={loginUser}
+                                placeholder='Usuário ou Email'>
+                            </input>
+                        </div>
 
-                    <div>
-                        <RequirementsDiv isValid={ isPasswordValid }>A senha deve ter no mínimo 7 caracteres</RequirementsDiv>
-                        <RequirementsDiv isValid={ !loginUserError }>O Usuário deve ter no mínimo 3 caracteres</RequirementsDiv>
-                    </div>
+                        <PasswordInput onChangeFunction={handlePasswordChange} password={password} error={passwordError} errorMessage={passwordErrorMessage}></PasswordInput>
 
-                    <div className={styles.spanDiv}>
-                        <span>{geralError ? geralError : ""}</span>
-                    </div>
+                        <div className={styles.radioDiv}>
+                            <input type="checkbox" name="remember-me" onChange={handleRememberMe} checked={rememberMe} />
+                            <label htmlFor="remember-me">Lembrar-me</label>
+                        </div>
 
+                        <div>
+                            <RequirementsDiv isValid={isPasswordValid}>A senha deve ter no mínimo 7 caracteres</RequirementsDiv>
+                            <RequirementsDiv isValid={!loginUserError}>O Usuário deve ter no mínimo 3 caracteres</RequirementsDiv>
+                        </div>
 
-                    <div className={styles.buttonSubmitContainer}>
-                        <ButtonSubmit onClick={login}>Entrar</ButtonSubmit>
-                    </div>
-
-                    <div className={styles.pDiv}>
-                        <p><a href="/login">Não possui cadastro? Clique aqui</a></p>
-                    </div>
+                        <div className={styles.spanDiv}>
+                            <span>{geralError ? geralError : ""}</span>
+                        </div>
 
 
+                        <div className={styles.buttonSubmitContainer}>
+                            <ButtonSubmit onClick={login}>Entrar</ButtonSubmit>
+                        </div>
 
-                </form>
+                        <div className={styles.pDiv}>
+                            <p><a href="/login">Não possui cadastro? Clique aqui</a></p>
+                        </div>
+
+
+
+                    </form>
+                </div>
             </div>
-        </div>
-        
-        
+
+
         </>
 
     )
