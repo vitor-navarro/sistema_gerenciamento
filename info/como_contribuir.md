@@ -20,7 +20,10 @@ OBS: Caso ainda não tenha feito, clone o projeto para sua máquina e o abra em 
 ### Backend.
 
 - Caso tenha a posibilidade, abra um terminal integrado na pasta do BackEnd.
-- Execute npm start nesse momento serão instalados todos os pacotes necessários
+- Execute npm install nesse momento serão instalados todos os pacotes necessários
+- Antes de iniciar o projeto necessitará configurar o database que você pode [ver aqui](https://github.com/vitor-navarro/sistema_gerenciamento/blob/main/info/configuracao_backend.md)
+- Após configurado inicie o MySQL XAMPP, lembrese sempre antes de iniciar o backend o MySQL module do xampp deve estar ativo
+- Agora basta Executar npm start e se tudo foi configurado corretamente o mesmo vai funcionar e exibirá a mensagem "Server is listening on port http://localhost:{sua_porta}".
 
 ### Frontend
 
