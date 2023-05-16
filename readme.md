@@ -2,6 +2,8 @@
 
 ## Assim que todas as issues de segurança e partes fundamentais do sistema forem completadas irei disponibilizar ele como uma versão de teste ao público.
 
+[![License](https://img.shields.io/badge/License-Custom-blue)]([https://seu-link-aqui](https://github.com/vitor-navarro/sistema_gerenciamento/blob/main/LICENSE))
+
  - Caso queira testar antes da disponibilização favor entrar em contato comigo por uma das minhas redes sociais.
 
 Nesse projeto foram utilizados:
