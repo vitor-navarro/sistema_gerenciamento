@@ -13,16 +13,16 @@ Resumo:
 
 Para links mais informações consulte [instalacao_necessária](https://github.com/vitor-navarro/sistema_gerenciamento/blob/main/info/Instalacao_necessaria.md)
 
-##Após instalado o que precisa vamos as partes especificas do projeto
+## Após instalado o que precisa vamos as partes especificas do projeto
 
 OBS: Caso ainda não tenha feito, clone o projeto para sua máquina e o abra em seu editor de código. (Estou usando vs code)
 
-###Backend.
+### Backend.
 
 - Caso tenha a posibilidade, abra um terminal integrado na pasta do BackEnd.
 - Execute npm start nesse momento serão instalados todos os pacotes necessários
 
-###Frontend
+### Frontend
 
 - Antes de iniciar o FrontEnd da sua aplicação pode ser necessário algumas configurações adicionais para executar todas as funções existentes, consulte [configuracao_front](https://github.com/vitor-navarro/sistema_gerenciamento/blob/main/info/configuracao_front) 
 - Caso tenha a posibilidade, abra um terminal integrado na pasta do FrontEnd.
