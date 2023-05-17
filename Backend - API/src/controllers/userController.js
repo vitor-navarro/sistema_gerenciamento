@@ -110,7 +110,6 @@ module.exports = class UserController {
 		await User.create(user)
 		const data = {
 			message: "Cadastro de novo usuário",
-			path: function_path,
 		}
 
 		logger.info(data)

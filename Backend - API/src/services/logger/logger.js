@@ -109,6 +109,7 @@ const log_data = {
 		await gravar(performanceObj)
 	},
 
+	// importance level 1 or 0 please
 	other: async function (data){
 		if (!data.message) {
 			data.message = "Inserido sem mensagem verificar"
@@ -129,14 +130,13 @@ const log_data = {
  		//exclude after 7 days, or in dump
 		const otherObj = {
 			level: "other",
-			message: "",
-			extra: "Importance level:" + data.importance_level || "0" + "\n\rAditional Info:" + data.aditionalInfo,
+			message: data.message,
+			extra: ("Importance level:" + data.importance_level || "0") + " Aditional Info:" + data.aditionalInfo,
 		}
 
 		await gravar(otherObj)
 	}
 	
 };
-
 
 module.exports = log_data;
