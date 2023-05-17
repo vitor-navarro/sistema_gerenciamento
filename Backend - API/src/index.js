@@ -17,8 +17,6 @@ const authRoutes = require("./routes/authRoutes")
 const app = express();
 const port = process.env.PORT;
 
-
-
 //Middlewares
 app.use(cors({
 	origin: process.env.ENABLED_CORS
@@ -48,6 +46,5 @@ conn.sync()
 		})
 	})
 	.catch((err) => console.log(err))
-
 
 module.exports = { app }
