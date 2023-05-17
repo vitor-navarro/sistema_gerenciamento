@@ -10,7 +10,10 @@ Ou caso não encontre procure pelo arquivo como contribuir nesta pasta
 
 --
 
-Downloads:
-Node(v18.16.0)
-Xampp(8.2.4-0)
-Mysql Workbench(8.0.33)
+Downloads (windows):
+Node(v18.16.0) https://nodejs.org/dist/v18.16.0/node-v18.16.0-x64.msi
+Xampp(8.2.4-0) https://sourceforge.net/projects/xampp/files/XAMPP%20Windows/8.2.4/xampp-windows-x64-8.2.4-0-VS16-installer.exe
+Mysql Workbench(8.0.33) https://dev.mysql.com/downloads/file/?id=517975
+
+Para outros OS:
+https://github.com/vitor-navarro/sistema_gerenciamento/blob/main/info/Instalacao_necessaria.md
