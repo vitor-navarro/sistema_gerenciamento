@@ -38,7 +38,7 @@ Link para instalação da versão 8.0.33 (recomendado):
 https://dev.mysql.com/downloads/file/?id=517975
 - Linux - ubuntu 23.04(caso seja outro veja no link do site oficial abaixo):
 https://dev.mysql.com/downloads/file/?id=518991
-- macOS X:
+- macOS:
 64bits:
 https://dev.mysql.com/downloads/file/?id=517984
 32bits:
