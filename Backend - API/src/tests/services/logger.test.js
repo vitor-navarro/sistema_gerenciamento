@@ -9,6 +9,7 @@ describe("Create logs with logger", () => {
 	});
 
 	afterAll(async () => {
+		//await Log.destroy({ truncate: true})
 		await conn.close();
 	});
 
@@ -21,7 +22,7 @@ describe("Create logs with logger", () => {
 		await log_data.serious(data);
 
 		const log = await Log.findOne({ where: { id: 1 } })
-
+		await log.destroy();
 		expect(log.severity_level).toBe("serious");
 		expect(log.message).toBe("Test serious log");
 		expect(log.error).toBe("");
@@ -37,7 +38,7 @@ describe("Create logs with logger", () => {
 		await log_data.error(data);
 	  
 		const log = await Log.findOne({ where: { id: 1 } });
-	  
+		await log.destroy();
 		expect(log.severity_level).toBe("error");
 		expect(log.message).toBe("Test error log");
 		expect(log.error).toBe("Test error");
@@ -51,7 +52,7 @@ describe("Create logs with logger", () => {
 		await log_data.warning(data);
 	  
 		const log = await Log.findOne({ where: { id: 1 } });
-	  
+		await log.destroy();
 		expect(log.severity_level).toBe("warning");
 		expect(log.message).toBe("Test warning log");
 		expect(log.error).toBe("");
@@ -65,7 +66,7 @@ describe("Create logs with logger", () => {
 		await log_data.info(data);
 	  
 		const log = await Log.findOne({ where: { id: 1 } });
-	  
+		await log.destroy();
 		expect(log.severity_level).toBe("info");
 		expect(log.message).toBe("Test info log");
 	  });
@@ -95,7 +96,7 @@ describe("Create logs with logger", () => {
 		await log_data.other(data);
 	  
 		const log = await Log.findOne({ where: { id: 1 } });
-		console.log(log.extra)
+		await log.destroy();
 		expect(log.severity_level).toBe("other");
 		expect(log.message).toBe("Test other log");
 		expect(log.extra).toBe("Importance level:1 Aditional Info:Additional info");

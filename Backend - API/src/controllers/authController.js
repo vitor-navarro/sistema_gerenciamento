@@ -9,6 +9,11 @@ module.exports = class AuthController{
     static async userExist(req,res){
         const userName = req.body.userName
 
+        if(!userName){
+			//Devo colocar o logger aqui?
+            return res.status(500).send("Usuário não fornecido")
+        }
+
         getUserByName(userName).then((response =>{
             res.status(response.status).send(response.success)
         }))
@@ -16,6 +21,11 @@ module.exports = class AuthController{
 
     static async emailExist(req,res){
         const email = req.body.email
+
+		if(!email){
+			//Devo colocar o logger aqui?
+            return res.status(500).send("Email não fornecido")
+        }
 
         getEmail(email).then((response =>{
             res.status(response.status).send(response.success)

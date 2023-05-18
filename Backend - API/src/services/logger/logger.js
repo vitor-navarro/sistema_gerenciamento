@@ -11,7 +11,7 @@ async function gravar(data) {
 
 		console.log("Log gravado no banco de dados:", log.toJSON());
 	} catch (error) {
-		console.error("Erro ao gravar o log no banco de dados:", error);
+		console.log("Erro ao gravar o log no banco de dados:", error);
 		return
 	}
 }

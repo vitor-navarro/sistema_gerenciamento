@@ -4,6 +4,7 @@ const userController = require("../../controllers/userController")
 require('iconv-lite').encodingExists('foo')
 const conn = require("../../db/conn")
 const User = require("../../models/User")
+const Log = require("../../models/Log")
 
 describe("Create user", ()=>{
 
@@ -12,6 +13,8 @@ describe("Create user", ()=>{
     });
     
     afterAll(async () => {
+	  //await User.destroy({ truncate: true})
+      await Log.destroy({ truncate: true})
       await conn.close();
     });
 
@@ -24,6 +27,7 @@ describe("Create user", ()=>{
           };
 
         const response = await request(app).post('/user/add').send(user);
+		await response.destroy();
         expect(response.status).toBe(401);
         expect(response.body.message).toBe('Nome inválido, nome deve ter entre 3 e 255 caracteres');
     });
@@ -35,6 +39,7 @@ describe("Create user", ()=>{
         password: 'password123',
         dataPolicyCheck: true,
       };
+
       const response = await request(app).post('/user/add').send(user);
       expect(response.status).toBe(401);
       expect(response.body.message).toBe('E-mail inválido');
@@ -48,6 +53,7 @@ describe("Create user", ()=>{
         dataPolicyCheck: true,
       };
       const response = await request(app).post('/user/add').send(user);
+	  await response.destroy();
       expect(response.status).toBe(401);
       expect(response.body.message).toBe('Senha deve ter no mínimo 7 caracteres');
     });
@@ -67,6 +73,7 @@ describe("Create user", ()=>{
         dataPolicyCheck: true,
       };
       const response = await request(app).post('/user/add').send(user);
+	  await response.destroy();
       expect(response.status).toBe(401);
       expect(response.body.message).toBe('Usuário já cadastrado');
     });
@@ -85,6 +92,7 @@ describe("Create user", ()=>{
         dataPolicyCheck: true,
       };
       const response = await request(app).post('/user/add').send(user);
+	  await response.destroy();
       expect(response.status).toBe(401);
       expect(response.body.message).toBe('Email já cadastrado em outro usuário');
     });
@@ -110,6 +118,7 @@ describe("Create user", ()=>{
       };
 
       const response = await request(app).post('/user/add').send(user);
+	  await response.destroy();
       expect(response.status).toBe(401);
       expect(response.body.message).toBe('dataPolicyCheck deve ser verdadeiro');
     })

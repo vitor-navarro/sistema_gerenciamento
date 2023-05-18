@@ -33,7 +33,7 @@ module.exports = class UserController {
 		if (!email_format_validator(email)) {
 
 			const data = {
-				message: "Tentativa de registro sem Email",
+				message: "Tentativa de registro com email inválido",
 				path: function_path,
 			}
 
@@ -106,8 +106,9 @@ module.exports = class UserController {
 			passwordHash,
 			dataPolicyCheck
 		}
-
-		await User.create(user)
+		
+		const userDb = await User.create(user)
+		
 		const data = {
 			message: "Cadastro de novo usuário",
 		}
