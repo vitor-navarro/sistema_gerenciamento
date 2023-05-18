@@ -7,7 +7,12 @@ const databaseHost = process.env.DATABSE_HOST
 
 const sequelize = new Sequelize(databaseName, databaseUser, databasePassword,{
     host: databaseHost,
-    dialect: 'mysql'
+    dialect: 'mysql',
+	logging:/*false*/(message) => {
+		if (message.includes('Error')) {
+		  console.error(message);
+		}
+	  }
 })
 
 sequelize

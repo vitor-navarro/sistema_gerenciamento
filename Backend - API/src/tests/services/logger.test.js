@@ -4,102 +4,105 @@ const conn = require("../../db/conn")
 
 describe("Create logs with logger", () => {
 
+	beforeAll(async () => {
+		await conn.sync({ force: true })
+	})
+
 	beforeEach(async () => {
-		await conn.sync({ force: true });
-	});
+		await Log.destroy({ where: {}, truncate: true, restartIdentity: true });
+	  });
 
 	afterAll(async () => {
-		//await Log.destroy({ truncate: true})
+		await Log.destroy({ truncate: true })
 		await conn.close();
 	});
 
-	test("serious function should add a serious log in database", async () => {
+	test("serious function should add a serious log in database", (done) => {
 		const data = {
 			message: "Test serious log",
 			path: "/test/path",
 		};
 
-		await log_data.serious(data);
+		log_data.serious(data).then(async () => {
+			const log = await Log.findOne({ where: { id: 1 } });
+			expect(log.severity_level).toBe("serious");
+			expect(log.message).toBe("Test serious log");
+			expect(log.error).toBe("");
+			expect(log.extra).toBe("path:/test/path");
+			done();
+		});
+	});
+	
+	test("error function should add an error log in database", (done) => {
+		const data = {
+			message: "Test error log",
+			error: "Test error",
+		};
 
-		const log = await Log.findOne({ where: { id: 1 } })
-		await log.destroy();
-		expect(log.severity_level).toBe("serious");
-		expect(log.message).toBe("Test serious log");
-		expect(log.error).toBe("");
-		expect(log.extra).toBe("path:/test/path");
+		log_data.error(data).then(async () => {
+			const log = await Log.findOne({ where: { id: 1 } });
+			expect(log.severity_level).toBe("error");
+			expect(log.message).toBe("Test error log");
+			expect(log.error).toBe("Test error");
+			done();
+		});
 	});
 
-	test("error function should add an error log in database", async () => {
+	test("warning function should add a warning log in database", (done) => {
 		const data = {
-		  message: "Test error log",
-		  error: "Test error",
+			message: "Test warning log",
 		};
-	  
-		await log_data.error(data);
-	  
-		const log = await Log.findOne({ where: { id: 1 } });
-		await log.destroy();
-		expect(log.severity_level).toBe("error");
-		expect(log.message).toBe("Test error log");
-		expect(log.error).toBe("Test error");
-	  });
-	  
-	  test("warning function should add a warning log in database", async () => {
-		const data = {
-		  message: "Test warning log",
-		};
-	  
-		await log_data.warning(data);
-	  
-		const log = await Log.findOne({ where: { id: 1 } });
-		await log.destroy();
-		expect(log.severity_level).toBe("warning");
-		expect(log.message).toBe("Test warning log");
-		expect(log.error).toBe("");
-	  });
-	  
-	  test("info function should add an info log in database", async () => {
-		const data = {
-		  message: "Test info log",
-		};
-	  
-		await log_data.info(data);
-	  
-		const log = await Log.findOne({ where: { id: 1 } });
-		await log.destroy();
-		expect(log.severity_level).toBe("info");
-		expect(log.message).toBe("Test info log");
-	  });
-	  
-	  test("performance function should add a performance log in database", async () => {
-		const data = {
-		  message: "Test performance log",
-		  path: "/test/path",
-		};
-	  
-		await log_data.performance(data);
-	  
-		const log = await Log.findOne({ where: { id: 1 } });
-	  
-		expect(log.severity_level).toBe("performance");
-		expect(log.message).toBe("Test performance log");
-		expect(log.extra).toBe("/test/path");
-	  });
-	  
-	  test("other function should add an other log in database", async () => {
-		const data = {
-		  message: "Test other log",
-		  importance_level: "1",
-		  aditionalInfo: "Additional info",
-		};
-	  
-		await log_data.other(data);
-	  
-		const log = await Log.findOne({ where: { id: 1 } });
-		await log.destroy();
-		expect(log.severity_level).toBe("other");
-		expect(log.message).toBe("Test other log");
-		expect(log.extra).toBe("Importance level:1 Aditional Info:Additional info");
-	  });
 
+		log_data.warning(data).then(async () => {
+			const log = await Log.findOne({ where: { id: 1 } });
+			expect(log.severity_level).toBe("warning");
+			expect(log.message).toBe("Test warning log");
+			expect(log.error).toBe("");
+			done();
+		});
+	});
+
+	test("info function should add an info log in database", (done) => {
+		const data = {
+			message: "Test info log",
+		};
+
+		log_data.info(data).then(async () => {
+			const log = await Log.findOne({ where: { id: 1 } });
+			expect(log.severity_level).toBe("info");
+			expect(log.message).toBe("Test info log");
+			done();
+		});
+	});
+
+	test("performance function should add a performance log in database", (done) => {
+		const data = {
+			message: "Test performance log",
+			path: "/test/path",
+		};
+
+		log_data.performance(data).then(async () => {
+			const log = await Log.findOne({ where: { id: 1 } });
+			expect(log.severity_level).toBe("performance");
+			expect(log.message).toBe("Test performance log");
+			expect(log.extra).toBe("/test/path");
+			done();
+		});
+	});
+
+	test("other function should add an other log in database", (done) => {
+		const data = {
+			message: "Test other log",
+			importance_level: "1",
+			aditionalInfo: "Additional info",
+		};
+
+		log_data.other(data).then(async () => {
+			const log = await Log.findOne({ where: { id: 1 } });
+			expect(log.severity_level).toBe("other");
+			expect(log.message).toBe("Test other log");
+			expect(log.extra).toBe("Importance level:1 Aditional Info:Additional info");
+			done();
+		});
+	});
 });

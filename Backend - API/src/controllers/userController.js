@@ -108,12 +108,12 @@ module.exports = class UserController {
 		}
 		
 		const userDb = await User.create(user)
-		
+		/*
 		const data = {
 			message: "Cadastro de novo usuário",
 		}
 
-		logger.info(data)
+		logger.info(data)*/
 		return res.status(200).json({ message: "Usuário cadastrado com sucesso", redirectTo: "/login" })
 
 	}
