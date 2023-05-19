@@ -10,7 +10,7 @@ describe("Create logs with logger", () => {
 
 	beforeEach(async () => {
 		await Log.destroy({ where: {}, truncate: true, restartIdentity: true });
-	  });
+	});
 
 	afterAll(async () => {
 		await Log.destroy({ truncate: true })
@@ -23,8 +23,7 @@ describe("Create logs with logger", () => {
 			path: "/test/path",
 		};
 
-		log_data.serious(data).then(async () => {
-			const log = await Log.findOne({ where: { id: 1 } });
+		log_data.serious(data).then(async (log) => {
 			expect(log.severity_level).toBe("serious");
 			expect(log.message).toBe("Test serious log");
 			expect(log.error).toBe("");
@@ -39,8 +38,7 @@ describe("Create logs with logger", () => {
 			error: "Test error",
 		};
 
-		log_data.error(data).then(async () => {
-			const log = await Log.findOne({ where: { id: 1 } });
+		log_data.error(data).then(async (log) => {
 			expect(log.severity_level).toBe("error");
 			expect(log.message).toBe("Test error log");
 			expect(log.error).toBe("Test error");
@@ -53,8 +51,7 @@ describe("Create logs with logger", () => {
 			message: "Test warning log",
 		};
 
-		log_data.warning(data).then(async () => {
-			const log = await Log.findOne({ where: { id: 1 } });
+		log_data.warning(data).then(async (log) => {
 			expect(log.severity_level).toBe("warning");
 			expect(log.message).toBe("Test warning log");
 			expect(log.error).toBe("");
@@ -67,8 +64,7 @@ describe("Create logs with logger", () => {
 			message: "Test info log",
 		};
 
-		log_data.info(data).then(async () => {
-			const log = await Log.findOne({ where: { id: 1 } });
+		log_data.info(data).then(async (log) => {
 			expect(log.severity_level).toBe("info");
 			expect(log.message).toBe("Test info log");
 			done();
@@ -81,8 +77,7 @@ describe("Create logs with logger", () => {
 			path: "/test/path",
 		};
 
-		log_data.performance(data).then(async () => {
-			const log = await Log.findOne({ where: { id: 1 } });
+		log_data.performance(data).then(async (log) => {
 			expect(log.severity_level).toBe("performance");
 			expect(log.message).toBe("Test performance log");
 			expect(log.extra).toBe("/test/path");
@@ -97,8 +92,7 @@ describe("Create logs with logger", () => {
 			aditionalInfo: "Additional info",
 		};
 
-		log_data.other(data).then(async () => {
-			const log = await Log.findOne({ where: { id: 1 } });
+		log_data.other(data).then(async (log) => {
 			expect(log.severity_level).toBe("other");
 			expect(log.message).toBe("Test other log");
 			expect(log.extra).toBe("Importance level:1 Aditional Info:Additional info");
