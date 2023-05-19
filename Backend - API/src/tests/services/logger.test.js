@@ -4,13 +4,8 @@ const conn = require("../../db/conn")
 
 describe("Create logs with logger", () => {
 
-	beforeAll(async () => {
-		await conn.sync({ force: true })
-	})
-
 	afterAll(async () => {
 		await Log.destroy({ truncate: true })
-		await conn.close();
 	});
 
 	test("serious function should add a serious log in database", (done) => {
@@ -28,7 +23,7 @@ describe("Create logs with logger", () => {
 			done();
 		});
 	});
-	
+
 	test("error function should add an error log in database", (done) => {
 		expect.assertions(3);
 		const data = {

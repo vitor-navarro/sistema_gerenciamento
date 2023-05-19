@@ -14,7 +14,7 @@ const sequelize = new Sequelize(databaseName, databaseUser, databasePassword,{
 		}
 	  },
 	  pool: {
-		max: 20,
+		max: 20, // max 30 per connection
 		min: 0,
 		acquire: 30000,
 		idle: 10000,
@@ -24,7 +24,8 @@ const sequelize = new Sequelize(databaseName, databaseUser, databasePassword,{
 sequelize
   .authenticate()
   .then(() => {
-    console.log('conectado ao database\n\r')
+    console.log('conectado ao database\n\r ' + databaseName)
+
   })
   .catch((error) => {
     console.log("Erro ao conectar ao database\n\r", error)

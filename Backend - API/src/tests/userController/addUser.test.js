@@ -1,26 +1,21 @@
 const { app } = require("../../index")
-const request = require("supertest")
-const userController = require("../../controllers/userController")
-require('iconv-lite').encodingExists('foo')
 const conn = require("../../db/conn")
+const request = require("supertest")
+
+const userController = require("../../controllers/userController")
 const User = require("../../models/User")
 const Log = require("../../models/Log")
 
+require('iconv-lite').encodingExists('foo')
+
 describe("Create user", () => {
 
-	beforeAll(async () => {
-		await conn.sync({ force: true });
-	})
-
 	afterAll(async () => {
-		await User.destroy({ truncate: true})
+		await User.destroy({ truncate: true })
 		await Log.destroy({ truncate: true })
-		await conn.close();
 	});
 
-	//faltou testar se o usuário é adicionado corretamente no database
-
-	test('it should be possible to register a user', async () =>{
+	test('it should be possible to register a user', async () => {
 		expect.assertions(3);
 		const user = {
 			name: 'teste',
