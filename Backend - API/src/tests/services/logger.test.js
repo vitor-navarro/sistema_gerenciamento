@@ -8,16 +8,14 @@ describe("Create logs with logger", () => {
 		await conn.sync({ force: true })
 	})
 
-	beforeEach(async () => {
-		await Log.destroy({ where: {}, truncate: true, restartIdentity: true });
-	});
-
 	afterAll(async () => {
-		await Log.destroy({ truncate: true })
-		await conn.close();
+		await Log.destroy({ truncate: true }).then(()=>{
+			conn.close();
+		})
 	});
 
 	test("serious function should add a serious log in database", (done) => {
+		expect.assertions(4);
 		const data = {
 			message: "Test serious log",
 			path: "/test/path",
@@ -33,6 +31,7 @@ describe("Create logs with logger", () => {
 	});
 	
 	test("error function should add an error log in database", (done) => {
+		expect.assertions(3);
 		const data = {
 			message: "Test error log",
 			error: "Test error",
@@ -47,6 +46,7 @@ describe("Create logs with logger", () => {
 	});
 
 	test("warning function should add a warning log in database", (done) => {
+		expect.assertions(3);
 		const data = {
 			message: "Test warning log",
 		};
@@ -60,6 +60,7 @@ describe("Create logs with logger", () => {
 	});
 
 	test("info function should add an info log in database", (done) => {
+		expect.assertions(2);
 		const data = {
 			message: "Test info log",
 		};
@@ -72,6 +73,7 @@ describe("Create logs with logger", () => {
 	});
 
 	test("performance function should add a performance log in database", (done) => {
+		expect.assertions(3);
 		const data = {
 			message: "Test performance log",
 			path: "/test/path",
@@ -86,6 +88,7 @@ describe("Create logs with logger", () => {
 	});
 
 	test("other function should add an other log in database", (done) => {
+		expect.assertions(3);
 		const data = {
 			message: "Test other log",
 			importance_level: "1",

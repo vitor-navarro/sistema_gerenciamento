@@ -7,7 +7,7 @@ async function gravar(data) {
 			message: data.message,
 			error: data.error,
 			extra: data.extra,
-		});
+		})
 
 		//console.log("Log gravado no banco de dados:", log.toJSON());
 		return log;
