@@ -9,9 +9,8 @@ describe("Create logs with logger", () => {
 	})
 
 	afterAll(async () => {
-		await Log.destroy({ truncate: true }).then(()=>{
-			conn.close();
-		})
+		await Log.destroy({ truncate: true })
+		await conn.close();
 	});
 
 	test("serious function should add a serious log in database", (done) => {
