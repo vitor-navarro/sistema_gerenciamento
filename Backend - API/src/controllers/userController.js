@@ -106,17 +106,23 @@ module.exports = class UserController {
 			passwordHash,
 			dataPolicyCheck
 		}
-		
-		const userDb = await User.create(user).then((response)=>{
+
+		await User.create(user).then((response) => {
+			const data = {
+				message: "Cadastro de novo usuário",
+			}
+
+			logger.info(data)
 			return res.status(200).json({ message: "Usuário cadastrado com sucesso", redirectTo: "/login" })
+		}).catch((err) => {
+			const data = {
+				message: "Erro interno do servidor ao salvar usuário",
+				error: err,
+			}
+
+			logger.error(data)
+			return res.status(500).json({ message: "Erro interno do servidor" })
 		})
-		
-		const data = {
-			message: "Cadastro de novo usuário",
-		}
-
-		logger.info(data)
-
 	}
 
 	static async getOneByName(req, res) {
