@@ -107,14 +107,15 @@ module.exports = class UserController {
 			dataPolicyCheck
 		}
 		
-		const userDb = await User.create(user)
-		/*
+		const userDb = await User.create(user).then((response)=>{
+			return res.status(200).json({ message: "Usuário cadastrado com sucesso", redirectTo: "/login" })
+		})
+		
 		const data = {
 			message: "Cadastro de novo usuário",
 		}
 
-		logger.info(data)*/
-		return res.status(200).json({ message: "Usuário cadastrado com sucesso", redirectTo: "/login" })
+		logger.info(data)
 
 	}
 

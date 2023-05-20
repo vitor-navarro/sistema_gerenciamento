@@ -5,7 +5,7 @@ const User = require("../../models/User")
 
 const {clearDatabase} = require("../utilFunctionsToTest")
 
-describe("Create user", () => {
+describe("Add user", () => {
 
 	beforeAll(async () => {
 		await clearDatabase()
@@ -14,21 +14,21 @@ describe("Create user", () => {
 	afterAll(async ()=>{
 		await clearDatabase()
 	})
-	
 
-	test('it should be possible to register a user', async () => {
+	test('it should be possible to register a user', (done) => {
 		expect.assertions(3);
 		const user = {
-			name: 'teste',
-			email: 'teste@example.com',
+			name: 'tryaddusertestadduser',
+			email: 'tryaddusertestadduser@example.com',
 			password: 'password123',
 			dataPolicyCheck: true,
 		};
 
-		await request(app).post('/user/add').send(user).then((response) => {
+		request(app).post('/user/add').send(user).then((response) => {
 			expect(response.status).toBe(200);
 			expect(response.body.message).toBe('Usuário cadastrado com sucesso');
 			expect(response.body.redirectTo).toBe('/login');
+			done()
 		});
 	})
 
@@ -98,6 +98,7 @@ describe("Create user", () => {
 			password: 'password123',
 			dataPolicyCheck: true,
 		};
+
 		await request(app).post('/user/add').send(user).then((response) => {
 			expect(response.status).toBe(401);
 			expect(response.body.message).toBe('Usuário já cadastrado');

@@ -1,5 +1,4 @@
 const bcrypt = require("bcrypt")
-const getUser = require("../services/users/getUser")
 const getEmail = require("../services/users/getEmail")
 const getUserByName = require("../services/users/getUserByName")
 const bcryptsaltRounds = 10

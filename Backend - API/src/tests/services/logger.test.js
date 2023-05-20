@@ -11,6 +11,7 @@ describe("Create logs with logger", () => {
 	afterAll(async ()=>{
 		await clearDatabase()
 	})
+	
 	test("serious function should add a serious log in database", (done) => {
 		expect.assertions(4);
 		const data = {

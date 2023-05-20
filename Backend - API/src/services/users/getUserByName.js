@@ -1,6 +1,6 @@
 const User = require("../../models/User")
 
-const getUserByName = (name) => User.findOne({ where: {name}, raw:true}).then((userDB)=>{
+const getUserByName = (name) => User.findOne({ where: {name:name}, raw:true}).then((userDB)=>{
     if (userDB === null){
 
         const data = {
