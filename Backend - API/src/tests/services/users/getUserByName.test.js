@@ -41,7 +41,6 @@ describe("Get User by name", ()=>{
 			const user = "userthatexistusergettest"
 
 			getUserByName(user).then((response)=>{
-				console.log(response)
 				expect(response.success).toBeTruthy()
 				expect(response.status).toBe(200)
 				expect(response.message).toBe("")
