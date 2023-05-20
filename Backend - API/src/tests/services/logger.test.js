@@ -1,13 +1,16 @@
-const Log = require("../../models/Log")
 const log_data = require("../../services/logger/logger")
-const conn = require("../../db/conn")
+
+const { clearDatabase } = require("../utilFunctionsToTest");
 
 describe("Create logs with logger", () => {
 
-	afterAll(async () => {
-		await Log.destroy({ truncate: true })
+	beforeAll(async () => {
+		await clearDatabase()
 	});
 
+	afterAll(async ()=>{
+		await clearDatabase()
+	})
 	test("serious function should add a serious log in database", (done) => {
 		expect.assertions(4);
 		const data = {

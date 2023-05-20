@@ -1,6 +1,5 @@
 const User = require("../../models/User")
 
-//decrepted
 const getUser = (email) => User.findOne({ where: {email:email}, raw:true}).then((userDB)=>{
     if (userDB === null){
 

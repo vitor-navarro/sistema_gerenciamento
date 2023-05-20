@@ -1,19 +1,20 @@
 const { app } = require("../../index")
-const conn = require("../../db/conn")
 const request = require("supertest")
 
-const userController = require("../../controllers/userController")
 const User = require("../../models/User")
-const Log = require("../../models/Log")
 
-require('iconv-lite').encodingExists('foo')
+const {clearDatabase} = require("../utilFunctionsToTest")
 
 describe("Create user", () => {
 
-	afterAll(async () => {
-		await User.destroy({ truncate: true })
-		await Log.destroy({ truncate: true })
+	beforeAll(async () => {
+		await clearDatabase()
 	});
+
+	afterAll(async ()=>{
+		await clearDatabase()
+	})
+	
 
 	test('it should be possible to register a user', async () => {
 		expect.assertions(3);
@@ -30,6 +31,7 @@ describe("Create user", () => {
 			expect(response.body.redirectTo).toBe('/login');
 		});
 	})
+
 
 	test('should return error if name length is less than 3', async () => {
 		expect.assertions(2);
@@ -142,7 +144,7 @@ describe("Create user", () => {
 	})
 
 
-	test('should return error if dataPolicyCheck is not provided', async () => {
+	test('should return error if dataPolicyCheck is false', async () => {
 		expect.assertions(2);
 		const user = {
 			name: 'John Doee',
