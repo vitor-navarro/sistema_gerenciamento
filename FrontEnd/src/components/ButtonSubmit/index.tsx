@@ -17,7 +17,6 @@ function ButtonSubmit(props:Props){
 
     return(
         <>
-        
             <button className = {styles.button} type='submit' onClick={buttonClicked}>
                 {props.children ? props.children : 'Enviar'}
             </button>
