@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "nodemon src/index.js localhost 3001",
-    "test": "jest"
+    "test": "jest --maxWorkers=50%"
   },
   "author": "",
   "license": "ISC",
