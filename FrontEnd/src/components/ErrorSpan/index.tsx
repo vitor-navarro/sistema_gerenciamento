@@ -14,9 +14,7 @@ export default function ErrorSpan(props: propsInterface){
 
     return(
         <>
-
-        <span className={styles.span}>{error ? props.children : ""}</span>
-
+            <span className={styles.span}>{error ? props.children : ""}</span>
         </>
     )
 
