@@ -1,7 +1,7 @@
 import { RegisterUserPage } from "@/screens/RegisterUserPage"
 
 
-export default function createUser(){
+export default function RegisterUser(){
     return(
         <>
             <RegisterUserPage />

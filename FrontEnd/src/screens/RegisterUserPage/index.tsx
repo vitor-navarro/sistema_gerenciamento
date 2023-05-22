@@ -11,6 +11,7 @@ import { useState } from 'react'
 
 import styles from "./styles.module.scss"
 import addUser from "@/services/api/users/add_user"
+import Link from "next/link"
 
 export function RegisterUserPage(){
     const[geralError,setGeralMessageError] = useState("")
@@ -147,7 +148,7 @@ export function RegisterUserPage(){
 
                     <div className={styles.radioDiv}>
                         <input type="checkbox" name="data-politic"  onChange={handledataPolicy} checked={dataPolicy}/>
-                        <label htmlFor="data-politic">Li e concordo com a politica de tratamento de dados <a href="">Saiba Mais</a></label>
+                        <label htmlFor="data-politic">Li e concordo com a politica de tratamento de dados <Link href="">Saiba Mais</Link></label>
                     </div>
 
                     <div>
@@ -164,9 +165,8 @@ export function RegisterUserPage(){
                     </div>
 
                     <div className={styles.pDiv}>
-                        <p><a href="/login">Já possui cadastro? Clique aqui</a></p>
+                        <p><Link href="/login">Já possui cadastro? Clique aqui</Link></p>
                     </div>
-
 
                 </form>
             </div>

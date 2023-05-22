@@ -31,4 +31,5 @@ OBS: Caso ainda não tenha feito, clone o projeto para sua máquina e o abra em 
 - Caso tenha a posibilidade, abra um terminal integrado na pasta do FrontEnd.
 - Execute yarn nesse momento serão instalados todos os pacotes necessários.
 OBS: Caso não tenha o [yarn](https://yarnpkg.com/cli/install) pode instala-lo por [aqui](https://yarnpkg.com/cli/install)
+- execute npm run build para criar as páginas estáticas necessárias.
 - Para iniciar o projeto basta executar yarn dev.

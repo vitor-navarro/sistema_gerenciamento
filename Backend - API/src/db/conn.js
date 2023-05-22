@@ -8,11 +8,11 @@ const databaseHost = process.env.DATABSE_HOST
 const sequelize = new Sequelize(databaseName, databaseUser, databasePassword,{
     host: databaseHost,
     dialect: 'mysql',
-	logging:/*false*/(message) => {
+	logging: true/*false*/,/*(message) => {
 		if (message.includes('Error')) {
 		  console.error(message);
 		}
-	  },
+	  },*/
 	  pool: {
 		max: 20, // max 30 per connection
 		min: 0,

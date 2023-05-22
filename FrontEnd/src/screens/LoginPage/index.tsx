@@ -10,6 +10,7 @@ import login from "../../services/api/auth/login"
 import { useState } from 'react'
 
 import styles from './styles.module.scss'
+import Link from 'next/link'
 
 export function LoginPage() {
     const [geralError, setGeralMessageError] = useState("")
@@ -131,10 +132,8 @@ export function LoginPage() {
                         </div>
 
                         <div className={styles.pDiv}>
-                            <p><a href="/login">Não possui cadastro? Clique aqui</a></p>
+                            <p><Link href="/login">Não possui cadastro? Clique aqui</Link></p>
                         </div>
-
-
 
                     </form>
                 </div>
