@@ -28,20 +28,20 @@ export default function EmailInput(props:propsInterface){
         const isValidEmail = email_validate(newEmail);
         setEmailError(!isValidEmail);
 
-        if (onChangeFunction) {
-            onChangeFunction(newEmail);
-        }
+        onChangeFunction(newEmail);
+        
     }
 
     return(
         <div className={styles.div}> 
             <div>
-                <label>{props.children ? props.children : 'Email'}{props.isRequired ? '*' : ''}</label>
+                <label htmlFor="emailInput">{props.children ? props.children : 'Email'}{props.isRequired ? '*' : ''}</label>
                 <ErrorSpan error = { emailError || error }>{errorMessage !== '' ? errorMessage : "Email Inválido"}</ErrorSpan>
             </div>
 
             <input 
             {...(props.isRequired || props.isRequired === undefined ? { required: true } : {})}
+            id="emailInput"
             type='text'
             placeholder="Email"
             onChange={handleChange}
