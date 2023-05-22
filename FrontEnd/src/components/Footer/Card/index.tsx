@@ -18,6 +18,5 @@ export function Card(props: cardProps){
             <h3>{props.title}</h3>
             <p>{props.description}</p>
         </div>
-
     )
 }
