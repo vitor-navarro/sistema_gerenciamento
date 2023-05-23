@@ -58,10 +58,10 @@ describe('EmailInput', () => {
 
 
   test('should be error let false', () => {
-    const { getByText, queryByText } = render(<EmailInput email="" onChangeFunction={() => { }} />);
-    expect(queryByText('Email Inválido')).toBeNull();
+    render(<EmailInput email="" onChangeFunction={() => { }} />);
+    expect(screen.queryByText('Email Inválido')).toBeNull();
     render(<EmailInput email="" onChangeFunction={() => { }} error={true} />);
-    expect(getByText('Email Inválido')).toBeInTheDocument();
+    expect(screen.getByText('Email Inválido')).toBeInTheDocument();
   });
 
 
@@ -86,12 +86,14 @@ describe('EmailInput', () => {
     expect(mockOnChange).toHaveBeenCalledWith(testEmail);
   });
 
+
   test('should render the correct label for no children value', () => {
     const mockOnChange = jest.fn();
     render(<EmailInput onChangeFunction={mockOnChange} email="" isRequired={true}></EmailInput>);
     const customLabel = screen.getByText(/Email/i);
     expect(customLabel.textContent).toBe('Email*');
   })
+
 
   test('should render the correct label for Custom Label children value', () => {
     const mockOnChange = jest.fn();

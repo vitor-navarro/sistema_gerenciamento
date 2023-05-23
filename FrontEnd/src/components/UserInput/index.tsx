@@ -17,14 +17,10 @@ export default function UserInput(props:propsInterface){
     const error = props.error
     const onChangeFunction = props.onChangeFunction
 
-    if (user === undefined) {
-        user = '';
-    }
-
     const handleChange = (e:any) =>{
-        if (onChangeFunction){
-            onChangeFunction(e.target.value)
-        }
+       
+        onChangeFunction(e.target.value)
+        
     }
 
     return(
