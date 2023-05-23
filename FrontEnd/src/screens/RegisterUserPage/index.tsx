@@ -143,16 +143,16 @@ export function RegisterUserPage(){
 
                     <UserInput onChangeFunction={ handleUserChange } user = { user } isRequired={true}  error = {userError} errorMessage={userErrorMessage}>Usuário</UserInput>
                     <EmailInput onChangeFunction={ handleEmailChange } email = { email } isRequired={true} error = {emailError} errorMessage={emailErrorMessage}>Email</EmailInput>
-                    <PasswordInput onChangeFunction={ handlePasswordChange } password={ password }  error = {passwordError} errorMessage={ passwordErrorMessage }></PasswordInput>
-                    <PasswordInput onChangeFunction={ handleConfirmPasswordChange } password={ confirmPassword }></PasswordInput>
+                    <PasswordInput id = {"password"} onChangeFunction={ handlePasswordChange } password={ password }  error = {passwordError} errorMessage={ passwordErrorMessage }></PasswordInput>
+                    <PasswordInput id = {"confirm-password"} onChangeFunction={ handleConfirmPasswordChange } password={ confirmPassword }>Confirmar Senha</PasswordInput>
 
                     <div className={styles.radioDiv}>
-                        <input type="checkbox" name="data-politic"  onChange={handledataPolicy} checked={dataPolicy}/>
+                        <input type="checkbox" id="data-politic"  onChange={handledataPolicy} checked={dataPolicy}/>
                         <label htmlFor="data-politic">Li e concordo com a politica de tratamento de dados <Link href="">Saiba Mais</Link></label>
                     </div>
 
                     <div>
-                        <RequirementsDiv isValid={ isPasswordValid }>A senha deve ter no mínimo 7 caracteres</RequirementsDiv>
+                        <RequirementsDiv data-testid="requirements-div" isValid={ isPasswordValid }>A senha deve ter no mínimo 7 caracteres</RequirementsDiv>
                         <RequirementsDiv isValid={ isUserValid }>O Usuário deve ter no mínimo 3 caracteres</RequirementsDiv>
                     </div>
 

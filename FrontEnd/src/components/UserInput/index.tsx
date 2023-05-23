@@ -26,13 +26,14 @@ export default function UserInput(props:propsInterface){
     return(
         <div className={styles.div}> 
             <div>
-                <label>{props.children ? props.children : 'Usuário'}{props.isRequired ? '*' : ''}</label>
+                <label htmlFor="user-input">{props.children ? props.children : 'Usuário'}{props.isRequired ? '*' : ''}</label>
                 <ErrorSpan error = { error }>{props.errorMessage !== '' ? props.errorMessage : "Usuário inválido"}</ErrorSpan>
             </div>
             
 
             <input 
             {...(props.isRequired || props.isRequired === undefined ? { required: true } : {})}
+            id="user-input"
             type='text'
             placeholder="Nome"
             onChange={handleChange}

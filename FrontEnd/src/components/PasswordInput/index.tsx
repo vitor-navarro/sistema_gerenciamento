@@ -9,11 +9,13 @@ import styles from './styles.module.scss'
 import password_validator from '@/utils/validators/password_format_validator';
 
 interface propsInterface {
+    children?: React.ReactNode,
     onChangeFunction: (password: string) => void;
     password: string;
     error?: boolean;
     errorMessage?: string;
     isConfirmInput?: boolean;
+    id?: string;
 }
 
 export default function PasswordInput(props:propsInterface){
@@ -45,7 +47,7 @@ export default function PasswordInput(props:propsInterface){
     return(
         <div className={styles.div}> 
             <div>
-                <label htmlFor="password">Senha*</label>
+                <label htmlFor={props.id ? props.id : "password"}>{props.children ? props.children + "*" : "Senha*"}</label>
                 <ErrorSpan error = { passwordError || error }>{props.errorMessage !== '' ? props.errorMessage :"Senha Inválida"}</ErrorSpan>
             </div>
 
@@ -55,7 +57,7 @@ export default function PasswordInput(props:propsInterface){
                 required 
                 type={showPassword ? 'text' :'password'}
                 placeholder="Senha"
-                id="password"
+                id={props.id ? props.id : "password"}
                 onChange={handleChange}
                 value={password}
                 />

@@ -100,9 +100,10 @@ export function LoginPage() {
                 <div className={styles.formContent}>
                     <form>
                         <div>
-                            <label>Login*</label>
+                            <label htmlFor="login-input">Login*</label>
                             <span className={styles.errorSpan}>{loginUserError ? loginUserErrorMessage : ""}</span>
                             <input
+                                id="login-input"
                                 className={styles.loginInput}
                                 onChange={handleUserChange}
                                 value={loginUser}
@@ -113,7 +114,7 @@ export function LoginPage() {
                         <PasswordInput onChangeFunction={handlePasswordChange} password={password} error={passwordError} errorMessage={passwordErrorMessage}></PasswordInput>
 
                         <div className={styles.radioDiv}>
-                            <input type="checkbox" name="remember-me" onChange={handleRememberMe} checked={rememberMe} />
+                            <input type="checkbox" id="remember-me" onChange={handleRememberMe} checked={rememberMe} />
                             <label htmlFor="remember-me">Lembrar-me</label>
                         </div>
 

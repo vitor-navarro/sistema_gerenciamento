@@ -1,5 +1,5 @@
 import React from "react";
-import { render, screen, fireEvent, getByPlaceholderText } from "@testing-library/react";
+import { render, screen, fireEvent } from "@testing-library/react";
 import PasswordInput from "./index";
 
 describe("Password input Component", () => {
@@ -55,5 +55,19 @@ describe("Password input Component", () => {
     });
 
 
+    test('renders the label with correct htmlFor attribute', () => {
+        const props = {
+          onChangeFunction: jest.fn(),
+          password: '',
+          error: false,
+          errorMessage: '',
+          isConfirmInput: false,
+          id: 'password-field',
+        };
+    
+        const { getByLabelText } = render(<PasswordInput {...props} />);
+        const labelElement = getByLabelText('Senha*');
+        expect(labelElement).toHaveAttribute('id', 'password-field');
+      });
 
 })
