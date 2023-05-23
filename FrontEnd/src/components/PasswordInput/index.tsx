@@ -21,7 +21,7 @@ export default function PasswordInput(props:propsInterface){
     const [passwordError, setPasswordError] = useState(false);
 
     let error = props.error === undefined ? false : props.error
-    let password = props.password === undefined ? '' : props.password
+    let password = props.password
     
     const onChangeFunction = props.onChangeFunction
 
@@ -34,22 +34,18 @@ export default function PasswordInput(props:propsInterface){
     }
     
     const handleChange = (e:any) =>{
-
         const newPassword = e.target.value;
         const isValidPassword = password_validator(newPassword)
 
         setPasswordError(!isValidPassword)
-        
-        if (onChangeFunction) {
-            onChangeFunction(newPassword);
-        }
-        
+
+        onChangeFunction(newPassword);
     }
 
     return(
         <div className={styles.div}> 
             <div>
-                <label>Senha*</label>
+                <label htmlFor="password">Senha*</label>
                 <ErrorSpan error = { passwordError || error }>{props.errorMessage !== '' ? props.errorMessage :"Senha Inválida"}</ErrorSpan>
             </div>
 
@@ -59,6 +55,7 @@ export default function PasswordInput(props:propsInterface){
                 required 
                 type={showPassword ? 'text' :'password'}
                 placeholder="Senha"
+                id="password"
                 onChange={handleChange}
                 value={password}
                 />
