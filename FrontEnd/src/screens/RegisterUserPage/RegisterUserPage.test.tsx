@@ -1,4 +1,4 @@
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, screen, fireEvent, act } from '@testing-library/react';
 import { RegisterUserPage } from './index';
 
 describe('RegisterUserPage', () => {
@@ -44,11 +44,44 @@ describe('RegisterUserPage', () => {
         expect(dataPolicyCheckbox.checked).toBe(false);
     });
 
+    test('handlePasswordChange and handleConfirmPasswordChange updates password and confirm no error', () => {
+        jest.useFakeTimers();
 
-    test('handlePasswordChange updates password', () => {
         render(<RegisterUserPage />);
-        const passwordInput = screen.getByLabelText('Senha*') as HTMLInputElement;
-        fireEvent.change(passwordInput, { target: { value: 'password123' } });
-        expect(passwordInput.value).toBe('password123');
+        const passwordInput = screen.getByLabelText('Senha*');
+        fireEvent.change(passwordInput, { target: { value: '1234567' } });
+        expect(passwordInput).toHaveValue('1234567');
+
+        const confirmPasswordInput = screen.getByLabelText('Confirmar Senha*');
+        fireEvent.change(confirmPasswordInput, { target: { value: '1234567' } });
+        expect(confirmPasswordInput).toHaveValue('1234567');
+
+        jest.advanceTimersByTime(100);
+
+        const errorMessage = screen.queryByText('As senhas não são idênticas');
+        expect(errorMessage).not.toBeInTheDocument();
+
+        jest.useRealTimers();
+    });
+
+
+    test('must test whether the error was correctly placed in the Confirm Password handle', () => {
+        jest.useFakeTimers();
+
+        render(<RegisterUserPage />);
+        const passwordInput = screen.getByLabelText('Senha*');
+        fireEvent.change(passwordInput, { target: { value: '1234567' } });// dif password
+
+        const confirmPasswordInput = screen.getByLabelText('Confirmar Senha*');
+        fireEvent.change(confirmPasswordInput, { target: { value: '12345679' } });// dif password
+
+        act(() => {
+            jest.advanceTimersByTime(200);
+        });
+
+        const errorMessage = screen.queryByText('As senhas não são idênticas');
+        expect(errorMessage).toBeInTheDocument();
+
+        jest.useRealTimers();
     });
 });
