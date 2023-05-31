@@ -1,7 +1,17 @@
 {
   "env":{
+    "browser": true,
+    "cypress/globals": true,
     "jest" : true,
     "node" : true
   },
-  "extends": ["next/babel","next/core-web-vitals"]
+  "extends": [
+    "next/babel",
+    "next/core-web-vitals",
+    "eslint:recommended",
+    "plugin:cypress/recommended"
+  ],
+  "plugins": [
+    "cypress"
+  ]
 }

@@ -1,27 +1,25 @@
-const { DataTypes } = require("sequelize")
+const { DataTypes } = require("sequelize");
+const conn = require("../db/conn");
+const User = require("./User");
 
-const conn = require("../db/conn")
+const Log = conn.define("Log", {
+  severity_level: {
+    type: DataTypes.STRING(12),
+    allowNull: false,
+    require: true,
+  },
+  message: {
+    type: DataTypes.TEXT,
+    allowNull: false,
+  },
+  error: {
+    type: DataTypes.TEXT,
+  },
+  extra: {
+    type: DataTypes.TEXT,
+  },
+}, {
+  updatedAt: false,
+});
 
-const User = require("./User")
-
-const Log = conn.define("Log",{
-
-    severity_level:{
-        type: DataTypes.STRING(12),
-        allowNull: false,
-		require
-    },
-    message:{
-        type: DataTypes.TEXT,
-        allowNull: false,
-    },
-	error:{
-		type: DataTypes.TEXT,
-	},
-	extra:{
-		type: DataTypes.TEXT,
-	}
-
-})
-
-module.exports = Log
+module.exports = Log;

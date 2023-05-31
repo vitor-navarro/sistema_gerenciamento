@@ -25,7 +25,7 @@ describe("Add user", () => {
 		};
 
 		request(app).post('/user/add').send(user).then((response) => {
-			expect(response.status).toBe(200);
+			expect(response.status).toBe(201);
 			expect(response.body.message).toBe('Usuário cadastrado com sucesso');
 			expect(response.body.redirectTo).toBe('/login');
 			done()

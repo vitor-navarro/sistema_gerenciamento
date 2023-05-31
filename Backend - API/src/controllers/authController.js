@@ -1,62 +1,161 @@
 const bcrypt = require("bcrypt")
 const getEmail = require("../services/users/getEmail")
 const getUserByName = require("../services/users/getUserByName")
-const bcryptsaltRounds = 10
+const email_format_validator = require("../validators/email_format_validator")
+const bcryptsaltRounds = process.env.BCRYPT_SALT_ROUNDS
 
-module.exports = class AuthController{
+const createToken = require("../services/tokens/createToken")
 
-    static async userExist(req,res){
-        const userName = req.body.userName
+const logger = require("../services/logger/logger")
 
-        if(!userName){
-			//Devo colocar o logger aqui?
-            return res.status(500).send("Usuário não fornecido")
-        }
+module.exports = class AuthController {
 
-        getUserByName(userName).then((response =>{
-            res.status(response.status).send(response.success)
-        }))
-    }
+	static async userExist(req, res) {
+		const userName = req.body.userName
 
-    static async emailExist(req,res){
-        const email = req.body.email
+		if (!userName) {
+			const data = {
+				message: "Função userExist chamada sem Usuário",
+				path: "auth/userExist"
+			}
 
-		if(!email){
-			//Devo colocar o logger aqui?
-            return res.status(500).send("Email não fornecido")
-        }
+			logger.serious(data)
+			return res.status(500).send("Usuário não fornecido")
+		}
 
-        getEmail(email).then((response =>{
-            res.status(response.status).send(response.success)
-        }))
-    }
+		getUserByName(userName).then((response => {
+			res.status(response.status).send(response.success)
+		}))
+	}
 
-    static async login(req,res){
+	static async emailExist(req, res) {
+		const email = req.body.email
 
-        const user = req.body.user
-        const password = req.body.password
+		if (!email) {
+			const data = {
+				message: "Função emailExist chamada sem email",
+				path: "auth/emailExist"
+			}
 
-        if(!user){
-            return res.status(500).send("O campo usuário foi enviado sem nenhuma informação")
-        }
+			logger.serious(data)
 
-        if(!password){
-            return res.status(500).send("O campo senha foi enviado sem nenhuma informação")
-        }
+			return res.status(500).send("Email não fornecido")
+		}
 
-        const userDB = await getUser(user)
-        .then((userDB)=>{
+		getEmail(email).then((response => {
+			res.status(response.status).send(response.success)
+		}))
+	}
 
-            if(!userDB.success){
-                res.status(userDB.status).send(userDB)
-            }else{
-                console.log(userDB) // falta terminar
-            }
-            // falta terminar
+	static async login(req, res) {
+
+		const function_path = "/auth/login"
+
+		const user = req.body.user
+		const password = req.body.password
+		const keepConnected = req.body.keepConnected
+
+		let userDB = null
+		console.log(user, password, keepConnected)
+
+		if (!user) {
+			const data = {
+				message: "Tentativa de login sem usuário",
+				path: function_path
+			}
+
+			logger.serious(data)
+
+			return res.status(500).send("O campo usuário foi enviado sem nenhuma informação")
+		}
+
+		if (!password) {
+			const data = {
+				message: "Tentativa de login sem senha",
+				path: function_path
+			}
+
+			logger.serious(data)
+
+			return res.status(500).send("O campo senha foi enviado sem nenhuma informação")
+		}
 
 
-        })
+		if (user.length < 3 || user.length > 255) {
 
-        
-    }
+			const data = {
+				message: "Tentativa de registro sem Nome ou Nome menor que 3 caracteres",
+				path: function_path
+			}
+
+			logger.serious(data)
+
+			return res.status(401).json({ message: 'Nome inválido, nome deve ter entre 3 e 255 caracteres' });
+		}
+
+		if (email_format_validator(user)) {
+
+			userDB = await getEmail(user).then((response) => {
+				if (response.success) {
+					return response.userDB
+				} else {
+
+					const data = {
+						message: "Erro ao buscar usuário no banco de dados - email fornecido",
+						error: "sem error trace",
+					}
+
+					logger.error(data)
+
+					return res.status(500).send("Erro ao buscar usuário no banco de dados")
+				}
+			})
+		} else {
+			userDB = await getUserByName(user).then((response) => {
+				if (response.success) {
+					return response.userDB
+				} else {
+
+					const data = {
+						message: "Erro ao buscar usuário no banco de dados - usuário fornecido",
+						error: "sem error trace",
+					}
+
+					logger.error(data)
+
+					return res.status(500).send("Erro ao buscar usuário no banco de dados")
+				}
+			}
+			)
+		}
+
+		console.log(password, userDB.passwordHash)
+
+		await bcrypt.compare(password, userDB.passwordHash, function (err, result) {
+			if (err) {
+
+				const data = {
+					message: "Erro ao comparar senha - login",
+					error: "sem error trace",
+				}
+
+				logger.error(data)
+
+				return res.status(500).send("Erro ao comparar senha")
+			} else if (result) {
+
+				const token = createToken(userDB)
+				return res.status(200).send({ message: "Login efetuado com sucesso", token })
+				
+			} else {
+				return res.status(401).send({ message: "Senha incorreta" })
+			}
+		});
+
+
+
+
+
+	}
+
 }

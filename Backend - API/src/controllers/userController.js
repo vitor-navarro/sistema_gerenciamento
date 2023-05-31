@@ -1,5 +1,5 @@
 const bcrypt = require("bcrypt")
-const bcryptsaltRounds = 10
+const bcryptsaltRounds = parseInt(process.env.BCRYPT_SALT_ROUNDS)
 
 const User = require("../models/User")
 const getUserByName = require("../services/users/getUserByName")
@@ -11,7 +11,6 @@ const logger = require("../services/logger/logger")
 module.exports = class UserController {
 
 	static async addUser(req, res) {
-
 		const function_path = "/user/add/"
 
 		const name = req.body.name
@@ -113,7 +112,7 @@ module.exports = class UserController {
 			}
 
 			logger.info(data)
-			return res.status(200).json({ message: "Usuário cadastrado com sucesso", redirectTo: "/login" })
+			return res.status(201).json({ message: "Usuário cadastrado com sucesso", redirectTo: "/login" })
 		}).catch((err) => {
 			const data = {
 				message: "Erro interno do servidor ao salvar usuário",
@@ -123,6 +122,7 @@ module.exports = class UserController {
 			logger.error(data)
 			return res.status(500).json({ message: "Erro interno do servidor" })
 		})
+
 	}
 
 	static async getOneByName(req, res) {

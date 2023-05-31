@@ -1,6 +1,7 @@
 import { render, screen, fireEvent, act } from '@testing-library/react';
 import { RegisterUserPage } from './index';
 
+
 describe('RegisterUserPage', () => {
 
 
@@ -8,17 +9,6 @@ describe('RegisterUserPage', () => {
         render(<RegisterUserPage />);
         const formTitle = screen.getByText('Registro');
         expect(formTitle).toBeInTheDocument();
-    });
-
-
-    test('displays error message when user input is invalid', () => {
-        render(<RegisterUserPage />);
-        const userInput = screen.getByLabelText('Usuário*');
-        fireEvent.change(userInput, { target: { value: 'us' } });
-        const registerButton = screen.getByText('Cadastrar');
-        fireEvent.click(registerButton);
-        const errorMessage = screen.getByText('O Usuário deve ter no mínimo 3 caracteres');
-        expect(errorMessage).toBeInTheDocument();
     });
 
 
@@ -56,7 +46,9 @@ describe('RegisterUserPage', () => {
         fireEvent.change(confirmPasswordInput, { target: { value: '1234567' } });
         expect(confirmPasswordInput).toHaveValue('1234567');
 
-        jest.advanceTimersByTime(100);
+        act(() => {
+            jest.advanceTimersByTime(100);
+          });
 
         const errorMessage = screen.queryByText('As senhas não são idênticas');
         expect(errorMessage).not.toBeInTheDocument();

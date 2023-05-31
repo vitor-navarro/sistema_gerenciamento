@@ -24,10 +24,10 @@ export function LoginPage() {
     const [passwordErrorMessage, setPasswordErrorMessage] = useState("")
     const [isPasswordValid, setIsPasswordValid] = useState(false)
 
-    const [rememberMe, setRememberMe] = useState(false)
+    const [keepConnected, setkeepConnected] = useState(false)
 
-    const handleRememberMe = (e: any) => {
-        setRememberMe(!rememberMe)
+    const handlekeepConnected = (e: any) => {
+        setkeepConnected(!keepConnected)
     }
 
     const handleUserChange = (e: any) => {
@@ -53,7 +53,7 @@ export function LoginPage() {
         setIsPasswordValid(value.length >= 7)
     };
 
-    async function login(e: any) {
+    async function handleLogin(e: any) {
         e.preventDefault()
 
         setGeralMessageError("")
@@ -61,6 +61,7 @@ export function LoginPage() {
         setPasswordError(false)
 
         if (!loginUser) {
+            setLoginUserError(true)
             setGeralMessageError("Preencha o Login com usuário ou email")
             return
         }
@@ -84,7 +85,7 @@ export function LoginPage() {
             const userObject = {
                 user: loginUser,
                 password: password,
-                remember: rememberMe
+                keepConnected: keepConnected
             }
 
             await login(userObject) //faltou then e catch
@@ -114,7 +115,7 @@ export function LoginPage() {
                         <PasswordInput onChangeFunction={handlePasswordChange} password={password} error={passwordError} errorMessage={passwordErrorMessage}></PasswordInput>
 
                         <div className={styles.radioDiv}>
-                            <input type="checkbox" id="remember-me" onChange={handleRememberMe} checked={rememberMe} />
+                            <input type="checkbox" id="remember-me" onChange={handlekeepConnected} checked={keepConnected} />
                             <label htmlFor="remember-me">Lembrar-me</label>
                         </div>
 
@@ -127,20 +128,17 @@ export function LoginPage() {
                             <span>{geralError ? geralError : ""}</span>
                         </div>
 
-
                         <div className={styles.buttonSubmitContainer}>
-                            <ButtonSubmit onClick={login}>Entrar</ButtonSubmit>
+                            <ButtonSubmit onClick={handleLogin}>Entrar</ButtonSubmit>
                         </div>
 
                         <div className={styles.pDiv}>
-                            <p><Link href="/login">Não possui cadastro? Clique aqui</Link></p>
+                            <p><Link href="/registerUser">Não possui cadastro? Clique aqui</Link></p>
                         </div>
 
                     </form>
                 </div>
             </div>
-
-
         </>
 
     )

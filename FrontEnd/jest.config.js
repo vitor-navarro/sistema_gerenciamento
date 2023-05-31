@@ -3,7 +3,10 @@ module.exports = {
     testPathIgnorePatterns: ['/node_modules/','/.next/'],
     collectCoverage: true,
     collectCoverageFrom:['src/**/*ts(x)'],
-    setupFilesAfterEnv: ['<rootDir>/.jest/setup.ts'],
+    setupFilesAfterEnv: [
+      "@testing-library/jest-dom/extend-expect"
+    ],
+    moduleFileExtensions: ["ts", "tsx", "js", "jsx", "json", "node"],
     moduleNameMapper: {
         '^@/(.*)$': '<rootDir>/src/$1',
         "^.+\\.(css|scss)$": "identity-obj-proxy",

@@ -1,4 +1,7 @@
+let resetDatabase = false
+
 if(process.env.NODE_ENV == 'test'){
+	resetDatabase = true
 	require('dotenv').config({ path: '.env.test' });
 
 } else if(process.env.NODE_ENV == 'production'){
@@ -9,7 +12,6 @@ if(process.env.NODE_ENV == 'test'){
 	
 }
 
-
 //imports
 const express = require('express');
 const session = require('express-session')
@@ -17,6 +19,7 @@ const bodyParser = require('body-parser')
 const cors = require('cors')
 const swaggerUi = require("swagger-ui-express")
 const conn = require("./db/conn")
+const responseTimeMiddleware = require("./middlewares/performance")
 
 //routes imports
 const emailsRoutes = require("./routes/email")
@@ -39,6 +42,7 @@ app.use(session({
 	resave: false,
 	saveUninitialized: false,
 }))
+app.use(responseTimeMiddleware)
 
 //swagger docs
 const swaggerDocs = require("./swagger.json")
@@ -49,8 +53,9 @@ app.use("/emails", emailsRoutes)
 app.use("/user", userRoutes)
 app.use("/auth", authRoutes)
 
-//conn.sync({ force: true}) //reset database
-conn.sync()
+conn.sync({ force: true}) //reset database
+//conn.sync( {force : resetDatabase} )
+//conn.sync()
 	.then(() => {
 		app.listen(port, () => {
 			console.log(`Server is listening on port http://localhost:${port}`);
