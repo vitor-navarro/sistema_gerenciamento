@@ -8,16 +8,11 @@ function responseTimeMiddleware(req, res, next) {
   res.on("finish", () => {
     const endTime = Date.now();
     const responseTime = endTime - startTime;
-    console.log("\n");
-    console.log(responseTime + "ms");
-    console.log(req.originalUrl);
-    console.log("\n");
-
     const cpuUsage = process.cpuUsage(startCpuUsage).user / 1000;
 
     const data = {
-      message: "Time " + responseTime + 
-	  "ms, CPU Usage:" + cpuUsage + "ms" + "Memory usage:" + memoryUsage + 'MB',
+      message: "Time" + responseTime +
+        "ms, CPU:" + cpuUsage + "ms",
       path: req.originalUrl,
     };
 

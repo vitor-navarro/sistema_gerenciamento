@@ -1,11 +1,11 @@
-interface userObjectInterface{
+interface userObjectInterface {
     user: string;
     password: string;
     keepConnected: boolean;
 }
 
 
-export default function login(userObject: userObjectInterface){
+export default function login(userObject: userObjectInterface) {
 
     const base_URL = process.env.API_BASE_URL
 
@@ -17,9 +17,9 @@ export default function login(userObject: userObjectInterface){
         body: JSON.stringify(userObject)
     }).then(
         (response) => {
-            if(response.ok){
+            if (response.ok) {
                 return response.json()
-            }else{
+            } else {
                 throw new Error("Erro ao fazer login")
             }
         }
@@ -29,8 +29,7 @@ export default function login(userObject: userObjectInterface){
         }
     ).catch(
         (error) => {
-            console.log(error)
-
-    }
+            return error
+        }
     )
 }

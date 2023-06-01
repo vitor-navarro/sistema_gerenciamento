@@ -8,9 +8,9 @@ import password_validator from '@/utils/validators/password_format_validator'
 import login from "../../services/api/auth/login"
 
 import { useState } from 'react'
+import Link from 'next/link'
 
 import styles from './styles.module.scss'
-import Link from 'next/link'
 
 export function LoginPage() {
     const [geralError, setGeralMessageError] = useState("")
@@ -26,7 +26,7 @@ export function LoginPage() {
 
     const [keepConnected, setkeepConnected] = useState(false)
 
-    const handlekeepConnected = (e: any) => {
+    const handlekeepConnected = (e : any) => {
         setkeepConnected(!keepConnected)
     }
 
