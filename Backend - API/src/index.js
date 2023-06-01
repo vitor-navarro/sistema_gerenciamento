@@ -53,8 +53,8 @@ app.use("/emails", emailsRoutes)
 app.use("/user", userRoutes)
 app.use("/auth", authRoutes)
 
-conn.sync({ force: true}) //reset database
-//conn.sync( {force : resetDatabase} )
+//conn.sync({ force: true}) //reset database
+conn.sync( {force : resetDatabase} )
 //conn.sync()
 	.then(() => {
 		app.listen(port, () => {

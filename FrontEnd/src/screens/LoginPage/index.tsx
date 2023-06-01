@@ -11,13 +11,16 @@ import { useState } from 'react'
 import Link from 'next/link'
 
 import styles from './styles.module.scss'
+import user_validator from '@/utils/validators/user_validator'
+import email_validator from '@/utils/validators/email_validator'
 
 export function LoginPage() {
     const [geralError, setGeralMessageError] = useState("")
 
     const [loginUser, setLoginUser] = useState("")
     const [loginUserError, setLoginUserError] = useState(true)
-    const [loginUserErrorMessage, setLoginUserErrorMessage] = useState("")
+    const [loginUserInputError, setLoginUserInputError] = useState(false)
+    const [loginUserInputErrorMessage, setLoginUserInputErrorMessage] = useState("")
 
     const [password, setPassword] = useState("")
     const [passwordError, setPasswordError] = useState(false)
@@ -26,7 +29,7 @@ export function LoginPage() {
 
     const [keepConnected, setkeepConnected] = useState(false)
 
-    const handlekeepConnected = (e : any) => {
+    const handlekeepConnected = (e: any) => {
         setkeepConnected(!keepConnected)
     }
 
@@ -38,12 +41,15 @@ export function LoginPage() {
 
         if (value.length < 3) {
             setLoginUserError(true)
+            setLoginUserInputError(true)
         } else if (value.includes("@") && !email_format_validator(value)) {
-            setLoginUserError(true)
-            setLoginUserErrorMessage("Formato do email inválido")
+            setLoginUserInputError(true)
+            setLoginUserInputErrorMessage("Formato do email inválido")
         }
         else {
             setLoginUserError(false)
+            setLoginUserInputError(false)
+
         }
 
     };
@@ -58,6 +64,7 @@ export function LoginPage() {
 
         setGeralMessageError("")
         setLoginUserError(false)
+        setLoginUserInputError(false)
         setPasswordError(false)
 
         if (!loginUser) {
@@ -67,20 +74,50 @@ export function LoginPage() {
         }
 
         if (!password || !password_validator(password)) {
+            setLoginUserError(loginUserError)
             return
         }
 
         let userIsValid = false
+        let userExist = false
 
         if (email_format_validator(loginUser)) {
             userIsValid = true
+            userExist = await email_validator(loginUser).then(result => {
+                if (!result.success) {
+                    setLoginUserInputErrorMessage("Email não cadastrado")
+                    setLoginUserInputError(true)
+                    return false
+                }
+                return true
+            })
+                .catch(error => {
+                    setGeralMessageError("Erro ao buscar Email")
+                    return false
+                });
         } else if (loginUser.length >= 3) {
             userIsValid = true
+            userExist = await user_validator(loginUser).then(result => {
+                if (!result.success) {
+                    setLoginUserInputErrorMessage("Usuário não possui cadastro")
+                    setLoginUserInputError(true)
+                    return false
+                }
+                return true
+            })
+                .catch(error => {
+                    setGeralMessageError("Erro ao buscar usuário")
+                    return false
+                });
+
+        } else {
+            setLoginUserError(true)
+            return
         }
 
         const passwordIsValid = password_validator(password)
 
-        if (userIsValid && passwordIsValid) {
+        if (userIsValid && passwordIsValid && userExist) {
 
             const userObject = {
                 user: loginUser,
@@ -88,7 +125,10 @@ export function LoginPage() {
                 keepConnected: keepConnected
             }
 
-            await login(userObject) //faltou then e catch
+            const result = await login(userObject)
+            
+            setGeralMessageError(result.message)
+
         }
     }
 
@@ -102,7 +142,7 @@ export function LoginPage() {
                     <form>
                         <div>
                             <label htmlFor="login-input">Login*</label>
-                            <span className={styles.errorSpan}>{loginUserError ? loginUserErrorMessage : ""}</span>
+                            <span className={styles.errorSpan}>{loginUserInputError ? loginUserInputErrorMessage : ""}</span>
                             <input
                                 id="login-input"
                                 className={styles.loginInput}

@@ -66,7 +66,7 @@ module.exports = class AuthController {
 
 			logger.serious(data)
 
-			return res.status(500).json({message:"O campo usuário foi enviado sem nenhuma informação"})
+			return res.status(500).json({ message: "O campo usuário foi enviado sem nenhuma informação" })
 		}
 
 		if (!password) {
@@ -77,7 +77,7 @@ module.exports = class AuthController {
 
 			logger.serious(data)
 
-			return res.status(500).json({message:"O campo senha foi enviado sem nenhuma informação"})
+			return res.status(500).json({ message: "O campo senha foi enviado sem nenhuma informação" })
 		}
 
 
@@ -98,8 +98,8 @@ module.exports = class AuthController {
 			await getEmail(user).then((response) => {
 				if (response.success) {
 					userDB = response.userDB
-				}else if(!response.success){
-					return res.status(401).json({message:"Usuário não encontrado"})
+				} else if (!response.success) {
+					return res.status(401).json({ message: "Usuário não encontrado" })
 				} else {
 
 					const data = {
@@ -109,15 +109,15 @@ module.exports = class AuthController {
 
 					logger.error(data)
 					console.log(data)
-					return res.status(500).json({message:"Erro ao buscar usuário no banco de dados"})
+					return res.status(500).json({ message: "Erro ao buscar usuário no banco de dados" })
 				}
 			})
 		} else {
 			await getUserByName(user).then((response) => {
 				if (response.success) {
 					userDB = response.userDB
-				} else if(!response.success){
-					return res.status(401).json({message:"Usuário não encontrado"})
+				} else if (!response.success) {
+					return res.status(401).json({ message: "Usuário não encontrado" })
 				} else {
 
 					const data = {
@@ -128,33 +128,38 @@ module.exports = class AuthController {
 					logger.error(data)
 					console.log(response)
 					console.log(data)
-					return res.status(500).json({message:"Erro ao buscar usuário no banco de dados"})
+					return res.status(500).json({ message: "Erro ao buscar usuário no banco de dados" })
 				}
 			}
 			)
 		}
-		
-		if(userDB === null){
-			return
-		}else{
-			bcrypt.compare(password, userDB.passwordHash, function (err, result) {
-			if (err) {
-				const data = {
-					message: "Erro ao comparar senha - login",
-					error: "sem error trace",
-				}
 
-				logger.error(data)
-				console.log(data)
-				return res.status(500).json({message:"Erro ao comparar senha"})
-			} else if (result) {
-				const token = createToken(userDB)
-				return res.status(200).json({ message: "Login efetuado com sucesso", token })
-				
-			} else {
-				return res.status(401).json({ message: "Senha incorreta" })
-			}
-		});}
+		if (userDB === null) {
+			return
+		} else {
+			bcrypt.compare(password, userDB.passwordHash, function (err, result) {
+				if (err) {
+					const data = {
+						message: "Erro ao comparar senha - login",
+						error: "sem error trace",
+					}
+
+					logger.error(data)
+					console.log(data)
+					return res.status(500).json({ message: "Erro ao comparar senha" })
+				} else if (result) {
+					const token = createToken(userDB)
+					return res.status(200).json({
+						message: "Login efetuado com sucesso",
+						redirectTo: "/dashboard",
+						token
+					})
+
+				} else {
+					return res.status(401).json({ message: "Senha incorreta" })
+				}
+			});
+		}
 	}
 
 }

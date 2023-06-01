@@ -130,7 +130,7 @@ export function RegisterUserPage(){
                 dataPolicyCheck: dataPolicy,
             }
 
-            await addUser(data)
+            addUser(data)
         }
     }
 
