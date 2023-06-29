@@ -1,4 +1,4 @@
-import getOneEmailByEmail from "@/services/api/users/user_emailGetOne";
+import getOneEmailByEmail from "@/services/users/user_emailGetOne";
 import email_format_validator from "./email_format_validator";
 
 interface EmailValidationResult{

@@ -11,3 +11,5 @@ const readToken = (token)=>{
 	}
 
 }
+
+module.exports = readToken

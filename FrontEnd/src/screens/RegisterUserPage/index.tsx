@@ -10,7 +10,7 @@ import email_validator from "@/utils/validators/email_validator"
 import { useState } from 'react'
 
 import styles from "./styles.module.scss"
-import addUser from "@/services/api/users/add_user"
+import addUser from "@/services/users/add_user"
 import Link from "next/link"
 
 export function RegisterUserPage(){

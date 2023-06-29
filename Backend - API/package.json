@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "nodemon src/index.js localhost 3001",
-    "test": "jest --maxWorkers=50% --no-cache",
+    "test": "jest --no-cache",
     "test-server": "cross-env NODE_ENV=test nodemon src/index.js localhost 3001"
   },
   "author": "",

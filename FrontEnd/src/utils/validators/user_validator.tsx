@@ -1,4 +1,4 @@
-import getOneUserByName from "@/services/api/users/user_getOne"
+import getOneUserByName from "@/services/users/user_getOne"
 
 interface UserValidationResult{
     success : boolean,

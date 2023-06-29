@@ -19,6 +19,7 @@ describe("Get Email", ()=>{
 		const email = "emailthatdoesnotexist@getemailtest.com"
 
 		await getEmail(email).then((response)=>{
+			console.log(response)
 			expect(response.success).toBeFalsy()
 			expect(response.status).toBe(401)
 			expect(response.message).toBe("Email não encontrado")

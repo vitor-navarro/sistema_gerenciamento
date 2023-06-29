@@ -5,16 +5,18 @@ import RequirementsDiv from '@/components/RequirementsDiv'
 import email_format_validator from '@/utils/validators/email_format_validator'
 import password_validator from '@/utils/validators/password_format_validator'
 
-import login from "../../services/api/auth/login"
-
-import { useState } from 'react'
+import { useContext, useState } from 'react'
 import Link from 'next/link'
 
 import styles from './styles.module.scss'
 import user_validator from '@/utils/validators/user_validator'
 import email_validator from '@/utils/validators/email_validator'
+import { AuthContext } from '../../../contexts/AuthContext'
 
 export function LoginPage() {
+
+    const { signIn } = useContext(AuthContext)
+
     const [geralError, setGeralMessageError] = useState("")
 
     const [loginUser, setLoginUser] = useState("")
@@ -125,10 +127,11 @@ export function LoginPage() {
                 keepConnected: keepConnected
             }
 
-            const result = await login(userObject)
-            
-            setGeralMessageError(result.message)
-
+            await signIn(userObject).then(result => {
+                setGeralMessageError(result)
+            }).catch(error => {
+                setGeralMessageError("Erro interno do servidor")
+            })
         }
     }
 

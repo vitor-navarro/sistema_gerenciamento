@@ -5,8 +5,11 @@ const email_format_validator = require("../validators/email_format_validator")
 const bcryptsaltRounds = process.env.BCRYPT_SALT_ROUNDS
 
 const createToken = require("../services/tokens/createToken")
+const readToken = require("../services/tokens/readToken")
+
 
 const logger = require("../services/logger/logger")
+const getUserById = require("../services/users/getUserById")
 
 module.exports = class AuthController {
 
@@ -45,6 +48,58 @@ module.exports = class AuthController {
 		getEmail(email).then((response => {
 			res.status(response.status).send(response.success)
 		}))
+	}
+
+	static async getUserFromToken(req, res) {
+
+		const { token } = req.body
+
+		console.log(token)
+
+		if (!token) {
+
+			const data = {
+				message: "Tentativa de acesso sem token",
+				path: req.path
+			}
+
+			logger.serious(data)
+
+			return res.status(401).json({ message: "Token não fornecido" })
+		}
+
+		try {
+
+			const decoded = readToken(token)
+			const userId = decoded.id
+			getUserById(userId).then(
+				(response) => {
+					if (response.success) {
+						const user = {
+							name: response.userDB.name,
+							email: response.userDB.email,
+						}
+
+						return res.status(response.status).json({ user })
+					} else {
+						return res.status(response.status).json({ message: user.message })
+					}
+				}
+			)
+		}
+		catch (err) {
+			console.log(err)
+
+			const data = {
+				message: "Erro ao obter informações do usuário por token fornecido",
+				path: req.path
+			}
+
+			logger.serious(data)
+
+			return res.status(500).json({ message: "Erro ao obter informações do usuário." })
+		}
+
 	}
 
 	static async login(req, res) {
@@ -145,16 +200,15 @@ module.exports = class AuthController {
 					}
 
 					logger.error(data)
-					console.log(data)
 					return res.status(500).json({ message: "Erro ao comparar senha" })
 				} else if (result) {
 					const token = createToken(userDB)
 					return res.status(200).json({
 						message: "Login efetuado com sucesso",
-						redirectTo: "/dashboard",
-						token
+						name: userDB.name,
+						email: userDB.email,
+						token: token,
 					})
-
 				} else {
 					return res.status(401).json({ message: "Senha incorreta" })
 				}
