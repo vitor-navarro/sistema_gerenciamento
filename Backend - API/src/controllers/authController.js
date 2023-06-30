@@ -207,6 +207,7 @@ module.exports = class AuthController {
 						message: "Login efetuado com sucesso",
 						name: userDB.name,
 						email: userDB.email,
+						keepConnected: keepConnected,
 						token: token,
 					})
 				} else {

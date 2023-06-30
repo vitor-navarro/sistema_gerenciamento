@@ -2,7 +2,6 @@ import { createContext, useEffect, useState } from 'react';
 import { setCookie, parseCookies } from "nookies"
 
 import Router from 'next/router';
-import { api } from '@/services/api';
 
 interface AuthProviderProps {
     children: React.ReactNode
@@ -51,6 +50,8 @@ export function AuthProvider({ children }: AuthProviderProps) {
                 })
 
             })
+        } else{
+            Router.push('/login');
         }
     }, [])
 
@@ -65,16 +66,21 @@ export function AuthProvider({ children }: AuthProviderProps) {
         }).then(response => {
             if (response.status === 200) {
                 return response.json().then(data => {
+
+                    let maxAge = 60 * 60 * 1; // 1 hour
+
+                    if(data.keepConnected){
+                        maxAge = 60 * 60 * 24 * 30; // 30 days 
+                    }
+                    console.log(maxAge)
                     setCookie(undefined, "sistema_gerenciamento.token", data.token, {
-                        maxAge: 60 * 60 * 1, // 1 hour
+                        maxAge: maxAge
                     });
 
                     const userData = {
                         name: data.name,
                         email: data.email
                     };
-
-                    //api.defaults.headers['Authorization'] = `Bearer ${data.token}`;
 
                     setUser(userData);
 
