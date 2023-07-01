@@ -1,7 +1,11 @@
 import { createContext, useEffect, useState } from 'react';
 import { setCookie, parseCookies } from "nookies"
 
-import Router from 'next/router';
+import Router, { useRouter } from 'next/router';
+
+const notPrivatesRoutes = [
+    "/registerUser",
+]
 
 interface AuthProviderProps {
     children: React.ReactNode
@@ -32,6 +36,7 @@ export const AuthContext = createContext({} as AuthContextType)
 export function AuthProvider({ children }: AuthProviderProps) {
     const base_URL = process.env.API_BASE_URL;
     const [user, setUser] = useState<User | null>(null);
+    const router = useRouter();
 
     const isAuthenticated = !!user;
 
@@ -51,7 +56,12 @@ export function AuthProvider({ children }: AuthProviderProps) {
 
             })
         } else{
-            Router.push('/login');
+
+            const { pathname } = router;
+
+            if(notPrivatesRoutes.indexOf(pathname)){
+                Router.push('/login');
+            }
         }
     }, [])
 

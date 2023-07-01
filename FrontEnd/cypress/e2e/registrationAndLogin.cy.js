@@ -1,8 +1,8 @@
 /// <reference types="Cypress" />
 
-describe('Registration', () => {
-    it('should regiter user correctly', () => {
-        cy.visit('registerUser');
+describe('Registration and Login', () => {
+    it('should register user correctly', () => {
+        cy.visit('/');
         cy.get('#user-input').type("testuser")
         cy.get('#emailInput').type("testuser@example.com")
         cy.get('#password').type("password123")
@@ -10,6 +10,10 @@ describe('Registration', () => {
         cy.get('#data-politic').click()
         cy.get('.styles_button__WEiBU').click()
 
+        //login
         cy.url().should('include', '/login')
+
+
     });
+
 });
