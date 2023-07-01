@@ -35,3 +35,28 @@
 //     }
 //   }
 // }
+
+declare namespace Cypress {
+    interface Chainable<Subject> {
+      register(testuser: string, testemail: string, password: string): Chainable<any>;
+      login(testuser: string, password: string): Chainable<any>;
+    }
+  }
+
+Cypress.Commands.add("register", (testuser: string, testemail: string, password: string) => {
+    cy.visit('/');
+    cy.get('#user-input').type(testuser);
+    cy.get('#emailInput').type(testemail);
+    cy.get('#password').type(password);
+    cy.get('#confirm-password').type(password);
+    cy.get('#data-politic').click();
+    cy.get('.styles_button__WEiBU').click();
+});
+
+Cypress.Commands.add("login", (testuser: string, password: string) => {
+    cy.visit('/login');
+    cy.get('#login-input').type(testuser);
+    cy.get('#password').type(password);
+    cy.get('#remember-me').click();
+    cy.get('.styles_button__WEiBU').click();
+});
