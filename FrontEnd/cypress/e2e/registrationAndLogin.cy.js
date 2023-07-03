@@ -39,8 +39,33 @@ describe('Registration', () => {
 });
 
 describe('Login', () => {
-    it('should login correctly', () => {
 
+    it('must appear "Usuário não possui cadastro"', () => {
+        const testuser = "testuser1234"
         cy.login(testuser, password)
+        cy.get('.styles_errorSpan__yS3Yr').should("be.visible");
+    })
+
+    it('must appear "Senha incorreta"', () => {
+        const password = "password123345"
+        cy.login(testuser, password)
+        cy.get('.styles_spanDiv__buVH_').should("be.visible");
+    })
+
+    it('"A senha deve ter no mínimo 7 caracteres" colored', () => {
+        const password = "12"
+        cy.login(testuser, password)
+        cy.get(':nth-child(4) > :nth-child(1) > span').should("have.css", "color");
+    })
+
+    it('"O Usuário deve ter no mínimo 3 caracteres" colored', () => {
+        const testuser = "12"
+        cy.login(testuser, password)
+        cy.get(':nth-child(4) > :nth-child(2) > span').should("have.css", "color");
+    })
+
+    it('should login correctly', () => {
+        cy.login(testuser, password)
+        cy.url().should('include', '/dashboard')
     })
 })
