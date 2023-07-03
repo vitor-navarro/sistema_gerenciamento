@@ -54,8 +54,8 @@ app.use("/user", userRoutes)
 app.use("/auth", authRoutes)
 
 //conn.sync({ force: true }) //reset database
-//conn.sync( {force : resetDatabase} )
-conn.sync()
+conn.sync( {force : resetDatabase} )
+//conn.sync()
 	.then(() => {
 		app.listen(port, () => {
 			console.log(`Server is listening on port http://localhost:${port}`);
