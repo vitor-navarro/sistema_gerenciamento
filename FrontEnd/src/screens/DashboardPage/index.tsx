@@ -1,5 +1,11 @@
+import CardPattern from "@/components/CardPattern"
+
+
 import { useContext, useEffect } from "react"
 import { AuthContext } from "../../../contexts/AuthContext"
+
+import styles from './styles.module.scss'
+
 
 export default function DashboardPage() {
   const { user } = useContext(AuthContext)
@@ -10,6 +16,10 @@ export default function DashboardPage() {
       <h2>Seja bem vindo!</h2>
       <h2>Olá, {user?.name}</h2>
       <h2>Email: {user?.email}</h2>
+
+      <div className={styles.cards}>
+        <CardPattern img="/images/product.png" url="/products">Produtos</CardPattern>
+      </div>
     </>
   )
 }
