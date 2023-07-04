@@ -2,6 +2,7 @@ import { AiOutlineMenu, AiOutlineMenuFold, AiOutlineHome, AiOutlineUser } from '
 import { BsCashCoin, BsGear } from 'react-icons/bs'
 import { TbReportAnalytics } from 'react-icons/tb'
 
+
 import CustomImageComponent from '../CardPattern/CustomImageComponent';
 
 import styles from './styles.module.scss';
@@ -40,12 +41,22 @@ const tabs = [
     },
 ]
 
-export function LateralMenu(){
+interface LateralMenuProps{
+    onMouseOver: () => void;
+    onMouseOut: () => void;
+}
+
+
+export function LateralMenu({ onMouseOver, onMouseOut } : LateralMenuProps){
     // colocar uma função para mudar o lado do menu na tela
-    
+
     return(
         <>
-            <div className={styles.mainDiv}>
+            <div 
+                className={styles.mainDiv}
+                onMouseOver={onMouseOver}
+                onMouseOut={onMouseOut}
+            >
                 <nav className={styles.nav}>
                     <div className={styles.expand}><AiOutlineMenu></AiOutlineMenu></div>
                     <ul>

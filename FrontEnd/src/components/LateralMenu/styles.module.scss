@@ -1,7 +1,6 @@
 .mainDiv{
     display: flex;
     flex-direction: row;
-    overflow: hidden;
     float: left;
 }
 
@@ -11,6 +10,9 @@
     max-width: 40px;
     width: 5vw;
     border: 1px solid rgb(194, 194, 194);
+
+    position: fixed;
+    overflow: hidden;
 
     .expand{
         padding: 0.4rem;
@@ -29,13 +31,13 @@
         align-content: center;
 
         .item{
-            transition: 0.5s;
+            transition: 0.2s;
             font-size: 1.2rem;
             padding: 0.5rem 15%;
             display: flex;
             border: 1px solid rgb(194, 194, 194);
             font-weight: 500;
-
+ 
             .icon{
                 display: flex;
                 align-items: center;
@@ -58,7 +60,7 @@
     width: 15vw;
     min-width: 170px;
     max-width: 210px;
-    transition: 0.5s;
+    transition: 0.3s;
 
     .item{
         padding: 0.5rem 4%;
