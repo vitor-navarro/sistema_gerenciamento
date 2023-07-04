@@ -20,6 +20,7 @@ export default function DashboardPage() {
       <div className={styles.cards}>
         <CardPattern img="/images/product.png" url="/products">Produtos</CardPattern>
       </div>
+      
     </>
   )
 }

@@ -19,16 +19,14 @@ const tabs = [
         custonIcon: <CustomImageComponent img="/images/product.png" alt=''></CustomImageComponent>,
     },
     {
-        text: "Relatórios",
-        href: "/reports",
-        icon: TbReportAnalytics,
-
-    },
-    {
         text: "Vendas",
         href: "/sales",
         icon: BsCashCoin,
-
+    },
+    {
+        text: "Relatórios",
+        href: "/reports",
+        icon: TbReportAnalytics,
     },
     {
         text: "Usuários",
