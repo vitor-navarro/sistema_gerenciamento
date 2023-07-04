@@ -21,6 +21,18 @@ export default function DashboardPage() {
         <CardPattern img="/images/product.png" url="/products">Produtos</CardPattern>
       </div>
       
+      <div className={styles.cards}>
+        <CardPattern img="/images/product.png" url="/products">Produtos</CardPattern>
+      </div>
+      
+      <div className={styles.cards}>
+        <CardPattern img="/images/product.png" url="/products">Produtos</CardPattern>
+      </div>
+      
+      <div className={styles.cards}>
+        <CardPattern img="/images/product.png" url="/products">Produtos</CardPattern>
+      </div>
+      
     </>
   )
 }

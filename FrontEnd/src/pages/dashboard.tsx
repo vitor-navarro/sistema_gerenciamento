@@ -5,7 +5,6 @@ export default function Dashboard() {
 
   return (
     <>
-        <LateralMenu></LateralMenu>
         <DashboardPage/>
     </>
   )
