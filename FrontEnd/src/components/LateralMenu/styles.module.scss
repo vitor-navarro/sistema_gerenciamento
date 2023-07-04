@@ -1,21 +1,56 @@
-.nav{
+.mainDiv{
     display: flex;
+    flex-direction: row;
+    overflow: hidden;
+    float: left;
+}
 
+.nav{
+    height: 100vh;
+    min-width: 170px;
+    max-width: 210px;
+    width: 15vw;
+    border: 1px solid rgb(194, 194, 194);
+
+    display: fixed;
 
     .expand{
-
-
+        padding: 0.4rem;
+        font-size: 1.5rem;
     }
 
-    .item{
-        .link{
-            .icon{
+    ul{
+        height: 100%;
+        list-style-type: none;
+    }
 
+    .link{
+        text-decoration: none;
+        color: var(--gray-800);
+        align-items: center;
+
+        .item{
+            transition: 0.5s;
+            font-size: 1.2rem;
+            padding: 0.5rem 4%;
+            display: flex;
+            border: 1px solid rgb(194, 194, 194);
+            font-weight: 500;
+
+            .icon{
+                display: flex;
+                align-items: center;
             }
 
             .text{
-
+                padding-left: 1rem;
             }
+        }
+
+        .item:hover{
+            background-color: var(--gray-100);
+            border-left: 3px solid var(--blue-500);
+            color: var(--blue-500);
         }
     }
 }

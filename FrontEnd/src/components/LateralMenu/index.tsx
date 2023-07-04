@@ -1,37 +1,77 @@
-import { AiOutlineMenu, AiOutlineMenuFold } from 'react-icons/ai';
+import { AiOutlineMenu, AiOutlineMenuFold, AiOutlineHome, AiOutlineUser } from 'react-icons/ai';
+import { BsCashCoin, BsGear } from 'react-icons/bs'
+import { TbReportAnalytics } from 'react-icons/tb'
+
+import CustomImageComponent from '../CardPattern/CustomImageComponent';
 
 import styles from './styles.module.scss';
+import Link from 'next/link';
+
+const tabs = [
+    {
+        text: "Dashboard",
+        href: "/dashboard", 
+        icon: AiOutlineHome,
+    },
+    {
+        text: "Produtos",
+        href: "/products",
+        custonIcon: <CustomImageComponent img="/images/product.png" alt=''></CustomImageComponent>,
+    },
+    {
+        text: "Relatórios",
+        href: "/reports",
+        icon: TbReportAnalytics,
+
+    },
+    {
+        text: "Vendas",
+        href: "/sales",
+        icon: BsCashCoin,
+
+    },
+    {
+        text: "Usuários",
+        href: "/users",
+        icon: AiOutlineUser,
+    },
+    {
+        text: "Configurações",
+        href: "/configuration",
+        icon: BsGear,
+    },
+]
 
 export function LateralMenu(){
+    // colocar uma função para mudar o lado do menu na tela
+    
     return(
         <>
-            <nav className={styles.nav}>
-                <div className={styles.expand}><AiOutlineMenu></AiOutlineMenu></div>
-                <ul>
+            <div className={styles.mainDiv}>
+                <nav className={styles.nav}>
+                    <div className={styles.expand}><AiOutlineMenu></AiOutlineMenu></div>
+                    <ul>
 
-                <li className={styles.item}>
-                    <a href="#" className={styles.link}>
-                        <span className={styles.icon}></span>
-                        <span className={styles.text}></span>
-                    </a>
-                </li>
-
-                <li className={styles.item}>
-                    <a href="#" className={styles.link}>
-                        <span className={styles.icon}></span>
-                        <span className={styles.text}></span>
-                    </a>
-                </li>
-
-                <li className={styles.item}>
-                    <a href="#" className={styles.link}>
-                        <span className={styles.icon}></span>
-                        <span className={styles.text}></span>
-                    </a>
-                </li>
-                
-                </ul>
-            </nav>
+                        {tabs.map((tab, index)=>(
+                            <Link href={tab.href} className={styles.link}>
+                                <li className={styles.item} key={index}>
+                                {tab.icon ? (
+                                    <span className={styles.icon}>
+                                        {tab.icon && <tab.icon />}
+                                    </span>
+                                    ) : (
+                                    <span className={styles.icon}>
+                                        {tab.custonIcon}
+                                    </span>
+                                    )}
+                                    <span className={styles.text}>{tab.text}</span>
+                                </li>
+                            </Link>
+                        ))}
+                    
+                    </ul>
+                </nav>
+            </div>
         </>
     )
 }
