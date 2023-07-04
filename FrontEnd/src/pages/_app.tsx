@@ -12,7 +12,7 @@ export default function App({ Component, pageProps, router }: AppProps) {
 
   return (
     <AuthProvider>
-      {renderLateralMenu &&       <LateralMenu />}
+      {renderLateralMenu && <LateralMenu />}
 
       <Component {...pageProps} />
     </AuthProvider>
