@@ -2,6 +2,7 @@ import { AiOutlineMenu, AiOutlineMenuFold, AiOutlineHome, AiOutlineUser } from '
 import { BsCashCoin, BsGear } from 'react-icons/bs'
 import { TbReportAnalytics } from 'react-icons/tb'
 
+import { Theme } from '@/pages/_app';
 
 import CustomImageComponent from '../CardPattern/CustomImageComponent';
 
@@ -44,11 +45,17 @@ const tabs = [
 interface LateralMenuProps{
     onMouseOver: () => void;
     onMouseOut: () => void;
+    currentTheme: Theme;
+    onThemeChange: () => void;
 }
 
 
-export function LateralMenu({ onMouseOver, onMouseOut } : LateralMenuProps){
+export function LateralMenu({ onMouseOver, onMouseOut, currentTheme, onThemeChange } : LateralMenuProps){
     // colocar uma função para mudar o lado do menu na tela
+
+    const setTheme = () => {
+        onThemeChange();
+    };
 
     return(
         <>
@@ -57,8 +64,17 @@ export function LateralMenu({ onMouseOver, onMouseOut } : LateralMenuProps){
                 onMouseOver={onMouseOver}
                 onMouseOut={onMouseOut}
             >
+        
                 <nav className={styles.nav}>
-                    <div className={styles.expand}><AiOutlineMenu></AiOutlineMenu></div>
+                    <div className={styles.actions}>
+                        <div className={styles.expand}><AiOutlineMenu></AiOutlineMenu></div>
+
+                        <div className={styles.themeSwitcher} onClick={() => setTheme()}>
+                            <input type="checkbox" className={styles.switch} />
+                            <label htmlFor="theme-switch" className={styles.switchLabel}></label>
+                        </div>
+                    </div>
+
                     <ul>
 
                         {tabs.map((tab, index)=>(
@@ -81,6 +97,8 @@ export function LateralMenu({ onMouseOver, onMouseOut } : LateralMenuProps){
                     </ul>
                 </nav>
             </div>
+
+
         </>
     )
 }
