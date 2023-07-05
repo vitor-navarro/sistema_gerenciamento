@@ -52,7 +52,6 @@ interface LateralMenuProps{
 
 export function LateralMenu({ onMouseOver, onMouseOut, currentTheme, onThemeChange } : LateralMenuProps){
     // colocar uma função para mudar o lado do menu na tela
-
     const setTheme = () => {
         onThemeChange();
     };
@@ -78,8 +77,8 @@ export function LateralMenu({ onMouseOver, onMouseOut, currentTheme, onThemeChan
                     <ul>
 
                         {tabs.map((tab, index)=>(
-                            <Link href={tab.href} className={styles.link}>
-                                <li className={styles.item} key={index}>
+                            <Link href={tab.href} className={styles.link} key={index}>
+                                <li className={styles.item}>
                                 {tab.icon ? (
                                     <span className={styles.icon}>
                                         {tab.icon && <tab.icon />}

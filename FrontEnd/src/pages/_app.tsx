@@ -6,17 +6,32 @@ import { useState } from 'react';
 
 import '@/styles/globals.scss'
 import styles from '../styles/styles.module.scss';
+import { setWhiteTheme, setDarkTheme, setCustomTheme } from '../styles/themes';
 
 export type Theme = "WHITE" | "DARK" | "CUSTOM";
 
 export default function App({ Component, pageProps, router }: AppProps) {
 
-  const excludeRoutes = ['/','/registerUser', '/login'];
+  const excludeRoutes = ['/', '/registerUser', '/login'];
   const shouldExcludeRoute = excludeRoutes.includes(router.pathname);
   const renderLateralMenu = !shouldExcludeRoute;
 
   const [isMouseOver, setIsMouseOver] = useState(false);
+
   const [theme, setTheme] = useState<Theme>("WHITE");
+
+  const setThemeColors = (theme: Theme) => {
+    const rootElement = document.documentElement;
+    setTheme(theme)
+    
+    if (theme === "WHITE") {
+      setWhiteTheme(rootElement);
+    } else if (theme === "DARK") {
+      setDarkTheme(rootElement);
+    } else if (theme === "CUSTOM") {
+      setCustomTheme(rootElement);
+    }
+  }
 
   const handleMouseOver = () => {
     setIsMouseOver(true);
@@ -26,9 +41,9 @@ export default function App({ Component, pageProps, router }: AppProps) {
     setIsMouseOver(false);
   };
 
+
   const handleThemeChange = () => {
-    console.log(theme)
-    setTheme(theme === "WHITE" ? "DARK" : theme === "DARK" ? "CUSTOM" : "WHITE");
+    setThemeColors(theme === "WHITE" ? "DARK" : theme === "DARK" ? "CUSTOM" : "WHITE");
   };
 
   return (

@@ -1,3 +1,4 @@
+//example margin: map-get($margins, margin);
 *{
     margin: 0;
     padding: 0;
@@ -5,7 +6,7 @@
 }
 
 :root{
-    --white: #FFF;
+    --primary-color: rgb(194, 194, 194);
 
     --gray-50: #F7F8FA;
     --gray-100: #E6E8EB;
