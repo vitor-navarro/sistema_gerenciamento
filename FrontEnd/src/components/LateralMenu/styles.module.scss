@@ -5,18 +5,23 @@
 }
 
 .nav{
-    height: 100vh;
-    min-width: 35px;
-    max-width: 40px;
-    width: 5vw;
-    border: 1px solid var(--primary-color); //
 
     position: fixed;
     overflow: hidden;
 
+    height: 100vh;
+    min-width: 35px;
+    max-width: 40px;
+    width: 5vw;
+
+    border: 1px solid var(--border-color);
+    background-color: var(--nav-background-color);
+
+
     .actions{
         display: flex;
         flex-direction: row;
+
         .expand{
             padding: 0.4rem;
             font-size: 1.5rem;
@@ -27,7 +32,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-top: 20px;
+            color: var(--input-button-color);
             
             .switch{
                 display: none;
@@ -35,11 +40,15 @@
 
             .switchLabel{
                 display: inline-block;
+                position: relative;
+
                 width: 40px;
                 height: 20px;
-                background-color: var(--primary-color);
                 border-radius: 10px;
-                position: relative;
+
+                background-color: var(--input-button-color);
+
+                filter: brightness(0.8);
                 cursor: pointer;
             }
 
@@ -76,7 +85,8 @@
 
     .link{
         text-decoration: none;
-        color: var(--gray-800);
+        color: var(--font-color);
+        opacity: 0.9;
         align-items: center;
         align-content: center;
 
@@ -85,9 +95,9 @@
             font-size: 1.2rem;
             padding: 0.5rem 15%;
             display: flex;
-            border: 1px solid rgb(194, 194, 194);
+            border: 1px solid var(--border-color);
             font-weight: 500;
- 
+
             .icon{
                 display: flex;
                 align-items: center;

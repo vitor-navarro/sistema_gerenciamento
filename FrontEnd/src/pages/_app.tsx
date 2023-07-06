@@ -28,9 +28,9 @@ export default function App({ Component, pageProps, router }: AppProps) {
       setWhiteTheme(rootElement);
     } else if (theme === "DARK") {
       setDarkTheme(rootElement);
-    } else if (theme === "CUSTOM") {
-      setCustomTheme(rootElement);
-    }
+    } //else if (theme === "CUSTOM") {
+      //setCustomTheme(rootElement);
+    //}
   }
 
   const handleMouseOver = () => {
@@ -43,7 +43,8 @@ export default function App({ Component, pageProps, router }: AppProps) {
 
 
   const handleThemeChange = () => {
-    setThemeColors(theme === "WHITE" ? "DARK" : theme === "DARK" ? "CUSTOM" : "WHITE");
+    setThemeColors(theme === "WHITE" ? "DARK": "WHITE");
+    //setThemeColors(theme === "WHITE" ? "DARK" : theme === "DARK" ? "CUSTOM" : "WHITE");
   };
 
   return (

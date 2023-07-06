@@ -7,6 +7,15 @@
 
 :root{
     --primary-color: rgb(194, 194, 194);
+    --secundary-color: none;
+
+    --font-color: #494D4B;
+    --title-color: #494D4B;
+    --input-button-color: #808080;
+
+    --border-color: rgb(194, 194, 194);
+
+    --background-color:#F7F8FA;
 
     --gray-50: #F7F8FA;
     --gray-100: #E6E8EB;
@@ -24,6 +33,12 @@
     --purple-800: #6F48C9;
 
     --dark-slate-blue: #4953B8;
+
+
+    --destak-color: var(--font-color);
+
+    //nav
+    --nav-background-color: var(--background-color);
 }
 
 @media (max-width: 1080px){
@@ -39,18 +54,19 @@
 }
 
 body{
-    background: var(--gray-50);
+    background: var(--background-color);
+    color: var(--font-color);
 }
 
 body, input, textarea, button{
     font: 500 1rem "Montserrat", sans-serif;
-    color: var(--gray-500);
+    color: var(--input-buttons-color);
 }
 
 h1, h2, h3, h4, h5, h6{
     font-weight: 600;
     font-family: "Montserrat", sans-serif;
-    color: var(--gray-800)
+    color: var(--title-color)
 }
 
 h1{
@@ -68,13 +84,13 @@ button{
 label{
     margin-bottom: 5px;
     padding: 0.5rem;
-    color: #222;
+    color: var(--font-color);
 }
 
 input{
     width: 100%;
     padding: 0.75rem;
     border-radius: 5px;
-    border: 1px solid #ccc;
+    border: 1px solid var(--border-color);
     margin-top: 5px;
 }
