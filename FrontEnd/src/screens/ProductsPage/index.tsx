@@ -1,7 +1,11 @@
+import ProductsList from "@/components/ProductsList";
+
 export function ProductsPage(){
     return(
         <>  
-            <h1>ProductsPage</h1>
+            <div>
+                <ProductsList></ProductsList>
+            </div>
         </>
     )
 }
