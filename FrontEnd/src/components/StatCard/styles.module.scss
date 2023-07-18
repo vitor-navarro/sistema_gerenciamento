@@ -1,0 +1,9 @@
+.CardsWrapper{
+    height: 20vh;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    padding-top: 2rem;
+
+    border-bottom: 1px solid var(--border-color);
+}

@@ -4,7 +4,7 @@ import { TbReportAnalytics } from 'react-icons/tb'
 
 import { Theme } from '@/pages/_app';
 
-import CustomImageComponent from '../CardPattern/CustomImageComponent';
+import CustomImageComponent from '../Cards/CustomImageComponent';
 
 import styles from './styles.module.scss';
 import Link from 'next/link';

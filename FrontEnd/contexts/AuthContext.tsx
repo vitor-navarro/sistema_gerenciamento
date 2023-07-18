@@ -80,8 +80,10 @@ export function AuthProvider({ children }: AuthProviderProps) {
                     let maxAge = 60 * 60 * 1; // 1 hour
 
                     if(data.keepConnected){
-                        maxAge = 60 * 60 * 24 * 30; // 30 days 
+                        maxAge = 60 * 60 * 1; // 1 hour
+                        //maxAge = 60 * 60 * 24 * 30; // 30 days 
                     }
+                    
                     console.log(maxAge)
                     setCookie(undefined, "sistema_gerenciamento.token", data.token, {
                         maxAge: maxAge

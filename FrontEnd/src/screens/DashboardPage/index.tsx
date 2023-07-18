@@ -1,4 +1,4 @@
-import CardPattern from "@/components/CardPattern"
+import CardPattern from "@/components/Cards"
 
 
 import { useContext, useEffect } from "react"
