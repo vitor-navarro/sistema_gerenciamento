@@ -54,6 +54,13 @@ export function AuthProvider({ children }: AuthProviderProps) {
                     setUser(response.user)
                 })
 
+            }).catch(error =>{
+                console.log(error)
+                const { pathname } = router;
+
+                if(notPrivatesRoutes.indexOf(pathname)){
+                    Router.push('/login');
+            }
             })
         } else{
 
@@ -80,8 +87,8 @@ export function AuthProvider({ children }: AuthProviderProps) {
                     let maxAge = 60 * 60 * 1; // 1 hour
 
                     if(data.keepConnected){
-                        maxAge = 60 * 60 * 1; // 1 hour
-                        //maxAge = 60 * 60 * 24 * 30; // 30 days 
+                        //maxAge = 60 * 60 * 1; // 1 hour
+                        maxAge = 60 * 60 * 24 * 7; // 7 days 
                     }
                     
                     console.log(maxAge)

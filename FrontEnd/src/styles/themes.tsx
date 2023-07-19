@@ -7,6 +7,8 @@ const white={
     "--title-color": "#494D4B",
     "--input-button-color": "#808080",
 
+    "--table-font-color": "#000",
+
     "--border-color": "rgb(194, 194, 194)",
 
     "--background-color":"#F7F8FA",
@@ -44,6 +46,8 @@ const dark={
     "--font-color": "#D1D1D1",
     "--title-color": "#D1D1D1",
     "--input-buttons-color": "#121212",
+
+    "--table-font-color": "#ece9e9",
 
     "--border-color": "rgb(194, 194, 194)",
 

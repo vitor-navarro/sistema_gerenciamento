@@ -13,6 +13,8 @@
     --title-color: #494D4B;
     --input-button-color: #808080;
 
+    --table-font-color: #000;
+
     --border-color: rgb(194, 194, 194);
 
     --background-color:#F7F8FA;
@@ -79,12 +81,21 @@ h2{
 }
 
 button{
+    padding: 0.5rem;
+    border: 1px solid var(--border-color);
+    border-radius: 0.2rem;
+    background-color: var(--background-color);
+    font-weight: bold;
     cursor: pointer;
 }
 
 label{
     margin-bottom: 5px;
     padding: 0.5rem;
+    color: var(--font-color);
+}
+
+p{
     color: var(--font-color);
 }
 

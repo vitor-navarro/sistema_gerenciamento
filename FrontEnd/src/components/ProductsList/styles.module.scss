@@ -1,4 +1,50 @@
-.ListHeader {
+.Table{
+    border-collapse: collapse;
+    width: 90%;
+    margin: 1rem auto;
+}
+
+.TableHead, .TableBody{
+
+    td, th{
+        padding: 0.5rem;
+        border: 1px solid var(--border-color);
+        color: var(--table-font-color);
+    }
+}
 
 
+.TableHead{
+    background-color: var(--primary-color);
+
+}
+
+.TableBody{
+    .idCol, .actionsCol, .stockCol{
+        text-align: center;
+    }
+
+    .nameCol{
+        width: 30%;
+    }
+
+    .descriptonCol{
+        width: 40%;
+    }
+
+    .nameCol, .descriptonCol{
+        text-align: left;
+    }
+
+    .nameCol{
+        font-weight: bold;
+    }
+    
+    .priceCol{
+        text-align: right;
+    }
+
+    tr:nth-child(2n) {
+        background-color: var(--primary-color);
+    }
 }
