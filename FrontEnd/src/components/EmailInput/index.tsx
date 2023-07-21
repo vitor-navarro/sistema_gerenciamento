@@ -34,10 +34,10 @@ export default function EmailInput(props:propsInterface){
 
     return(
         <div className={styles.div}> 
-            <div>
+            <span>
                 <label htmlFor="emailInput">{props.children ? props.children : 'Email'}{props.isRequired ? '*' : ''}</label>
                 <ErrorSpan error = { emailError || error }>{errorMessage !== '' ? errorMessage : "Email Inválido"}</ErrorSpan>
-            </div>
+            </span>
 
             <input 
             {...(props.isRequired || props.isRequired === undefined ? { required: true } : {})}

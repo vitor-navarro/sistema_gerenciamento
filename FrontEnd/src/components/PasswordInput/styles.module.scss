@@ -5,6 +5,10 @@
     label{
         margin: 0;
     }
+
+    span{
+        margin-bottom: 0.3rem;
+    }
 }
 
 .passwordContainer{
@@ -21,8 +25,6 @@
         margin: 0;
         padding: 0.75rem;
         border-radius: 5px;
-        font-size: 1.15rem;
-        margin-top: 5px;
     }
   
     button{
@@ -35,7 +37,5 @@
         display: inline-flex;
         align-items: center;
         justify-content: center;
-        width: 2rem;
-        height: 2rem;
     }
   }

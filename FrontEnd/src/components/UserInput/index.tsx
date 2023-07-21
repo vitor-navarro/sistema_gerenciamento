@@ -25,10 +25,11 @@ export default function UserInput(props:propsInterface){
 
     return(
         <div className={styles.div}> 
-            <div>
+
+            <span>
                 <label htmlFor="user-input">{props.children ? props.children : 'Usuário'}{props.isRequired ? '*' : ''}</label>
                 <ErrorSpan error = { error }>{props.errorMessage !== '' ? props.errorMessage : "Usuário inválido"}</ErrorSpan>
-            </div>
+            </span>
             
 
             <input 

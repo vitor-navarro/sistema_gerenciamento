@@ -46,10 +46,10 @@ export default function PasswordInput(props:propsInterface){
 
     return(
         <div className={styles.div}> 
-            <div>
+            <span>
                 <label htmlFor={props.id ? props.id : "password"}>{props.children ? props.children + "*" : "Senha*"}</label>
                 <ErrorSpan error = { passwordError || error }>{props.errorMessage !== '' ? props.errorMessage :"Senha Inválida"}</ErrorSpan>
-            </div>
+            </span>
 
 
             <div className={styles.passwordContainer}> 
